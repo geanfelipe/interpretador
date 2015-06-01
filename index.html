@@ -1,90 +1,116 @@
 <!doctype html>
 <html class="no-js">
-<head>
-    <meta charset="utf-8">
-    <title>Fixed top for Semantic-UI</title>
-    <meta name="description" content="">
-    <meta name=viewport content="width=device-width, initial-scale=1">
-    <meta name="mobile-web-app-capable" content="yes">
-
-    <!-- build:css styles/vendor.css -->
-    <!-- bower:css -->
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.13.0/css/semantic.min.css">
-    <!-- endbower -->
-    <!-- endbuild -->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300&subset=latin,vietnamese' rel='stylesheet' type='text/css'>
-
-    <script type="text/javascript" src="js/angular-1.3.15/angular.js"></script>
-    <!-- build:css styles/main.css -->
-    <link rel="stylesheet" href="css/style.css">
-    <!-- endbuild -->
-    <style type="text/css">
-        .none {
-            display: none;
-        }
-        .block {
-            display: block;
-        }
-    </style>
-    <script type="text/javascript">
-        angular.module("modelagem", []);
-        angular.module("modelagem").controller("modelagemCtrl", function ($scope) {
-            $scope.app = "Modelagem de Páginas HTML";
-            $scope.secretarias = [
-                {nome: "SEARH", contextmenu: "funcionario"},
-                {nome: "SEMUT", contextmenu: "funcionario"},
-                {nome: "SESAD", contextmenu: "funcionario"},
-                {nome: "SELIM", contextmenu: "funcionario"},
-                {nome: "SETRA", contextmenu: "funcionario"},
-                {nome: "SEPLAF", contextmenu: "funcionario"},
-                {nome: "SEMAS", contextmenu: "funcionario"},
-                {nome: "SEMSUR", contextmenu: "funcionario"},
-                {nome: "SEMUR", contextmenu: "funcionario"},
-                {nome: "SEMOP", contextmenu: "funcionario"},
-                {nome: "SEMEC", contextmenu: "funcionario"},
-                {nome: "SEHAB", contextmenu: "funcionario"}
-            ];
-            $scope.mudarAbaDeAplicativo = function (secretaria) {
-                $scope.aplicativo = {nome: secretaria.nome};
-                $scope.test();
-            };
-            $scope.test = function () {
-                var myElement = angular.element(document.querySelector('#aba-de-aplicativo'));
-                var otherElement = angular.element(document.querySelector('#aba-do-portal-administrativo'));
-                myElement.addClass('active');
-                otherElement.removeClass('active');    
-            };
-            $scope.alternarAba = function (elementoNone, elementoBlock, abaAdd, abaRemove) {
-                var elementoA = angular.element(document.querySelector(elementoNone));
-                var elementoB = angular.element(document.querySelector(elementoBlock));
-                var elementoAbaAdd = angular.element(document.querySelector(abaAdd));
-                var elementoAbaRemove = angular.element(document.querySelector(abaRemove));
-                elementoA.removeClass('block');
-                elementoA.addClass('none');
-                elementoB.removeClass('none');
-                elementoB.addClass('block');
-                elementoAbaAdd.addClass('active');
-                elementoAbaRemove.removeClass('active');
+    <head>
+        <meta charset="utf-8">
+        <title>Fixed top for Semantic-UI</title>
+        <meta name="description" content="">
+        <meta name=viewport content="width=device-width, initial-scale=1">
+        <meta name="mobile-web-app-capable" content="yes">
+        <!-- build:css styles/vendor.css -->
+        <!-- bower:css -->
+        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.13.0/css/semantic.min.css">
+        <!-- endbower -->
+        <!-- endbuild -->
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300&subset=latin,vietnamese' rel='stylesheet' type='text/css'>
+        <script type="text/javascript" src="js/angular-1.3.15/angular.js"></script>
+        <!-- build:css styles/main.css -->
+        <link rel="stylesheet" href="css/style.css">
+        <!-- endbuild -->
+        <style type="text/css">
+            .none {
+                display: none;
             }
-        });
-    </script>
-</head>
-<body ng-app="modelagem">
-    <div id="area-de-sistema" style="display: block;" ng-controller="modelagemCtrl">
+            .block {
+                display: block;
+            }
+        </style>
+        <script type="text/javascript">
+            angular.module("modelagem", []);
+            angular.module("modelagem").controller("modelagemCtrl", function ($scope) {
+                $scope.app = "Modelagem de Páginas HTML";
+
+                $scope.aplicativo = {nome: ''};
+                $scope.segmentView  = {nome: ''};
+                $scope.formView = {nome: ''}
+
+                $scope.secretarias = [
+                    {nome: "SEARH", contextmenu: "funcionario",
+                    setor: [
+                        {nome: "Almoxarifado", 
+                            segments: [
+                                {nome:"Cadastro Pessoal Almo"}, 
+                                {nome: "Teste Almo"}
+                            ]
+                        },
+                        {nome: "Garagem", 
+                            segments: [
+                                {nome:"Cadastro Pessoal Gara"}, 
+                                {nome: "Teste Gara"}
+                            ]
+                        }
+                    ]},
+                    
+                    {nome: "SEMUT", contextmenu: "funcionario",
+                    setor: [
+                        {nome: "Veículo",
+                        segments: [
+                            {nome:"Cadastro Pessoal Veic"},
+                            {nome: "Teste Veic"}
+                        ]},
+                        {nome: "Cobrador",
+                        segments: [
+                            {nome:"Cadastro Cobra"},
+                            {nome: "Teste Cobra"}
+                        ]}
+                    ]}
+                ];
+
+                $scope.alternarAbaPrincipal = function (elementoComActive) {
+                    var abaAplicativo = angular.element(document.querySelector('#aba-de-aplicativo'));
+                    var abaPortalAdministrativo = angular.element(document.querySelector('#aba-do-portal-administrativo'));
+                    if(elementoComActive == 'aba-de-aplicativo'){
+                        abaAplicativo.addClass('active');
+                        abaPortalAdministrativo.removeClass('active');    
+                    }else {
+                        abaPortalAdministrativo.addClass('active');
+                        abaAplicativo.removeClass('active');    
+                    }
+                };
+
+                $scope.alternarAba = function (abaParaRemoverOActive, abaParaAdicionarOActive) {
+                    var elementoAbaParaRemoverOActive = angular.element(document.querySelector(abaParaRemoverOActive));
+                    var elementoAbaParaAdicionarOActive = angular.element(document.querySelector(abaParaAdicionarOActive));
+                    elementoAbaParaRemoverOActive.removeClass('block');
+                    elementoAbaParaRemoverOActive.addClass('none');
+                    elementoAbaParaAdicionarOActive.removeClass('none');
+                    elementoAbaParaAdicionarOActive.addClass('block');
+                };
+
+                $scope.mudarAbaDeAplicativo = function (secretaria) {
+                    $scope.aplicativo = {nome: secretaria.nome};
+                };
+
+                $scope.mudarSegmentView = function (novoNomeSegmentView){
+                    console.log(novoNomeSegmentView);
+                    $scope.segmentView = novoNomeSegmentView;
+                };
+            });
+        </script>
+    </head>
+    <body ng-app="modelagem">
+        <div id="area-de-sistema" style="display: block;" ng-controller="modelagemCtrl">
             <div class="ui segment">
                 <div id="area-de-cabecalho" class="ui vertically divided grid">
                     <div class="ten row">
                         <div class="ten wide column">
                             <h3 class="ui dividing header">
-                                Prefeitura Municipal de Parnamirim
+                            Prefeitura Municipal de Parnamirim
                             </h3>
-                            <p>
-                            </p>
                             <div id="area-de-menu-principal" class="ui tiered menu" style="margin-top: -5px">
                                 <div id="barra-de-menu-principal" class="menu">
-                                    <a id="aba-do-portal-administrativo" class="item active" ng-click="alternarAba('#sessao', '#modulos', '#aba-do-portal-administrativo', '#aba-de-aplicativo');"> <i class="rss icon"></i> Portal Administrativo
-        </a>
-                                    <a id="aba-de-aplicativo" class="item" ng-click="alternarAba('#modulos', '#sessao', '#aba-de-aplicativo', '#aba-do-portal-administrativo');">{{aplicativo.nome}}</a>
+                                    <a id="aba-do-portal-administrativo" class="item active" ng-click="alternarAba('#sessao', '#modulos'); alternarAbaPrincipal('aba-do-portal-administrativo');"> <i class="rss icon"></i> Portal Administrativo
+                                    </a>
+                                    <a id="aba-de-aplicativo" class="item" ng-click="alternarAba('#modulos', '#sessao'); alternarAbaPrincipal('aba-de-aplicativo');">{{aplicativo.nome}}</a>
                                     <div class="right menu">
                                         <div class="ui dropdown item">
                                             Julio Costa, Mat. 7500
@@ -110,43 +136,37 @@
                                         <i class="dropdown icon">
                                         </i>
                                         <div id="aplicativos" class="menu barramenuhorizontal" style="margin-top: 1px;">
-                                            <a ng-repeat="secretaria in secretarias" ng-click="mudarAbaDeAplicativo(secretaria); alternarAba('#modulos', '#sessao', '#aba-de-aplicativo', '#aba-do-portal-administrativo');"><span class="item sessao itemmenuhorizontal" contextmenu="funcionario">{{secretaria.nome}}</span></a>
+                                            <a ng-repeat="secretaria in secretarias" ng-click="mudarAbaDeAplicativo(secretaria); alternarAba('#modulos', '#sessao'); alternarAbaPrincipal('aba-de-aplicativo');"><span class="item sessao itemmenuhorizontal" contextmenu="funcionario">{{secretaria.nome}}</span></a>
                                         </div>
                                     </div>
                                 </div>
+                                
                                 <div id="sessao" class="ui sub menu none">
-                                    <div class="ui dropdown item">
+                                    <div class="ui dropdown item" ng-repeat="sec in secretarias"
+                                        ng-show="sec.nome==aplicativo.nome">
                                         Cadastro
-                                        <i class="icon dropdown">
-                                        </i>
+                                        <i class="icon dropdown"></i>
                                         <div class="menu">
-                                            <a class="item" id="farmacia">Farmacia</a>
-                                            <a class="item">Hospital</a>
-                                            <a class="item">Clinica</a>
+                                            <a class="item" ng-repeat="set in sec.setor" ng-click="mudarSegmentView(sec.nome+set.nome);">
+                                                {{set.nome}}
+                                            </a>
                                         </div>
                                     </div>
                                     <div class="ui dropdown item">
-                                        Notificações
-                                        <i class="icon dropdown">
-                                        </i>
+                                        Notificações <i class="icon dropdown"></i>
                                         <div class="menu">
                                             <a class="item"><i class="mail icon"></i> Enviar e-Mail</a>
-                                            <a class="item"><i class="phone icon"></i> Número: (84)
-              3644 8125</a>
+                                            <a class="item"><i class="phone icon"></i> Número: (84) 3644 8125</a>
                                             <a class="item"><i class="chat icon"></i> Chamar
-              on-line</a>
+                                            on-line</a>
                                         </div>
                                     </div>
                                     <div class="ui dropdown item">
-                                        Relatórios
-                                        <i class="icon dropdown">
-                                        </i>
+                                        Relatórios <i class="icon dropdown"></i>
                                         <div class="menu">
                                             <a class="item"><i class="mail icon"></i> Enviar e-Mail</a>
-                                            <a class="item"><i class="phone icon"></i> Número: (84)
-              3644 8125</a>
-                                            <a class="item"><i class="chat icon"></i> Chamar
-              on-line</a>
+                                            <a class="item"><i class="phone icon"></i> Número: (84) 3644 8125</a>
+                                            <a class="item"><i class="chat icon"></i> Chamar on-line</a>
                                         </div>
                                     </div>
                                     <div class="right menu" id="utilidades">
@@ -155,13 +175,180 @@
                                         <a id="mapa" class="item modo-de-exibicao"> <i class="map icon"></i>Mapa</a>
                                     </div>
                                 </div>
+                                
+                                
+
+
+
+
+    <!-- BLOCO DE SEGMENTOS E FORMULARIOS COMECAM AQUI -->
+                                <div ng-repeat="sec in secretarias">
+                                <div class="ui celled grid" ng-repeat="set in sec.setor"
+                                ng-show="sec.nome+set.nome == segmentView">
+                                    <div class="row">
+                                        <div class="one wide column" >
+                                            <div class="ui segiment">
+                                                <div id="grupo-de-dados" class="ui pointing vertical menu">
+                                                    <!-- OS SEGMENTOS COMEÇAM AQUI -->
+                                                    <a contextmenu="dados-pessoais" class="active item" ng-repeat="seg in set.segments"> {{seg.nome}} 
+                                                    </a>
+                                                    <!-- OS SEGMENTOS TERMINAM AQUI -->
+                                                </div>
+                                            </div>
+                                        </div>
+                            
+                                        <div class="twelve wide column">
+                                            <div id="dados-pessoais" class="sessao-de-dados">
+                                    
+                <div class="ui form segment">
+                    <div class="ui ribbon label" style="margin-bottom: 15px;">
+                        Sess&atilde;o de Dados: Pessoal</div>
+                    <input hidden="true" name="Cidadao-id" value="" type="text">
+                    <div class="field error">
+                        <div id="Cidadao-nome" class="field">
+                            <label for="Cidadao-nome">Nome</label> <input name="Cidadao-nome"
+                                type="text" class="obrigatorio semAcentosECaracteres semEspaco semNumeros">
+                            <div id="autocompletar" class="hidden"
+                                style="position: absolute; z-index: 1000; overflow: scroll; margin-top: 1px; width: 450px; height: 175px; background-color: white; border: 1px solid #dddddd; border-top-width: 0px">
+                                <table id="opcoes"
+                                    style="border: 0px; width: 100%; font-size: 87%; margin: 0px 0px 0px 0px">
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="Cidadao-sexo">Sexo</label>
+                            <div id="MenuItem-Cidadao-sexo" class="ui selection dropdown">
+                                <input type="hidden" name="Cidadao-sexo" class="obrigatorio">
+                                <div class="default text"></div>
+                                <i class="dropdown icon"></i>
+                                <div class="menu">
+                                    <div class="item" data-value="MASCULINO">MASCULINO</div>
+                                    <div class="item" data-value="FEMININO">FEMININO</div>
+                                    <div class="item" data-value=""></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="date field">
+                            <label for="Cidadao-dataDeNascimento">Data de Nascimento</label>
+                            <input name="Cidadao-dataDeNascimento" class="calendario"
+                                placeholder="dd/mm/aaaa" type="text" class="obrigatorio">
+                            <div id="msgData_Cidadao-dataDeNascimento" class="mensagemErro"></div>
+                        </div>
+                        <div class="number field">
+                            <label for="Cidadao-cpfCnpj">CPF</label> <input
+                                name="Cidadao-cpfCnpj" class="Cidadao-cpfCnpj" type="text"
+                                class="obrigatorio">
+                        </div>
+                        <div class="field">
+                            <label for="Cidadao-estadoCivil">Estado Civil</label>
+                            <div id="MenuItem-Cidadao-estadoCivil"
+                                class="ui selection dropdown">
+                                <input type="hidden" name="Cidadao-estadoCivil"
+                                    class="obrigatorio">
+                                <div class="default text"></div>
+                                <i class="dropdown icon"></i>
+                                <div class="menu">
+                                    <div class="item" data-value="CASADO">CASADO</div>
+                                    <div class="item" data-value="DIVORCIADO">DIVORCIADO</div>
+                                    <div class="item" data-value="SOLTEIRO">SOLTEIRO</div>
+                                    <div class="item" data-value="VIUVO">VIUVO</div>
+                                    <div class="item" data-value=""></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="number field">
+                        <label for="Cidadao-pisPasep">PIS/PASEP</label> <input
+                            name="Cidadao-pisPasep" class="Cidadao-pisPasep" type="text">
+                    </div>
+                    <div class="field">
+                        <label for="Cidadao-nacionalidade">Nacionalidade</label> <input
+                            name="Cidadao-nacionalidade" class="semAcentosECaracteres semEspaco semNumeros" type="text">
+                    </div>
+                    <div class="field">
+                        <label for="Cidadao-naturalidade">Naturalidade</label> <input
+                            name="Cidadao-naturalidade" class="semAcentosECaracteres semEspaco semNumeros" type="text">
+                    </div>
+                    <div class="field">
+                        <label for="Cidadao-religiao">Religi&atilde;o</label> <input
+                            name="Cidadao-religiao" class="semAcentosECaracteres semEspaco semNumeros" type="text" >
+                    </div>
+                    <div class="field">
+                        <label for="Cidadao-cor">Ra&ccedil;a</label>
+                        <div id="MenuItem-Cidadao-cor" class="ui selection dropdown">
+                            <input type="hidden" name="Cidadao-cor">
+                            <div class="default text"></div>
+                            <i class="dropdown icon"></i>
+                            <div class="menu">
+                                <div class="item" data-value="AMARELO">AMARELO</div>
+                                <div class="item" data-value="BRANCO">BRANCO</div>
+                                <div class="item" data-value="NEGRO">NEGRO</div>
+                                <div class="item" data-value="PARDO">PARDO</div>
+                                <div class="item" data-value=""></div>
+                            </div>
+                        </div> 
+                    </div>
+                    <div class="field">
+                        <label for="Cidadao-tipoSanguineo">Tipo Sangu&iacute;neo</label>
+                        <div id="MenuItem-Cidadao-tipoSanguineo"
+                            class="ui selection dropdown">
+                            <input type="hidden" name="Cidadao-tipoSanguineo">
+                            <div class="default text"></div>
+                            <i class="dropdown icon"></i>
+                            <div class="menu">
+                                <div class="item" data-value="A+">A+</div>
+                                <div class="item" data-value="B+">B+</div>
+                                <div class="item" data-value="AB+">AB+</div>
+                                <div class="item" data-value="O+">O+</div>
+                                <div class="item" data-value="A-">A-</div>
+                                <div class="item" data-value="B-">B-</div>
+                                <div class="item" data-value="AB-">AB-</div>
+                                <div class="item" data-value="O-">O-</div>
+                                <div class="item" data-value=""></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui form">
+                        <div class="field">
+                            <label for="Cidadao-necessidadeEspecial">Necessidade
+                                Especial</label>
+                            <div class="ui checkbox">
+                                <input type="checkbox" id="AUDITIVA" class="deficiencias"
+                                    name="Cidadao-necessidadeEspecial" value="AUDITIVA"> <label>AUDITIVA </label>
+                            </div>
+                            <div class="ui checkbox">
+                                <input type="checkbox" id="MOTORA" class="deficiencias"
+                                    name="Cidadao-necessidadeEspecial" value="MOTORA"> <label>MOTORA </label>
+                            </div>
+                            <div class="ui checkbox">
+                                <input type="checkbox" id="MENTAL" class="deficiencias"
+                                    name="Cidadao-necessidadeEspecial" value="MENTAL"> <label>MENTAL </label>
+                            </div>
+                            <div class="ui checkbox">
+                                <input type="checkbox" id="VISUAL" class="deficiencias"
+                                    name="Cidadao-necessidadeEspecial" value="VISUAL"> <label>VISUAL </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+</div>
+
+                                <!-- BLOCO DE SEGMENTOS E FORMULARIOS TERMINAM AQUI -->
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
+    </div>
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
