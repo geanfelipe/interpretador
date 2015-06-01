@@ -1,0 +1,1231 @@
+{
+  "user": "julio",
+  "theme": "test",
+  "version": "0.1",
+  "groups": [
+    {
+      "setor": "Almoxarifado",
+      "name": "sesad",
+      "fields": [
+        {
+          "name": "pessoal",
+          "view": {
+            "title": "Pessoal"
+          },
+          "entities": [
+            {
+              "package": "br.gov.rn.parnamirim.datasource.domain.pessoal",
+              "name": "Pessoa",
+              "mode": "aggregate",
+              "readOnly": false,
+              "abstract": true,
+              "inherits": "",
+              "view": {
+                "title": "Pessoa"
+              },
+              "data": {
+                "schema": "pessoal",
+                "table": "pessoa",
+                "inherits": {}
+              },
+              "references": {},
+              "attributes": [
+                {
+                  "name": "id",
+                  "type": "Long",
+                  "data": {
+                    "name": "",
+                    "type": "bigserial",
+                    "length": "",
+                    "notNull": true,
+                    "unique": true,
+                    "primaryKey": true
+                  },
+                  "view": {
+                    "title": "--",
+                    "readOnly": true,
+                    "show": false,
+                    "showAs": "text",
+                    "defaultValue": "",
+                    "width": "",
+                    "mask": "",
+                    "segment": "Dados Pessoais"
+                  }
+                },
+                {
+                  "name": "nome",
+                  "type": "String",
+                  "data": {
+                    "name": "",
+                    "type": "character varying",
+                    "length": "120",
+                    "notNull": true,
+                    "unique": false,
+                    "primaryKey": false
+                  },
+                  "view": {
+                    "title": "Nome",
+                    "readOnly": false,
+                    "show": true,
+                    "showAs": "text",
+                    "defaultValue": "",
+                    "width": "",
+                    "mask": "",
+                    "segment": "Dados Pessoais"
+                  }
+                }
+              ]
+            },
+            {
+              "package": "br.gov.rn.parnamirim.datasource.domain.pessoal",
+              "name": "PessoaFisica",
+              "mode": "aggregate",
+              "readOnly": false,
+              "abstract": true,
+              "inherits": "br.gov.rn.parnamirim.datasource.domain.pessoal.Pessoa",
+              "view": {
+                "title": "PessoaFisica"
+              },
+              "data": {
+                "schema": "pessoal",
+                "table": "pessoa_fisica",
+                "inherits": {
+                  "schema": "pessoal",
+                  "table": "pessoa"
+                }
+              },
+              "references": {},
+              "attributes": [
+                {
+                  "name": "sexo",
+                  "type": "Boolean",
+                  "data": {
+                    "name": "",
+                    "type": "boolean",
+                    "length": "",
+                    "notNull": true,
+                    "unique": false,
+                    "primaryKey": false
+                  },
+                  "view": {
+                    "title": "Sexo",
+                    "readOnly": false,
+                    "show": true,
+                    "showAs": "select",
+                    "defaultValue": "Masculino,Feminino",
+                    "width": "",
+                    "mask": "",
+                    "segment": "Dados Pessoais"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "cidadao",
+          "view": {
+            "title": "Cidad&atilde;o"
+          },
+          "entities": [
+            {
+              "package": "br.gov.rn.parnamirim.datasource.domain.pessoal",
+              "name": "Cidadao",
+              "mode": "master aggregate",
+              "readOnly": false,
+              "abstract": false,
+              "inherits": "br.gov.rn.parnamirim.datasource.domain.pessoal.PessoaFisica",
+              "view": {
+                "title": "Cidad&atilde;o"
+              },
+              "data": {
+                "schema": "pessoal",
+                "table": "cidadao",
+                "inherits": {
+                  "schema": "pessoal",
+                  "table": "pessoa_fisica"
+                }
+              },
+              "references": {},
+              "attributes": [
+                {
+                  "name": "cpf",
+                  "type": "String",
+                  "data": {
+                    "name": "",
+                    "type": "character varying",
+                    "length": "16",
+                    "notNull": true,
+                    "unique": true,
+                    "primaryKey": false
+                  },
+                  "view": {
+                    "title": "CPF",
+                    "readOnly": false,
+                    "show": true,
+                    "showAs": "text",
+                    "defaultValue": "",
+                    "width": "",
+                    "mask": "",
+                    "segment": "Dados Pessoais"
+                  }
+                }
+              ]
+            },
+            {
+              "package": "br.gov.rn.parnamirim.datasource.domain.pessoal",
+              "name": "TipoDeContato",
+              "mode": "aggregate",
+              "readOnly": true,
+              "abstract": false,
+              "inherits": "",
+              "view": {
+                "title": "Tipo de Contato"
+              },
+              "data": {
+                "schema": "pessoal",
+                "table": "tipo_de_contato",
+                "inherits": {}
+              },
+              "references": {},
+              "attributes": [
+                {
+                  "name": "id",
+                  "type": "Long",
+                  "data": {
+                    "name": "",
+                    "type": "bigserial",
+                    "length": "",
+                    "notNull": true,
+                    "unique": true,
+                    "primaryKey": true
+                  },
+                  "view": {
+                    "title": "--",
+                    "readOnly": true,
+                    "show": false,
+                    "showAs": "text",
+                    "defaultValue": "",
+                    "width": "",
+                    "mask": "",
+                    "segment": "Contato"
+                  }
+                },
+                {
+                  "name": "tipo",
+                  "type": "String",
+                  "data": {
+                    "name": "",
+                    "type": "character varying",
+                    "length": "20",
+                    "notNull": true,
+                    "unique": true,
+                    "primaryKey": false
+                  },
+                  "view": {
+                    "title": "Tipo",
+                    "readOnly": false,
+                    "show": true,
+                    "showAs": "text",
+                    "defaultValue": "",
+                    "width": "",
+                    "mask": "",
+                    "segment": "Contato"
+                  }
+                }
+              ]
+            },
+            {
+              "package": "br.gov.rn.parnamirim.datasource.domain.pessoal",
+              "name": "Contato",
+              "mode": "aggregate",
+              "readOnly": false,
+              "abstract": false,
+              "inherits": "",
+              "view": {
+                "title": "Contato"
+              },
+              "data": {
+                "schema": "pessoal",
+                "table": "contato",
+                "inherits": {}
+              },
+              "references": {
+                "br.gov.rn.parnamirim.datasource.domain.pessoal.Cidadao": "cidadao",
+                "br.gov.rn.parnamirim.datasource.domain.pessoal.TipoDeContato": "tipoDeContato",
+                "view": {},
+                "data": {
+                  "cidadao_id": {
+                    "references": {
+                      "schema": "pessoal",
+                      "table": "cidadao",
+                      "attribute": "id"
+                    },
+                    "notNull": true,
+                    "unique": false,
+                    "delete": "cascade",
+                    "update": "cascade"
+                  },
+                  "tipo_de_contato_id": {
+                    "references": {
+                      "schema": "pessoal",
+                      "table": "tipo_de_contato",
+                      "attribute": "id"
+                    },
+                    "notNull": true,
+                    "unique": false,
+                    "delete": "cascade",
+                    "update": "cascade"
+                  }
+                }
+              },
+              "attributes": [
+                {
+                  "name": "id",
+                  "type": "Long",
+                  "data": {
+                    "name": "",
+                    "type": "bigserial",
+                    "length": "",
+                    "notNull": true,
+                    "unique": true,
+                    "primaryKey": true
+                  },
+                  "view": {
+                    "title": "--",
+                    "readOnly": true,
+                    "show": false,
+                    "showAs": "text",
+                    "defaultValue": "",
+                    "width": "",
+                    "mask": "",
+                    "segment": "Contato"
+                  }
+                },
+                {
+                  "name": "numero",
+                  "type": "String",
+                  "data": {
+                    "name": "",
+                    "type": "character varying",
+                    "length": "12",
+                    "notNull": true,
+                    "unique": false,
+                    "primaryKey": false
+                  },
+                  "view": {
+                    "title": "N&aacute;mero",
+                    "readOnly": false,
+                    "show": true,
+                    "showAs": "multiple select, data preloaded",
+                    "defaultValue": "",
+                    "width": "",
+                    "mask": "",
+                    "segment": "Contato"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "funcionario",
+          "view": {
+            "title": "Funcion&aacute;rio"
+          },
+          "entities": [
+            {
+              "package": "br.gov.rn.parnamirim.datasource.domain.pessoal",
+              "name": "Cidadao",
+              "mode": "aggregate",
+              "readOnly": false,
+              "abstract": false,
+              "inherits": "br.gov.rn.parnamirim.datasource.domain.pessoal.PessoaFisica",
+              "view": {
+                "title": "Cidad&atilde;o"
+              },
+              "data": {
+                "schema": "pessoal",
+                "table": "cidadao",
+                "inherits": {
+                  "schema": "pessoal",
+                  "table": "pessoa_fisica"
+                }
+              },
+              "references": {},
+              "attributes": [
+                {
+                  "name": "cpf",
+                  "type": "String",
+                  "data": {
+                    "name": "",
+                    "type": "character varying",
+                    "length": "16",
+                    "notNull": true,
+                    "unique": true,
+                    "primaryKey": false
+                  },
+                  "view": {
+                    "title": "CPF",
+                    "readOnly": false,
+                    "show": true,
+                    "showAs": "text",
+                    "defaultValue": "",
+                    "width": "",
+                    "mask": "",
+                    "segment": "Dados Pessoais"
+                  }
+                }
+              ]
+            },
+            {
+              "package": "br.gov.rn.parnamirim.datasource.domain.pessoal",
+              "name": "TipoDeContato",
+              "mode": "aggregate",
+              "readOnly": true,
+              "abstract": false,
+              "inherits": "",
+              "view": {
+                "title": "Tipo de Contato"
+              },
+              "data": {
+                "schema": "pessoal",
+                "table": "tipo_de_contato",
+                "inherits": {}
+              },
+              "references": {},
+              "attributes": [
+                {
+                  "name": "id",
+                  "type": "Long",
+                  "data": {
+                    "name": "",
+                    "type": "bigserial",
+                    "length": "",
+                    "notNull": true,
+                    "unique": true,
+                    "primaryKey": true
+                  },
+                  "view": {
+                    "title": "--",
+                    "readOnly": true,
+                    "show": false,
+                    "showAs": "text",
+                    "defaultValue": "",
+                    "width": "",
+                    "mask": "",
+                    "segment": "Contato"
+                  }
+                },
+                {
+                  "name": "tipo",
+                  "type": "String",
+                  "data": {
+                    "name": "",
+                    "type": "character varying",
+                    "length": "20",
+                    "notNull": true,
+                    "unique": true,
+                    "primaryKey": false
+                  },
+                  "view": {
+                    "title": "Tipo",
+                    "readOnly": false,
+                    "show": true,
+                    "showAs": "text",
+                    "defaultValue": "",
+                    "width": "",
+                    "mask": "",
+                    "segment": "Contato"
+                  }
+                }
+              ]
+            },
+            {
+              "package": "br.gov.rn.parnamirim.datasource.domain.pessoal",
+              "name": "Contato",
+              "mode": "aggregate",
+              "readOnly": false,
+              "abstract": false,
+              "inherits": "",
+              "view": {
+                "title": "Contato"
+              },
+              "data": {
+                "schema": "pessoal",
+                "table": "contato",
+                "inherits": {}
+              },
+              "references": {
+                "br.gov.rn.parnamirim.datasource.domain.pessoal.Cidadao": "cidadao",
+                "br.gov.rn.parnamirim.datasource.domain.pessoal.TipoDeContato": "tipoDeContato",
+                "view": {},
+                "data": {
+                  "cidadao_id": {
+                    "references": {
+                      "schema": "pessoal",
+                      "table": "cidadao",
+                      "attribute": "id"
+                    },
+                    "notNull": true,
+                    "unique": false,
+                    "delete": "cascade",
+                    "update": "cascade"
+                  },
+                  "tipo_de_contato_id": {
+                    "references": {
+                      "schema": "pessoal",
+                      "table": "tipo_de_contato",
+                      "attribute": "id"
+                    },
+                    "notNull": true,
+                    "unique": false,
+                    "delete": "cascade",
+                    "update": "cascade"
+                  }
+                }
+              },
+              "attributes": [
+                {
+                  "name": "id",
+                  "type": "Long",
+                  "data": {
+                    "name": "",
+                    "type": "bigserial",
+                    "length": "",
+                    "notNull": true,
+                    "unique": true,
+                    "primaryKey": true
+                  },
+                  "view": {
+                    "title": "--",
+                    "readOnly": true,
+                    "show": false,
+                    "showAs": "text",
+                    "defaultValue": "",
+                    "width": "",
+                    "mask": "",
+                    "segment": "Contato"
+                  }
+                },
+                {
+                  "name": "numero",
+                  "type": "String",
+                  "data": {
+                    "name": "",
+                    "type": "character varying",
+                    "length": "12",
+                    "notNull": true,
+                    "unique": false,
+                    "primaryKey": false
+                  },
+                  "view": {
+                    "title": "N&aacute;mero",
+                    "readOnly": false,
+                    "show": true,
+                    "showAs": "multiple select, data preloaded",
+                    "defaultValue": "",
+                    "width": "",
+                    "mask": "",
+                    "segment": "Contato"
+                  }
+                }
+              ]
+            },
+            {
+              "package": "br.gov.rn.parnamirim.datasource.domain.pessoal",
+              "name": "Funcionario",
+              "mode": "master aggregate",
+              "readOnly": false,
+              "abstract": false,
+              "inherits": "",
+              "view": {
+                "title": "Funcion&aacute;rio"
+              },
+              "data": {
+                "schema": "pessoal",
+                "table": "funcionario",
+                "inherits": {}
+              },
+              "references": {
+                "br.gov.rn.parnamirim.datasource.domain.pessoal.Cidadao": "cidadao",
+                "view": {},
+                "data": {
+                  "cidadao_id": {
+                    "references": {
+                      "schema": "pessoal",
+                      "table": "cidadao",
+                      "attribute": "id"
+                    },
+                    "notNull": true,
+                    "unique": false,
+                    "delete": "cascade",
+                    "update": "cascade"
+                  }
+                }
+              },
+              "attributes": [
+                {
+                  "name": "id",
+                  "type": "Long",
+                  "data": {
+                    "name": "",
+                    "type": "bigserial",
+                    "length": "",
+                    "notNull": true,
+                    "unique": true,
+                    "primaryKey": true
+                  },
+                  "view": {
+                    "title": "--",
+                    "readOnly": true,
+                    "show": false,
+                    "showAs": "text",
+                    "defaultValue": "",
+                    "width": "",
+                    "mask": "",
+                    "segment": "Dados Empregat&iacute;cios"
+                  }
+                },
+                {
+                  "name": "matricula",
+                  "type": "String",
+                  "data": {
+                    "name": "",
+                    "type": "character varying",
+                    "length": "20",
+                    "notNull": true,
+                    "unique": true,
+                    "primaryKey": false
+                  },
+                  "view": {
+                    "title": "Matr&iacute;cula",
+                    "readOnly": false,
+                    "show": true,
+                    "showAs": "text",
+                    "defaultValue": "",
+                    "width": "",
+                    "mask": "",
+                    "segment": "Dados Empregat&iacute;cios"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "setor": "Paciente",
+      "name": "semut",
+      "fields": [
+        {
+          "name": "pessoal",
+          "view": {
+            "title": "Pessoal"
+          },
+          "entities": [
+            {
+              "package": "br.gov.rn.parnamirim.datasource.domain.pessoal",
+              "name": "Pessoa",
+              "mode": "aggregate",
+              "readOnly": false,
+              "abstract": true,
+              "inherits": "",
+              "view": {
+                "title": "Pessoa"
+              },
+              "data": {
+                "schema": "pessoal",
+                "table": "pessoa",
+                "inherits": {}
+              },
+              "references": {},
+              "attributes": [
+                {
+                  "name": "id",
+                  "type": "Long",
+                  "data": {
+                    "name": "",
+                    "type": "bigserial",
+                    "length": "",
+                    "notNull": true,
+                    "unique": true,
+                    "primaryKey": true
+                  },
+                  "view": {
+                    "title": "--",
+                    "readOnly": true,
+                    "show": false,
+                    "showAs": "text",
+                    "defaultValue": "",
+                    "width": "",
+                    "mask": "",
+                    "segment": "Dados Pessoais"
+                  }
+                },
+                {
+                  "name": "nome",
+                  "type": "String",
+                  "data": {
+                    "name": "",
+                    "type": "character varying",
+                    "length": "120",
+                    "notNull": true,
+                    "unique": false,
+                    "primaryKey": false
+                  },
+                  "view": {
+                    "title": "Nome",
+                    "readOnly": false,
+                    "show": true,
+                    "showAs": "text",
+                    "defaultValue": "",
+                    "width": "",
+                    "mask": "",
+                    "segment": "Dados Pessoais"
+                  }
+                }
+              ]
+            },
+            {
+              "package": "br.gov.rn.parnamirim.datasource.domain.pessoal",
+              "name": "PessoaFisica",
+              "mode": "aggregate",
+              "readOnly": false,
+              "abstract": true,
+              "inherits": "br.gov.rn.parnamirim.datasource.domain.pessoal.Pessoa",
+              "view": {
+                "title": "PessoaFisica"
+              },
+              "data": {
+                "schema": "pessoal",
+                "table": "pessoa_fisica",
+                "inherits": {
+                  "schema": "pessoal",
+                  "table": "pessoa"
+                }
+              },
+              "references": {},
+              "attributes": [
+                {
+                  "name": "sexo",
+                  "type": "Boolean",
+                  "data": {
+                    "name": "",
+                    "type": "boolean",
+                    "length": "",
+                    "notNull": true,
+                    "unique": false,
+                    "primaryKey": false
+                  },
+                  "view": {
+                    "title": "Sexo",
+                    "readOnly": false,
+                    "show": true,
+                    "showAs": "select",
+                    "defaultValue": "Masculino,Feminino",
+                    "width": "",
+                    "mask": "",
+                    "segment": "Dados Pessoais"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "cidadao",
+          "view": {
+            "title": "Cidad&atilde;o"
+          },
+          "entities": [
+            {
+              "package": "br.gov.rn.parnamirim.datasource.domain.pessoal",
+              "name": "Cidadao",
+              "mode": "master aggregate",
+              "readOnly": false,
+              "abstract": false,
+              "inherits": "br.gov.rn.parnamirim.datasource.domain.pessoal.PessoaFisica",
+              "view": {
+                "title": "Cidad&atilde;o"
+              },
+              "data": {
+                "schema": "pessoal",
+                "table": "cidadao",
+                "inherits": {
+                  "schema": "pessoal",
+                  "table": "pessoa_fisica"
+                }
+              },
+              "references": {},
+              "attributes": [
+                {
+                  "name": "cpf",
+                  "type": "String",
+                  "data": {
+                    "name": "",
+                    "type": "character varying",
+                    "length": "16",
+                    "notNull": true,
+                    "unique": true,
+                    "primaryKey": false
+                  },
+                  "view": {
+                    "title": "CPF",
+                    "readOnly": false,
+                    "show": true,
+                    "showAs": "text",
+                    "defaultValue": "",
+                    "width": "",
+                    "mask": "",
+                    "segment": "Dados Pessoais"
+                  }
+                }
+              ]
+            },
+            {
+              "package": "br.gov.rn.parnamirim.datasource.domain.pessoal",
+              "name": "TipoDeContato",
+              "mode": "aggregate",
+              "readOnly": true,
+              "abstract": false,
+              "inherits": "",
+              "view": {
+                "title": "Tipo de Contato"
+              },
+              "data": {
+                "schema": "pessoal",
+                "table": "tipo_de_contato",
+                "inherits": {}
+              },
+              "references": {},
+              "attributes": [
+                {
+                  "name": "id",
+                  "type": "Long",
+                  "data": {
+                    "name": "",
+                    "type": "bigserial",
+                    "length": "",
+                    "notNull": true,
+                    "unique": true,
+                    "primaryKey": true
+                  },
+                  "view": {
+                    "title": "--",
+                    "readOnly": true,
+                    "show": false,
+                    "showAs": "text",
+                    "defaultValue": "",
+                    "width": "",
+                    "mask": "",
+                    "segment": "Contato"
+                  }
+                },
+                {
+                  "name": "tipo",
+                  "type": "String",
+                  "data": {
+                    "name": "",
+                    "type": "character varying",
+                    "length": "20",
+                    "notNull": true,
+                    "unique": true,
+                    "primaryKey": false
+                  },
+                  "view": {
+                    "title": "Tipo",
+                    "readOnly": false,
+                    "show": true,
+                    "showAs": "text",
+                    "defaultValue": "",
+                    "width": "",
+                    "mask": "",
+                    "segment": "Contato"
+                  }
+                }
+              ]
+            },
+            {
+              "package": "br.gov.rn.parnamirim.datasource.domain.pessoal",
+              "name": "Contato",
+              "mode": "aggregate",
+              "readOnly": false,
+              "abstract": false,
+              "inherits": "",
+              "view": {
+                "title": "Contato"
+              },
+              "data": {
+                "schema": "pessoal",
+                "table": "contato",
+                "inherits": {}
+              },
+              "references": {
+                "br.gov.rn.parnamirim.datasource.domain.pessoal.Cidadao": "cidadao",
+                "br.gov.rn.parnamirim.datasource.domain.pessoal.TipoDeContato": "tipoDeContato",
+                "view": {},
+                "data": {
+                  "cidadao_id": {
+                    "references": {
+                      "schema": "pessoal",
+                      "table": "cidadao",
+                      "attribute": "id"
+                    },
+                    "notNull": true,
+                    "unique": false,
+                    "delete": "cascade",
+                    "update": "cascade"
+                  },
+                  "tipo_de_contato_id": {
+                    "references": {
+                      "schema": "pessoal",
+                      "table": "tipo_de_contato",
+                      "attribute": "id"
+                    },
+                    "notNull": true,
+                    "unique": false,
+                    "delete": "cascade",
+                    "update": "cascade"
+                  }
+                }
+              },
+              "attributes": [
+                {
+                  "name": "id",
+                  "type": "Long",
+                  "data": {
+                    "name": "",
+                    "type": "bigserial",
+                    "length": "",
+                    "notNull": true,
+                    "unique": true,
+                    "primaryKey": true
+                  },
+                  "view": {
+                    "title": "--",
+                    "readOnly": true,
+                    "show": false,
+                    "showAs": "text",
+                    "defaultValue": "",
+                    "width": "",
+                    "mask": "",
+                    "segment": "Contato"
+                  }
+                },
+                {
+                  "name": "numero",
+                  "type": "String",
+                  "data": {
+                    "name": "",
+                    "type": "character varying",
+                    "length": "12",
+                    "notNull": true,
+                    "unique": false,
+                    "primaryKey": false
+                  },
+                  "view": {
+                    "title": "N&aacute;mero",
+                    "readOnly": false,
+                    "show": true,
+                    "showAs": "multiple select, data preloaded",
+                    "defaultValue": "",
+                    "width": "",
+                    "mask": "",
+                    "segment": "Contato"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "funcionario",
+          "view": {
+            "title": "Funcion&aacute;rio"
+          },
+          "entities": [
+            {
+              "package": "br.gov.rn.parnamirim.datasource.domain.pessoal",
+              "name": "Cidadao",
+              "mode": "aggregate",
+              "readOnly": false,
+              "abstract": false,
+              "inherits": "br.gov.rn.parnamirim.datasource.domain.pessoal.PessoaFisica",
+              "view": {
+                "title": "Cidad&atilde;o"
+              },
+              "data": {
+                "schema": "pessoal",
+                "table": "cidadao",
+                "inherits": {
+                  "schema": "pessoal",
+                  "table": "pessoa_fisica"
+                }
+              },
+              "references": {},
+              "attributes": [
+                {
+                  "name": "cpf",
+                  "type": "String",
+                  "data": {
+                    "name": "",
+                    "type": "character varying",
+                    "length": "16",
+                    "notNull": true,
+                    "unique": true,
+                    "primaryKey": false
+                  },
+                  "view": {
+                    "title": "CPF",
+                    "readOnly": false,
+                    "show": true,
+                    "showAs": "text",
+                    "defaultValue": "",
+                    "width": "",
+                    "mask": "",
+                    "segment": "Dados Pessoais"
+                  }
+                }
+              ]
+            },
+            {
+              "package": "br.gov.rn.parnamirim.datasource.domain.pessoal",
+              "name": "TipoDeContato",
+              "mode": "aggregate",
+              "readOnly": true,
+              "abstract": false,
+              "inherits": "",
+              "view": {
+                "title": "Tipo de Contato"
+              },
+              "data": {
+                "schema": "pessoal",
+                "table": "tipo_de_contato",
+                "inherits": {}
+              },
+              "references": {},
+              "attributes": [
+                {
+                  "name": "id",
+                  "type": "Long",
+                  "data": {
+                    "name": "",
+                    "type": "bigserial",
+                    "length": "",
+                    "notNull": true,
+                    "unique": true,
+                    "primaryKey": true
+                  },
+                  "view": {
+                    "title": "--",
+                    "readOnly": true,
+                    "show": false,
+                    "showAs": "text",
+                    "defaultValue": "",
+                    "width": "",
+                    "mask": "",
+                    "segment": "Contato"
+                  }
+                },
+                {
+                  "name": "tipo",
+                  "type": "String",
+                  "data": {
+                    "name": "",
+                    "type": "character varying",
+                    "length": "20",
+                    "notNull": true,
+                    "unique": true,
+                    "primaryKey": false
+                  },
+                  "view": {
+                    "title": "Tipo",
+                    "readOnly": false,
+                    "show": true,
+                    "showAs": "text",
+                    "defaultValue": "",
+                    "width": "",
+                    "mask": "",
+                    "segment": "Contato"
+                  }
+                }
+              ]
+            },
+            {
+              "package": "br.gov.rn.parnamirim.datasource.domain.pessoal",
+              "name": "Contato",
+              "mode": "aggregate",
+              "readOnly": false,
+              "abstract": false,
+              "inherits": "",
+              "view": {
+                "title": "Contato"
+              },
+              "data": {
+                "schema": "pessoal",
+                "table": "contato",
+                "inherits": {}
+              },
+              "references": {
+                "br.gov.rn.parnamirim.datasource.domain.pessoal.Cidadao": "cidadao",
+                "br.gov.rn.parnamirim.datasource.domain.pessoal.TipoDeContato": "tipoDeContato",
+                "view": {},
+                "data": {
+                  "cidadao_id": {
+                    "references": {
+                      "schema": "pessoal",
+                      "table": "cidadao",
+                      "attribute": "id"
+                    },
+                    "notNull": true,
+                    "unique": false,
+                    "delete": "cascade",
+                    "update": "cascade"
+                  },
+                  "tipo_de_contato_id": {
+                    "references": {
+                      "schema": "pessoal",
+                      "table": "tipo_de_contato",
+                      "attribute": "id"
+                    },
+                    "notNull": true,
+                    "unique": false,
+                    "delete": "cascade",
+                    "update": "cascade"
+                  }
+                }
+              },
+              "attributes": [
+                {
+                  "name": "id",
+                  "type": "Long",
+                  "data": {
+                    "name": "",
+                    "type": "bigserial",
+                    "length": "",
+                    "notNull": true,
+                    "unique": true,
+                    "primaryKey": true
+                  },
+                  "view": {
+                    "title": "--",
+                    "readOnly": true,
+                    "show": false,
+                    "showAs": "text",
+                    "defaultValue": "",
+                    "width": "",
+                    "mask": "",
+                    "segment": "Contato"
+                  }
+                },
+                {
+                  "name": "numero",
+                  "type": "String",
+                  "data": {
+                    "name": "",
+                    "type": "character varying",
+                    "length": "12",
+                    "notNull": true,
+                    "unique": false,
+                    "primaryKey": false
+                  },
+                  "view": {
+                    "title": "N&aacute;mero",
+                    "readOnly": false,
+                    "show": true,
+                    "showAs": "multiple select, data preloaded",
+                    "defaultValue": "",
+                    "width": "",
+                    "mask": "",
+                    "segment": "Contato"
+                  }
+                }
+              ]
+            },
+            {
+              "package": "br.gov.rn.parnamirim.datasource.domain.pessoal",
+              "name": "Funcionario",
+              "mode": "master aggregate",
+              "readOnly": false,
+              "abstract": false,
+              "inherits": "",
+              "view": {
+                "title": "Funcion&aacute;rio"
+              },
+              "data": {
+                "schema": "pessoal",
+                "table": "funcionario",
+                "inherits": {}
+              },
+              "references": {
+                "br.gov.rn.parnamirim.datasource.domain.pessoal.Cidadao": "cidadao",
+                "view": {},
+                "data": {
+                  "cidadao_id": {
+                    "references": {
+                      "schema": "pessoal",
+                      "table": "cidadao",
+                      "attribute": "id"
+                    },
+                    "notNull": true,
+                    "unique": false,
+                    "delete": "cascade",
+                    "update": "cascade"
+                  }
+                }
+              },
+              "attributes": [
+                {
+                  "name": "id",
+                  "type": "Long",
+                  "data": {
+                    "name": "",
+                    "type": "bigserial",
+                    "length": "",
+                    "notNull": true,
+                    "unique": true,
+                    "primaryKey": true
+                  },
+                  "view": {
+                    "title": "--",
+                    "readOnly": true,
+                    "show": false,
+                    "showAs": "text",
+                    "defaultValue": "",
+                    "width": "",
+                    "mask": "",
+                    "segment": "Dados Empregat&iacute;cios"
+                  }
+                },
+                {
+                  "name": "matricula",
+                  "type": "String",
+                  "data": {
+                    "name": "",
+                    "type": "character varying",
+                    "length": "20",
+                    "notNull": true,
+                    "unique": true,
+                    "primaryKey": false
+                  },
+                  "view": {
+                    "title": "Matr&iacute;cula",
+                    "readOnly": false,
+                    "show": true,
+                    "showAs": "text",
+                    "defaultValue": "",
+                    "width": "",
+                    "mask": "",
+                    "segment": "Dados Empregat&iacute;cios"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

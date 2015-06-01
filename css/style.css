@@ -8,6 +8,8 @@ body{
 	margin: 8px;
 }
 
+
+
 .hidden
 {
 	display: none;
@@ -20,6 +22,8 @@ body{
     margin-left: -40%%;
   }
 }
+
+
 
 .ui.form input[type="week"] {
   margin: 0em;
@@ -83,6 +87,13 @@ div .menu .barramenuhorizontal{
 	margin-top:2px;
 	padding: 18px;
 }
+
+            .none {
+ display: none;
+}
+.block {
+                display: block;
+            }
 
 
 
