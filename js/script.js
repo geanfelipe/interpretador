@@ -3,6 +3,5 @@ $(document).ready(function(){
         e.preventDefault();
 		$('.ui.horizontal.menu').toggle();
 	});
-    
 	$('.ui.dropdown').dropdown();
 });
