@@ -3,11 +3,40 @@ var secretariasModel = [
         nome: "SEARH", contextmenu: "funcionario",
         setor: [
             {nome: "Almoxarifado", 
-                segments: [
-                    {nome:"Pessoal Almoxarifado"}, 
-                    {nome: "Teste Almoxarifado"}
-                ]
+                segments: [{
+                    nome:"Pessoal Almoxarifado",
+                    inputs:[{
+                            title:"",
+                            readonly:false,
+                            show:true,
+                            showAs:"",
+                            defaultValue:"",
+                            width:"",
+                            mask:""
+                        },{
+                            title:"",
+                            readonly:false,
+                            show:true,
+                            showAs:"",
+                            defaultValue:"",
+                            width:"",
+                            mask:""
+                        }]   
+                    }, 
+
+                    {nome: "Teste Almoxarifado",
+                        inputs:[
+                            {},
+                            {},
+                            {}
+                        ]   
+                    }
+                ],
             },
+
+
+
+
             {nome: "Garagem", 
                 segments: [
                     {nome:"Pessoal Garagem"}, 
@@ -15,6 +44,11 @@ var secretariasModel = [
                 ]
             }
         ]},
+
+
+
+
+
         {
         nome: "SEMUT", contextmenu: "funcionario",
         setor: [
