@@ -7,6 +7,14 @@
         <meta name=viewport content="width=device-width, initial-scale=1">
         <meta name="mobile-web-app-capable" content="yes">
         <link rel="import" href="imports.html">
+        <style type="text/css">
+            .true {
+                display: block;
+            }
+            .false {
+                display: none;
+            }    
+        </style>
     </head>
     <body>
         <div id="area-de-sistema" style="display: block;" ng-controller="modelagemCtrl">
@@ -113,172 +121,20 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            
 
                                              <!-- BLOCO DE FORMULARIOS COMECAM AQUI -->
                                             <div class="twelve wide column">
                                                 <div id="dados-pessoais" class="sessao-de-dados">
-                                                    <div class="ui form segment">
+                                                    <div class="ui form segment" ng-repeat="seg in set.segments">
                                                         <div class="ui ribbon label" style="margin-bottom: 15px;">
-                                                            Sess&atilde;o de Dados: Pessoal
+                                                            {{seg.nome}}
                                                         </div>
                                                         <input hidden="true" name="Cidadao-id" value="" type="text">
-                                                        <div class="field error">
+                                                        <div class="field error {{inp.show}}" ng-repeat="inp in seg.inputs">
                                                             <div id="Cidadao-nome" class="field">
-                                                                <label for="Cidadao-nome">Nome</label>
+                                                                <label for="Cidadao-nome">{{inp.title}}</label>
                                                                 <input name="Cidadao-nome"
-                                                                type="text" class="obrigatorio semAcentosECaracteres semEspaco semNumeros">
-                                                                <div id="autocompletar" class="hidden"
-                                                                    style="position: absolute; z-index: 1000; overflow: scroll; margin-top: 1px; width: 450px; height: 175px; background-color: white; border: 1px solid #dddddd; border-top-width: 0px">
-                                                                    <table id="opcoes"
-                                                                        style="border: 0px; width: 100%; font-size: 87%; margin: 0px 0px 0px 0px">
-                                                                        <tbody>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-                                                            </div>
-                                                            <div class="field">
-                                                                <label for="Cidadao-sexo">Sexo</label>
-                                                                <div id="MenuItem-Cidadao-sexo" class="ui selection dropdown">
-                                                                    <input type="hidden" name="Cidadao-sexo" class="obrigatorio">
-                                                                    <div class="default text">
-                                                                        
-                                                                    </div>
-                                                                    <i class="dropdown icon"></i>
-                                                                    <div class="menu">
-                                                                        <div class="item" data-value="MASCULINO">MASCULINO
-                                                                        </div>
-                                                                        <div class="item" data-value="FEMININO">FEMININO
-                                                                        </div>
-                                                                        <div class="item" data-value=""
-                                                                        ></div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="date field">
-                                                                <label for="Cidadao-dataDeNascimento">Data de Nascimento</label>
-                                                                <input name="Cidadao-dataDeNascimento" class="calendario"
-                                                                placeholder="dd/mm/aaaa" type="text" class="obrigatorio">
-                                                                <div id="msgData_Cidadao-dataDeNascimento" class="mensagemErro">
-                                                                    
-                                                                </div>
-                                                            </div>
-                                                            <div class="number field">
-                                                                <label for="Cidadao-cpfCnpj">CPF</label>
-                                                                <input
-                                                                name="Cidadao-cpfCnpj" class="Cidadao-cpfCnpj" type="text"
-                                                                class="obrigatorio">
-                                                            </div>
-                                                            <div class="field">
-                                                                <label for="Cidadao-estadoCivil">Estado Civil</label>
-                                                                <div id="MenuItem-Cidadao-estadoCivil"
-                                                                    class="ui selection dropdown">
-                                                                    <input type="hidden" name="Cidadao-estadoCivil"
-                                                                    class="obrigatorio">
-                                                                    <div class="default text">
-                                                                        
-                                                                    </div>
-                                                                    <i class="dropdown icon"></i>
-                                                                    <div class="menu">
-                                                                        <div class="item" data-value="CASADO">CASADO
-                                                                        </div>
-                                                                        <div class="item" data-value="DIVORCIADO">DIVORCIADO
-                                                                        </div>
-                                                                        <div class="item" data-value="SOLTEIRO">SOLTEIRO
-                                                                        </div>
-                                                                        <div class="item" data-value="VIUVO">VIUVO
-                                                                        </div>
-                                                                        <div class="item" data-value="">
-                                                                            
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="number field">
-                                                            <label for="Cidadao-pisPasep">PIS/PASEP</label>
-                                                            <input
-                                                            name="Cidadao-pisPasep" class="Cidadao-pisPasep" type="text">
-                                                        </div>
-                                                        <div class="field">
-                                                            <label for="Cidadao-nacionalidade">Nacionalidade</label> <input
-                                                            name="Cidadao-nacionalidade" class="semAcentosECaracteres semEspaco semNumeros" type="text">
-                                                        </div>
-                                                        <div class="field">
-                                                            <label for="Cidadao-naturalidade">Naturalidade</label>
-                                                            <input
-                                                            name="Cidadao-naturalidade" class="semAcentosECaracteres semEspaco semNumeros" type="text">
-                                                        </div>
-                                                        <div class="field">
-                                                            <label for="Cidadao-religiao">Religi&atilde;o</label>
-                                                            <input
-                                                            name="Cidadao-religiao" class="semAcentosECaracteres semEspaco semNumeros" type="text" >
-                                                        </div>
-                                                        <div class="field">
-                                                            <label for="Cidadao-cor">Ra&ccedil;a</label>
-                                                            <div id="MenuItem-Cidadao-cor" class="ui selection dropdown">
-                                                                <input type="hidden" name="Cidadao-cor">
-                                                                <div class="default text">
-                                                                    
-                                                                </div>
-                                                                <i class="dropdown icon"></i>
-                                                                <div class="menu">
-                                                                    <div class="item" data-value="AMARELO">AMARELO
-                                                                    </div>
-                                                                    <div class="item" data-value="BRANCO">BRANCO
-                                                                    </div>
-                                                                    <div class="item" data-value="NEGRO">NEGRO
-                                                                    </div>
-                                                                    <div class="item" data-value="PARDO">PARDO
-                                                                    </div>
-                                                                    <div class="item" data-value="">
-                                                                        
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="field">
-                                                            <label for="Cidadao-tipoSanguineo">Tipo Sangu&iacute;neo</label>
-                                                            <div id="MenuItem-Cidadao-tipoSanguineo"
-                                                                class="ui selection dropdown">
-                                                                <input type="hidden" name="Cidadao-tipoSanguineo">
-                                                                <div class="default text">
-                                                                    
-                                                                </div>
-                                                                <i class="dropdown icon"></i>
-                                                                <div class="menu">
-                                                                    <div class="item" data-value="A+">A+</div>
-                                                                    <div class="item" data-value="B+">B+</div>
-                                                                    <div class="item" data-value="AB+">AB+</div>
-                                                                    <div class="item" data-value="O+">O+</div>
-                                                                    <div class="item" data-value="A-">A-</div>
-                                                                    <div class="item" data-value="B-">B-</div>
-                                                                    <div class="item" data-value="AB-">AB-</div>
-                                                                    <div class="item" data-value="O-">O-</div>
-                                                                    <div class="item" data-value=""></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="ui form">
-                                                            <div class="field">
-                                                                <label for="Cidadao-necessidadeEspecial">Necessidade
-                                                                Especial</label>
-                                                                <div class="ui checkbox">
-                                                                    <input type="checkbox" id="AUDITIVA" class="deficiencias"
-                                                                    name="Cidadao-necessidadeEspecial" value="AUDITIVA"> <label>AUDITIVA </label>
-                                                                </div>
-                                                                <div class="ui checkbox">
-                                                                    <input type="checkbox" id="MOTORA" class="deficiencias"
-                                                                    name="Cidadao-necessidadeEspecial" value="MOTORA"> <label>MOTORA </label>
-                                                                </div>
-                                                                <div class="ui checkbox">
-                                                                    <input type="checkbox" id="MENTAL" class="deficiencias"
-                                                                    name="Cidadao-necessidadeEspecial" value="MENTAL"> <label>MENTAL </label>
-                                                                </div>
-                                                                <div class="ui checkbox">
-                                                                    <input type="checkbox" id="VISUAL" class="deficiencias"
-                                                                    name="Cidadao-necessidadeEspecial" value="VISUAL"> <label>VISUAL </label>
-                                                                </div>
+                                                                type="{{inp.showAs}}" class="obrigatorio semAcentosECaracteres semEspaco semNumeros">
                                                             </div>
                                                         </div>
                                                     </div>

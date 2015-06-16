@@ -6,18 +6,18 @@ var secretariasModel = [
                 segments: [{
                     nome:"Pessoal Almoxarifado",
                     inputs:[{
-                            title:"",
+                            title:"Nome",
                             readonly:false,
                             show:true,
-                            showAs:"",
+                            showAs:"text",
                             defaultValue:"",
                             width:"",
                             mask:""
                         },{
-                            title:"",
+                            title:"CPF",
                             readonly:false,
                             show:true,
-                            showAs:"",
+                            showAs:"text",
                             defaultValue:"",
                             width:"",
                             mask:""
@@ -25,11 +25,23 @@ var secretariasModel = [
                     }, 
 
                     {nome: "Teste Almoxarifado",
-                        inputs:[
-                            {},
-                            {},
-                            {}
-                        ]   
+                        inputs:[{
+                            title:"Data de Nascimento",
+                            readonly:false,
+                            show:false,
+                            showAs:"date",
+                            defaultValue:"",
+                            width:"",
+                            mask:""
+                        },{
+                            title:"Nacionalidade",
+                            readonly:false,
+                            show:false,
+                            showAs:"text",
+                            defaultValue:"",
+                            width:"",
+                            mask:""
+                        }]   
                     }
                 ],
             },
