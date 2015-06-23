@@ -4,7 +4,7 @@ var secretariasModel = [
         setor: [
             {nome: "Almoxarifado", 
                 segments: [{
-                    nome:"Pessoal Almoxarifado",
+                    nome:"Dados Pessoais",
                     inputs:[{
                             title:"Nome",
                             readonly:false,
@@ -24,7 +24,7 @@ var secretariasModel = [
                         }]   
                     }, 
 
-                    {nome: "Teste Almoxarifado",
+                    {nome: "Dados de Localização",
                         inputs:[{
                             title:"Data de Nascimento",
                             readonly:false,
@@ -45,9 +45,6 @@ var secretariasModel = [
                     }
                 ],
             },
-
-
-
 
             {nome: "Garagem", 
                 segments: [
