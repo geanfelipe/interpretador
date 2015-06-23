@@ -8,22 +8,23 @@
         <meta name="mobile-web-app-capable" content="yes">
         <link rel="import" href="imports.html">
         <style type="text/css">
-            .true {
-                display: block;
-            }
-            .false {
-                display: none;
-            }    
+        .true {
+        display: block;
+        }
+        .false {
+        display: none;
+        }
         </style>
     </head>
     <body>
+        <div id="teste"></div>
         <div id="area-de-sistema" style="display: block;" ng-controller="modelagemCtrl">
             <div class="ui segment">
                 <div id="area-de-cabecalho" class="ui vertically divided grid">
                     <div class="ten row">
                         <div class="ten wide column">
                             <h3 class="ui dividing header">
-                                Prefeitura Municipal de Parnamirim
+                            Prefeitura Municipal de Parnamirim
                             </h3>
                             <div id="area-de-menu-principal" class="ui tiered menu" style="margin-top: -5px">
                                 <div id="barra-de-menu-principal" class="menu">
@@ -55,22 +56,29 @@
                                         <i class="dropdown icon">
                                         </i>
                                         <div id="aplicativos" class="menu barramenuhorizontal" style="margin-top: 1px;">
-                                            <a ng-repeat="secretaria in secretarias" ng-click="mudarAbaDeAplicativo(secretaria); alternarAba('#modulos', '#sessao'); alternarAbaPrincipal('aba-de-aplicativo');"><span class="item sessao itemmenuhorizontal" contextmenu="funcionario">{{secretaria.nome}}</span></a>
+                                            <a ng-repeat="secretaria in secretarias" ng-click="mudarAbaDeAplicativo(secretaria); alternarAba('#modulos', '#sessao'); alternarAbaPrincipal('aba-de-aplicativo');"><span class="item sessao itemmenuhorizontal" contextmenu="funcionario">{{secretaria.nome | uppercase}}</span></a>
                                         </div>
                                     </div>
                                 </div>
                                 
-                                <div id="sessao" class="ui sub menu none">
-                                    <div class="ui dropdown item" ng-repeat="sec in secretarias"
-                                        ng-show="sec.nome==aplicativo">
+                                <div id="sessao" class="ui sub menu none" >
+
+
+                                    
+                                    
+
+                                    <div class="ui dropdown item" ng-repeat="sec in secretarias" ng-show="sec.nome==aplicativo">
                                         Cadastro
                                         <i class="icon dropdown"></i>
                                         <div class="menu">
-                                            <a class="item" ng-repeat="set in sec.setor" ng-click="mudarSegmentView(sec.nome+set.nome);">
+                                            <a class="item" ng-repeat="set in sec.setor" 
+                                            ng-click="mudarSegmentView(sec.nome+set.nome);">
                                                 {{set.nome}}
                                             </a>
                                         </div>
                                     </div>
+
+
                                     <div class="ui dropdown item">
                                         Notificações <i class="icon dropdown"></i>
                                         <div class="menu">
@@ -79,7 +87,7 @@
                                             <a class="item">
                                             <i class="phone icon"></i> Número: (84) 3644 8125</a>
                                             <a class="item">
-                                            s<i class="chat icon"></i> Chamar
+                                                s<i class="chat icon"></i> Chamar
                                             on-line</a>
                                         </div>
                                     </div>
@@ -97,7 +105,7 @@
                                         <a id="listagem" class="item modo-de-exibicao">
                                         <i class="list layout icon"></i>Listagem</a>
                                         <a id="mapa" class="item modo-de-exibicao">
-                                        <i class="map icon">
+                                            <i class="map icon">
                                         </i>Mapa</a>
                                     </div>
                                 </div>
@@ -121,8 +129,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-
-                                             <!-- BLOCO DE FORMULARIOS COMECAM AQUI -->
+                                            <!-- BLOCO DE FORMULARIOS COMECAM AQUI -->
                                             <div class="twelve wide column">
                                                 <div id="dados-pessoais" class="sessao-de-dados">
                                                     <div class="ui form segment" ng-show='refSeg == seg' ng-repeat="seg in set.segments">
