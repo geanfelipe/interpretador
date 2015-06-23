@@ -28,7 +28,7 @@ var secretariasModel = [
                         inputs:[{
                             title:"Data de Nascimento",
                             readonly:false,
-                            show:false,
+                            show:true,
                             showAs:"date",
                             defaultValue:"",
                             width:"",
@@ -36,7 +36,7 @@ var secretariasModel = [
                         },{
                             title:"Nacionalidade",
                             readonly:false,
-                            show:false,
+                            show:true,
                             showAs:"text",
                             defaultValue:"",
                             width:"",

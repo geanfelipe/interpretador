@@ -43,5 +43,6 @@
 
                 $scope.mudarSegmentAct = function (novaSegmentAct){
                     $scope.segAct = novaSegmentAct;
+                    console.log($scope.segAct);
                 };
             });

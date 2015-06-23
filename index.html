@@ -115,7 +115,7 @@
                                                         <a contextmenu="dados-pessoais"
                                                             ng-class="{active: seg.nome == segAct}"
                                                             class="item" ng-repeat="seg in set.segments"
-                                                            ng-click="mudarSegmentAct(seg.nome);"> {{seg.nome}}
+                                                            ng-click="mudarSegmentAct(seg.nome); refSeg=seg"> {{seg.nome}}
                                                         </a>
                                                         <!-- OS SEGMENTOS TERMINAM AQUI -->
                                                     </div>
@@ -125,7 +125,7 @@
                                              <!-- BLOCO DE FORMULARIOS COMECAM AQUI -->
                                             <div class="twelve wide column">
                                                 <div id="dados-pessoais" class="sessao-de-dados">
-                                                    <div class="ui form segment" ng-repeat="seg in set.segments">
+                                                    <div class="ui form segment" ng-show='refSeg == seg' ng-repeat="seg in set.segments">
                                                         <div class="ui ribbon label" style="margin-bottom: 15px;">
                                                             {{seg.nome}}
                                                         </div>
