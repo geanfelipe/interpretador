@@ -28,9 +28,22 @@
                             </h3>
                             <div id="area-de-menu-principal" class="ui tiered menu" style="margin-top: -5px">
                                 <div id="barra-de-menu-principal" class="menu">
+
+                                    <!--
+                                        Aba principal do sistema com título Portal Administrativo, quando clicado altera a 'class'
+                                        da aba selecionada atualmente e
+                                      -->
+
                                     <a id="aba-do-portal-administrativo" class="item active" ng-click="alternarAba('#sessao', '#modulos'); alternarAbaPrincipal('aba-do-portal-administrativo');"> <i class="rss icon"></i> Portal Administrativo
                                     </a>
+
+                                    <!--
+                                        Aba secundária, com o nome da secretaria selecionada na página principal. Ao clicar alterna a variavel de controle da abaPrincipal
+                                    -->
+
                                     <a id="aba-de-aplicativo" class="item" ng-click="alternarAba('#modulos', '#sessao'); alternarAbaPrincipal('aba-de-aplicativo');">{{aplicativo}}</a>
+
+
                                     <div class="right menu">
                                         <div class="ui dropdown item">
                                             Julio Costa, Mat. 7500
@@ -46,6 +59,8 @@
                                         </div>
                                     </div>
                                 </div>
+
+
                                 <div id="modulos" class="ui menu">
                                     <div class="ui dropdown item modulo">
                                         <span contextmenu="secretarias">
@@ -55,29 +70,45 @@
                                         </span>
                                         <i class="dropdown icon">
                                         </i>
+
+
                                         <div id="aplicativos" class="menu barramenuhorizontal" style="margin-top: 1px;">
+
+                                             <!-- LAÇO DE REPETICAO para inserir no menu principal todas as secretarias -->
+
                                             <a ng-repeat="secretaria in secretarias" ng-click="mudarAbaDeAplicativo(secretaria); alternarAba('#modulos', '#sessao'); alternarAbaPrincipal('aba-de-aplicativo');"><span class="item sessao itemmenuhorizontal" contextmenu="funcionario">{{secretaria.nome | uppercase}}</span></a>
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div id="sessao" class="ui sub menu none" >
 
 
-                                    
-                                    
+
+                                    <!--
+                                        ng-repeat cria todos os submenus de cada secretaria, inicialmente todos estão invisíveis,
+                                        ficando visível apenas quando a secretaria é seleciona no menu de secretarias, através da tag
+                                        ng-show
+                                    -->
 
                                     <div class="ui dropdown item" ng-repeat="sec in secretarias" ng-show="sec.nome==aplicativo">
                                         Cadastro
                                         <i class="icon dropdown"></i>
                                         <div class="menu">
-                                            <a class="item" ng-repeat="set in sec.setor" 
+
+                                            <!--
+                                                Inserindo no html (no menu cadastro), todos os setores de cada secretaria.
+                                                ao clicar é alterado o valor da variável 'segmentView'
+                                             -->
+
+                                            <a class="item" ng-repeat="set in sec.setor"
                                             ng-click="mudarSegmentView(sec.nome+set.nome);">
                                                 {{set.nome}}
                                             </a>
                                         </div>
                                     </div>
 
+                                    <!-- MENU FIXO DE NOTIFICAÇÕES, FUTURAMENTE SERÁ ALTERADO -->
 
                                     <div class="ui dropdown item">
                                         Notificações <i class="icon dropdown"></i>
@@ -91,6 +122,10 @@
                                             on-line</a>
                                         </div>
                                     </div>
+
+                                    <!-- MENU FIXO DE RELATÓRIOS, FUTURAMENTE SERÁ ALTERADO -->
+
+
                                     <div class="ui dropdown item">
                                         Relatórios <i class="icon dropdown"></i>
                                         <div class="menu">
@@ -99,6 +134,9 @@
                                             <a class="item"><i class="chat icon"></i> Chamar on-line</a>
                                         </div>
                                     </div>
+
+                                    <!-- MENU FIXO NO LADO DIRETO, FUTURAMENTE SERÁ ALTERADO -->
+
                                     <div class="right menu" id="utilidades">
                                         <a id="formulario" class="ui dropdown item">
                                         <i class="edit icon"></i> Formulário</a>
@@ -109,17 +147,24 @@
                                         </i>Mapa</a>
                                     </div>
                                 </div>
-                                
-                                
-                                <!-- BLOCO DE SEGMENTOS E FORMULARIOS COMECAM AQUI -->
+
+
+                                <!--
+                                BLOCO DE SEGMENTOS E FORMULARIOS COMECAM AQUI
+                                 -->
+
                                 <div ng-repeat="sec in secretarias">
+                                <!-- mostrada apenas quando o segmentView for igual a secretaria atual, segmentView é alterado aproximadamente na linha 105 desse código (está comentado)-->
                                     <div class="ui celled grid" ng-repeat="set in sec.setor"
                                         ng-show="sec.nome+set.nome == segmentView">
                                         <div class="row">
                                             <div class="one wide column" >
                                                 <div class="ui segiment">
                                                     <div id="grupo-de-dados" class="ui pointing vertical menu">
-                                                        <!-- OS SEGMENTOS COMEÇAM AQUI -->
+                                                        <!-- OS SEGMENTOS COMEÇAM AQUI
+                                                            possui a class active quando seu nome é  o mesmo da variável segAct.
+                                                            Essa variável segAct é alterada quando clicar em um outro segmento.
+                                                        -->
                                                         <a contextmenu="dados-pessoais"
                                                             ng-class="{active: seg.nome == segAct}"
                                                             class="item" ng-repeat="seg in set.segments"
@@ -130,6 +175,10 @@
                                                 </div>
                                             </div>
                                             <!-- BLOCO DE FORMULARIOS COMECAM AQUI -->
+
+                                            <!--
+                                            ESSA BLOCO É EXATAMETNE OQ UE ESTÁ FALTANDO SER IMPLEMENTADO, A CRIAÇÃO DOS FORMULÁRIOS
+                                            DE ACORDO COM O JSON FORNECIDO -->
                                             <div class="twelve wide column">
                                                 <div id="dados-pessoais" class="sessao-de-dados">
                                                     <div class="ui form segment" ng-show='refSeg == seg' ng-repeat="seg in set.segments">

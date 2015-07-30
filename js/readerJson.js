@@ -12,7 +12,7 @@ var inputs = [];
 var inputObj = {};
 var segmentsName = [];
 
-//método para retornar elementos único de um array
+//método para retornar elementos únicos de um array
 Array.prototype.getUnique = function() {
 	var u = {},
 		a = [];
@@ -86,7 +86,7 @@ function loadJson(data) {
 			});
 		});
 
-		//varre um array retonado pelo getUnique, que por sua vez 
+		//varre um array retonado pelo getUnique, que por sua vez
 		//retorna um array de elementos não repetidos
 		segmentsName.getUnique().forEach(function(segmentName) {
 
@@ -113,7 +113,7 @@ function loadJson(data) {
 		segmentsName = [];
 
 	});
-	
+
 	console.log(secretariasModel);
 	return secretariasModel;
 }
