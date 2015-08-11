@@ -37,7 +37,6 @@ var getInputsBySegment = function(segment, list) {
 		angular.forEach(group.entities, function(entities) {
 		 // console.log(entities);
 			angular.forEach(entities.attributes, function(attributes) {
-        console.log(attributes);
 				//verifica se o input atual é do segmento desejado
 				if (attributes.view.segment == segment) {
 
