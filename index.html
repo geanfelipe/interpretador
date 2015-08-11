@@ -60,7 +60,7 @@
                                     </div>
                                 </div>
 
-
+  
                                 <div id="modulos" class="ui menu">
                                     <div class="ui dropdown item modulo">
                                         <span contextmenu="secretarias">
@@ -90,12 +90,13 @@
                                         ficando visível apenas quando a secretaria é seleciona no menu de secretarias, através da tag
                                         ng-show
                                     -->
-
                                     <div class="ui dropdown item" ng-repeat="sec in secretarias" ng-show="sec.nome==aplicativo">
-                                        Cadastro
+                                        Cadastro{{sec}}
                                         <i class="icon dropdown"></i>
                                         <div class="menu">
-
+                                            <a class="item">oioi</a>
+                                            <a class="item">oioi</a>
+                                           
                                             <!--
                                                 Inserindo no html (no menu cadastro), todos os setores de cada secretaria.
                                                 ao clicar é alterado o valor da variável 'segmentView'

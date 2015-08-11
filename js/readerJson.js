@@ -24,7 +24,7 @@ Array.prototype.getUnique = function() {
 		u[this[i]] = 1;
 	}
 	return a;
-}
+};
 
 //método para retonar inputs de um segmento em um grupo
 var getInputsBySegment = function(segment, list) {
@@ -32,11 +32,12 @@ var getInputsBySegment = function(segment, list) {
 	//limpar variáveis
 	inputs = [];
 	inputObj = {};
-
+  console.log(segment);
 	list.forEach(function(group) {
 		angular.forEach(group.entities, function(entities) {
+		 // console.log(entities);
 			angular.forEach(entities.attributes, function(attributes) {
-
+        console.log(attributes);
 				//verifica se o input atual é do segmento desejado
 				if (attributes.view.segment == segment) {
 
@@ -58,7 +59,7 @@ var getInputsBySegment = function(segment, list) {
 		});
 	});
 	return inputs;
-}
+};
 
 //função principal para leitura do json
 function loadJson(data) {
@@ -80,7 +81,6 @@ function loadJson(data) {
 
 					//adiciona todos os nomes de segmentos possíveis encontrados no json
 					segmentsName.push(attributes.view.segment);
-
 
 				});
 			});
