@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" ng-app="modelagem">
+<html class="no-js" ng-app="mainApp">
     <head>
         <meta charset="utf-8">
         <title>{{app}}</title>
@@ -34,14 +34,14 @@
                                         da aba selecionada atualmente e
                                       -->
 
-                                    <a id="aba-do-portal-administrativo" class="item active" ng-click="alternarAba('#sessao', '#modulos'); alternarAbaPrincipal('aba-do-portal-administrativo');"> <i class="rss icon"></i> Portal Administrativo
+                                    <a id="aba-do-portal-administrativo" class="item" ng-click="aba=1" ng-class="{'active':aba==1}"> <i class="rss icon"></i> Portal Administrativo
                                     </a>
 
                                     <!--
                                         Aba secundária, com o nome da secretaria selecionada na página principal. Ao clicar alterna a variavel de controle da abaPrincipal
                                     -->
 
-                                    <a id="aba-de-aplicativo" class="item" ng-click="alternarAba('#modulos', '#sessao'); alternarAbaPrincipal('aba-de-aplicativo');">{{aplicativo}}</a>
+                                    <a id="aba-de-aplicativo" class="item" ng-click="aba=2" ng-class="{'active': aba==2}" >{{aplicativo}}</a>
 
 
                                     <div class="right menu">
@@ -76,7 +76,10 @@
 
                                              <!-- LAÇO DE REPETICAO para inserir no menu principal todas as secretarias -->
 
-                                            <a ng-repeat="secretaria in secretarias" ng-click="mudarAbaDeAplicativo(secretaria); alternarAba('#modulos', '#sessao'); alternarAbaPrincipal('aba-de-aplicativo');"><span class="item sessao itemmenuhorizontal" contextmenu="funcionario">{{secretaria.nome | uppercase}}</span></a>
+                                            <a >
+                                                <span class="item sessao itemmenuhorizontal" contextmenu="funcionario" ng-click="aba=2">SECRETARIA_BLBLA</span>
+                                                <span class="item sessao itemmenuhorizontal" contextmenu="funcionario" ng-click="aba=2">SECRETARIA_THUMBAIL</span>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -88,7 +91,7 @@
                                         ficando visível apenas quando a secretaria é seleciona no menu de secretarias, através da tag
                                         ng-show
                                     -->
-                                    <div class="ui dropdown item" ng-repeat="sec in secretarias | filter : aplicativo">
+                                    <div class="ui dropdown item">
                                         Cadastro
                                         <i class="icon dropdown"></i>
                                         <div class="menu">
@@ -100,8 +103,7 @@
                                                 ao clicar é alterado o valor da variável 'segmentView'
                                              -->
 
-                                            <a class="item" ng-repeat="set in sec.setor"
-                                            ng-click="mudarSegmentView(sec.nome+set.nome);">
+                                            <a class="item">
                                                 {{set.nome}}
                                             </a>
                                         </div>
@@ -154,8 +156,7 @@
 
                                 <div ng-repeat="sec in secretarias">
                                 <!-- mostrada apenas quando o segmentView for igual a secretaria atual, segmentView é alterado aproximadamente na linha 105 desse código (está comentado)-->
-                                    <div class="ui celled grid" ng-repeat="set in sec.setor"
-                                        ng-show="sec.nome+set.nome == segmentView">
+                                    <div class="ui celled grid">
                                         <div class="row">
                                             <div class="one wide column" >
                                                 <div class="ui segiment">
@@ -164,10 +165,7 @@
                                                             possui a class active quando seu nome é  o mesmo da variável segAct.
                                                             Essa variável segAct é alterada quando clicar em um outro segmento.
                                                         -->
-                                                        <a contextmenu="dados-pessoais"
-                                                            ng-class="{active: seg.nome == segAct}"
-                                                            class="item" ng-repeat="seg in set.segments"
-                                                            ng-click="mudarSegmentAct(seg.nome); refSeg=seg"> {{seg.nome}}
+                                                        <a contextmenu="dados-pessoais"> {{seg.nome}}
                                                         </a>
                                                         <!-- OS SEGMENTOS TERMINAM AQUI -->
                                                     </div>
@@ -180,7 +178,7 @@
                                             DE ACORDO COM O JSON FORNECIDO -->
                                             <div class="twelve wide column">
                                                 <div id="dados-pessoais" class="sessao-de-dados">
-                                                    <div class="ui form segment" ng-show='refSeg == seg' ng-repeat="seg in set.segments">
+                                                    <div class="ui form segment">
                                                         <div class="ui ribbon label" style="margin-bottom: 15px;">
                                                             {{seg.nome}}
                                                         </div>
@@ -208,9 +206,9 @@
     </div>
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="js/semantic.js"></script>
-    <script src="js/script.js"></script>
+    <script src="js/script.js"></script> -->
     <!-- endbower -->
     <!-- endbuild -->
 </body>
