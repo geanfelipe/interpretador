@@ -1,3 +1,4 @@
 var mainApp= angular.module('mainApp',[
-  'Modelagem'
+  'Modelagem',
+  'modelagemService'
   ]);
