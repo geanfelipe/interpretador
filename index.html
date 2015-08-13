@@ -34,14 +34,14 @@
                                         da aba selecionada atualmente e
                                       -->
 
-                                    <a id="aba-do-portal-administrativo" class="item" ng-click="aba=1" ng-class="{'active':aba==1}"> <i class="rss icon"></i> Portal Administrativo
+                                    <a id="aba-do-portal-administrativo" class="item" ng-click="aba=1;tabAplicativo=false" ng-class="{'active':aba==1}"> <i class="rss icon"></i> Portal Administrativo
                                     </a>
 
                                     <!--
                                         Aba secundária, com o nome da secretaria selecionada na página principal. Ao clicar alterna a variavel de controle da abaPrincipal
                                     -->
 
-                                    <a id="aba-de-aplicativo" class="item" ng-click="aba=2" ng-class="{'active': aba==2}" >{{aplicativo}}</a>
+                                    <a id="aba-de-aplicativo" class="item" ng-click="aba=2;tabAplicativo=true" ng-class="{'active': aba==2}" >{{secretaria}}</a>
 
 
                                     <div class="right menu">
@@ -61,7 +61,7 @@
                                 </div>
 
   
-                                <div id="modulos" class="ui menu">
+                                <div id="modulos" class="ui menu" ng-class="{'none': tabAplicativo}">
                                     <div class="ui dropdown item modulo">
                                         <span contextmenu="secretarias">
                                             <i class="text file icon">
@@ -77,14 +77,14 @@
                                              <!-- LAÇO DE REPETICAO para inserir no menu principal todas as secretarias -->
 
                                             <a >
-                                                <span class="item sessao itemmenuhorizontal" contextmenu="funcionario" ng-click="aba=2">SECRETARIA_BLBLA</span>
-                                                <span class="item sessao itemmenuhorizontal" contextmenu="funcionario" ng-click="aba=2">SECRETARIA_THUMBAIL</span>
+                                                <span class="item sessao itemmenuhorizontal" contextmenu="funcionario" ng-click="aba=2;tabAplicativo=true; secretaria='SECRETARIA_BLBLA';">SECRETARIA_BLBLA</span>
+                                                <span class="item sessao itemmenuhorizontal" contextmenu="funcionario" ng-click="aba=2;tabAplicativo=true;secretaria='SECRETARIA_THUMBAIL';">SECRETARIA_THUMBAIL</span>
                                             </a>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div id="sessao" class="ui sub menu none" >
+                                <div id="sessao" class="ui sub menu none" ng-class="{'block':tabAplicativo}">
 
                                     <!--
                                         ng-repeat cria todos os submenus de cada secretaria, inicialmente todos estão invisíveis,
@@ -102,10 +102,6 @@
                                                 Inserindo no html (no menu cadastro), todos os setores de cada secretaria.
                                                 ao clicar é alterado o valor da variável 'segmentView'
                                              -->
-
-                                            <a class="item">
-                                                {{set.nome}}
-                                            </a>
                                         </div>
                                     </div>
 
