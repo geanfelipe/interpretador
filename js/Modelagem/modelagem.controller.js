@@ -1,12 +1,25 @@
-modelagemApp.controller('modelagemCtrl',['$scope','modelagemService',
-    function($scope,modelagemService){
-      var metadados =modelagemService.query();
-      //$scope.nome=metadados.user;
+modelagemApp.controller('modelagemCtrl',[
+    '$scope',
+    'modelagemService',
+    '$log',
+    function($scope,modelagemService,$log){
+      $scope.$log = $log;
       $scope.aba = 1;
       $scope.tabAplicativo=false;
       $scope.secretaria ='';
       $scope.salvado='';
+      $scope.user ='';
+      $scope.secretarias = '';
+      var lista_de_secretarias= {};
       
-      console.log(metadados.$get());
+      var json =angular.fromJson(modelagemService.query());
+      
+      json.$promise.then(function(data){
+        $scope.user = data.user;
+        $scope.secretarias = Object.keys(data.groups);
+        
+        //console.log($scope.secretarias);
+        
+      });
     }
 ]);
