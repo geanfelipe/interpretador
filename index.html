@@ -75,10 +75,14 @@
                                         <div id="aplicativos" class="menu barramenuhorizontal" style="margin-top: 1px;">
 
                                              <!-- LAÇO DE REPETICAO para inserir no menu principal todas as secretarias -->
-                                            
+                                            <!--
                                             <a ng-repeat="secretaria in secretarias">
                                                 <span class="item sessao itemmenuhorizontal" contextmenu="funcionario" ng-click="aba=2;tabAplicativo=true; secretariaSeleciodada=secretaria">{{secretaria}}</span>
                                             </a>
+                                            -->
+                                            <lista-secretaria data="secretaria in secretarias">
+                                              {{secretaria}}
+                                            </lista-secretaria>
                                             
                                         </div>
                                     </div>
