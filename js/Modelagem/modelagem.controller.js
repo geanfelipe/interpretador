@@ -8,13 +8,12 @@ modelagemApp.controller('modelagemCtrl',[
       $scope.salvado='';
       $scope.user ='';
       $scope.secretarias = '';
-<<<<<<< HEAD
+
       $scope.secretariaSeleciodada='';
-=======
+
       $scope.secretariaSeleciodada=null;
       $scope.formulariosDeSecretaria=null;
       $scope.formulario='';
->>>>>>> d08eb45036c21f7558534edf8885e0de56ae69e2
       
       var lista_de_secretarias= {};
       var json =angular.fromJson(modelagemService.query());
@@ -31,12 +30,18 @@ modelagemApp.controller('modelagemCtrl',[
       };
       
       json.$promise.then(function(data){
+        
         $scope.user = data.user;
+        
         $scope.secretarias = Object.keys(data.groups);
+        
         $scope.listarFormularioDeSecretaria = function(secretaria){
-          console.log(Object.keys(data.groups[secretaria]));
-          return Object.keys(data.groups[secretaria]);
+          if(secretaria!==null){
+            console.log(Object.keys(data.groups[secretaria]));
+            return Object.keys(data.groups[secretaria]);
+          }
         };
+        
         $scope.lista = Object.keys(data.groups['sesad:almoxarifado']);
       });
     }
