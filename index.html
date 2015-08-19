@@ -41,7 +41,7 @@
                                         Aba secundária, com o nome da secretaria selecionada na página principal. Ao clicar alterna a variavel de controle da abaPrincipal
                                     -->
 
-                                    <a id="aba-de-aplicativo" class="item"  ng-class="{'active': aba==2}" >{{secretariaSeleciodada}}</a>
+                                    <a id="aba-de-aplicativo" class="item"  ng-class="{'active': aba==2}" ng-click="aba=2;tabAplicativo=true">{{secretariaSeleciodada}}</a>
 
 
                                     <div class="right menu">
@@ -75,16 +75,9 @@
                                         <div id="aplicativos" class="menu barramenuhorizontal" style="margin-top: 1px;">
 
                                              <!-- LAÇO DE REPETICAO para inserir no menu principal todas as secretarias -->
-                                            
                                             <a ng-repeat="secretaria in secretarias">
-                                                <span class="item sessao itemmenuhorizontal" contextmenu="funcionario" ng-click="trocar(secretaria)">{{secretaria}}</span>
+                                                <span class="item sessao itemmenuhorizontal" contextmenu="funcionario" ng-click="trocarAba(secretaria)">{{secretaria}}</span>
                                             </a>
-                                            
-                                            <!--
-                                            <lista-secretaria data="secretaria in secretarias">
-                                              {{secretaria}}
-                                            </lista-secretaria>
-                                            -->
                                         </div>
                                     </div>
                                 </div>
@@ -99,10 +92,8 @@
                                     <div class="ui dropdown item">
                                         Cadastro
                                         <i class="icon dropdown"></i>
-                                        <div class="menu">
-                                            <a class="item">oioi</a>
-                                            <a class="item">oioi</a>
-                                           
+                                        <div class="menu" ng-repeat="formulario in lista">
+                                            <a class="item">{{formulario}}</a>
                                             <!--
                                                 Inserindo no html (no menu cadastro), todos os setores de cada secretaria.
                                                 ao clicar é alterado o valor da variável 'segmentView'
