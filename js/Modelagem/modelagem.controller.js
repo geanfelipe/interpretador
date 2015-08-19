@@ -10,6 +10,8 @@ modelagemApp.controller('modelagemCtrl',[
       $scope.salvado='';
       $scope.user ='';
       $scope.secretarias = '';
+      $scope.secretariaSeleciodada='';
+      
       var lista_de_secretarias= {};
       var json =angular.fromJson(modelagemService.query());
     
