@@ -27,6 +27,10 @@ modelagemApp.controller('modelagemCtrl',[
               $scope.tabAplicativo = $scope.tabAplicativo===false ? $scope.tabAplicativo=true:$scope.tabAplicativo=false;
             }
         };
+
+        $scope.selecionarFormulario = function(formulario){
+            $scope.formularioSelecionado = formulario;
+        };
         
         /*retornado o json faca as seguintes operacoes*/
         /*Vide: o promise é a ultima coisa que é carregada no controller*/
@@ -44,6 +48,7 @@ modelagemApp.controller('modelagemCtrl',[
             };
             
             $scope.lista = Object.keys(data.groups['sesad:almoxarifado']);
+            
         });
       }
 ]);

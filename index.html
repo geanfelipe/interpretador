@@ -93,11 +93,8 @@
                                         Cadastro
                                         <i class="icon dropdown"></i>
                                         <div class="menu" >
-                                            <a class="item" ng-repeat="formulario in listarFormularioDeSecretaria(secretariaSeleciodada) track by $index">{{formulario}}</a>
-                                            <!--
-                                                Inserindo no html (no menu cadastro), todos os setores de cada secretaria.
-                                                ao clicar é alterado o valor da variável 'segmentView'
-                                             -->
+                                            <!--Inserindo os formulário de cada secretaria-->
+                                            <a class="item" ng-repeat="formulario in listarFormularioDeSecretaria(secretariaSeleciodada) track by $index" ng-click="selecionarFormulario(formulario)">{{formulario}}</a>
                                         </div>
                                     </div>
 
