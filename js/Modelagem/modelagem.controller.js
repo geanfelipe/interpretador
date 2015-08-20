@@ -30,6 +30,7 @@ modelagemApp.controller('modelagemCtrl',[
 
         $scope.selecionarFormulario = function(formulario){
             $scope.formularioSelecionado = formulario;
+            console.log($scope.formularioSelecionado);
         };
         
         /*retornado o json faca as seguintes operacoes*/

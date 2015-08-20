@@ -143,19 +143,18 @@
                                 BLOCO DE SEGMENTOS E FORMULARIOS COMECAM AQUI
                                  -->
 
-                                <div ng-repeat="sec in secretarias" ng-show="formularioSelecionado">
+                                <div ng-show="formularioSelecionado">
                                 <!-- mostrada apenas quando o segmentView for igual a secretaria atual, segmentView é alterado aproximadamente na linha 105 desse código (está comentado)-->
                                     <div class="ui celled grid">
                                         <div class="row">
-                                            <div class="one wide column" >
+                                            <div class="one wide column">
                                                 <div class="ui segiment">
                                                     <div id="grupo-de-dados" class="ui pointing vertical menu">
                                                         <!-- OS SEGMENTOS COMEÇAM AQUI
                                                             possui a class active quando seu nome é  o mesmo da variável segAct.
                                                             Essa variável segAct é alterada quando clicar em um outro segmento.
                                                         -->
-                                                        <a contextmenu="dados-pessoais"> {{seg.nome}
-                                                        </a>
+                                                        <a contextmenu="dados-pessoais" class="active item"> SEGMENTO NOME</a>
                                                         <!-- OS SEGMENTOS TERMINAM AQUI -->
                                                     </div>
                                                 </div>
@@ -169,7 +168,7 @@
                                                 <div id="dados-pessoais" class="sessao-de-dados">
                                                     <div class="ui form segment">
                                                         <div class="ui ribbon label" style="margin-bottom: 15px;">
-                                                            {{seg.nome}}
+                                                           SESSÃO DE DADOS: LOTAÇÃO
                                                         </div>
                                                         <input hidden="true" name="Cidadao-id" value="" type="text">
                                                         <div class="field error {{inp.show}}" ng-repeat="inp in seg.inputs">
