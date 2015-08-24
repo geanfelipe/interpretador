@@ -8,8 +8,7 @@ modelagemApp.controller('modelagemCtrl',[
         $scope.salvado='';
         $scope.user ='';
         $scope.secretarias = '';
-        $scope.secretariaSeleciodada='';
-        $scope.secretariaSeleciodada=null;
+        $scope.secretariaSelecionada=null;
         $scope.formulariosDeSecretaria=null;
         $scope.formulario='';
         $scope.formularioSelecionado = false;
@@ -18,10 +17,10 @@ modelagemApp.controller('modelagemCtrl',[
         var json =angular.fromJson(modelagemService.query());
       
         $scope.trocarAba = function(secretaria){
-            $scope.secretariaSeleciodada=secretaria;
+            $scope.secretariaSelecionada=secretaria;
             $scope.aba = $scope.aba==1 ? $scope.aba=2:$scope.aba=1;
             
-            if($scope.secretariaSeleciodada===null){
+            if($scope.secretariaSelecionada===null){
               //FACA NADA
             }else{
               $scope.tabAplicativo = $scope.tabAplicativo===false ? $scope.tabAplicativo=true:$scope.tabAplicativo=false;
@@ -30,9 +29,11 @@ modelagemApp.controller('modelagemCtrl',[
 
         $scope.selecionarFormulario = function(formulario){
             $scope.formularioSelecionado = formulario;
-            console.log($scope.formularioSelecionado);
         };
         
+        $scope.construtorDoSegmento = function(objView){
+            
+        };
         /*retornado o json faca as seguintes operacoes*/
         /*Vide: o promise é a ultima coisa que é carregada no controller*/
         json.$promise.then(function(data){
@@ -43,13 +44,27 @@ modelagemApp.controller('modelagemCtrl',[
             
             $scope.listarFormularioDeSecretaria = function(secretaria){
                 if(secretaria!==null){
-                  console.log(Object.keys(data.groups[secretaria]));
                   return Object.keys(data.groups[secretaria]);
                 }
             };
-            
-            $scope.lista = Object.keys(data.groups['sesad:almoxarifado']);
-            
+            $scope.segmetos = function(secretaria,formulario){
+                /* objeto contruido com as views de cada entidade do campo semantico selecionado*/
+                var objView = {};
+                /* iteração dentro das entidades de um campo semantico */
+                angular.forEach(data.groups[secretaria][formulario],function(value1,key1){
+                    if(key1!='asDefined'){
+                        // console.log(key1+':',value1.attributes);
+                        /* iteração dentro dos atributos das entidades */
+                        angular.forEach(value1.attributes,function(value2,key2){
+                            if(key2!='asDefined'){
+                                /*console.log(key1+':'+key2+':',value2.view);*/
+                                objView[key1+'.'+key2+'.'+value2.view.title] = value2.view;
+                            }
+                        });
+                    }
+                });
+                console.log(objView);
+            };
         });
       }
 ]);

@@ -41,7 +41,7 @@
                                         Aba secundária, com o nome da secretaria selecionada na página principal. Ao clicar alterna a variavel de controle da abaPrincipal
                                     -->
 
-                                    <a id="aba-de-aplicativo" class="item"  ng-class="{'active': aba==2}" ng-click="aba=2;tabAplicativo=true">{{secretariaSeleciodada}}</a>
+                                    <a id="aba-de-aplicativo" class="item"  ng-class="{'active': aba==2}" ng-click="aba=2;tabAplicativo=true">{{secretariaSelecionada}}</a>
 
 
                                     <div class="right menu">
@@ -94,7 +94,7 @@
                                         <i class="icon dropdown"></i>
                                         <div class="menu" >
                                             <!--Inserindo os formulário de cada secretaria-->
-                                            <a class="item" ng-repeat="formulario in listarFormularioDeSecretaria(secretariaSeleciodada) track by $index" ng-click="selecionarFormulario(formulario)">{{formulario}}</a>
+                                            <a class="item" ng-repeat="formulario in listarFormularioDeSecretaria(secretariaSelecionada) track by $index" ng-click="selecionarFormulario(formulario);segmetos(secretariaSelecionada,formulario)">{{formulario}}</a>
                                         </div>
                                     </div>
 
