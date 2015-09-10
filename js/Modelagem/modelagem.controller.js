@@ -47,6 +47,7 @@ modelagemApp.controller('modelagemCtrl',[
                   return Object.keys(data.groups[secretaria]);
                 }
             };
+           
             $scope.segmetos = function(secretaria,formulario){
                 /* objeto contruido com as views de cada entidade do campo semantico selecionado*/
                 var objView = {};
