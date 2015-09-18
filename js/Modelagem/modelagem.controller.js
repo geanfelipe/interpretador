@@ -54,17 +54,16 @@ modelagemApp.controller('modelagemCtrl',[
                 /* iteração dentro das entidades de um campo semantico */
                 angular.forEach(data.groups[secretaria][formulario],function(value1,key1){
                     if(key1!='asDefined'){
-                        // console.log(key1+':',value1.attributes);
                         /* iteração dentro dos atributos das entidades */
                         angular.forEach(value1.attributes,function(value2,key2){
                             if(key2!='asDefined'){
-                                /*console.log(key1+':'+key2+':',value2.view);*/
                                 objView[key1+'.'+key2+'.'+value2.view.title] = value2.view;
                             }
                         });
                     }
                 });
                 console.log(objView);
+                buildSegment(objView);
             };
         });
       }
