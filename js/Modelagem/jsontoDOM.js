@@ -2,35 +2,59 @@
 var classesParaTipos = {'select':'ui selection dropdown',};
 
 var buildSegment = function (object){
-    var segmentNames = [];
+    
+    var formSegment = {};
     var segments = [];
     
     /*montando DOM HTML*/
     angular.forEach(object,function(value,key){
+        
         if(value.show){
-            // console.log(key,value);
+            
             segments.push(jsontoDOM(value));
         }
     });
     
-    console.log(segmentNames);
-    // console.log(segments);
+    console.log(formSegment);
+    console.log(segments);
     
     for(var i in segments){
+
         /*procurando os segmentos do formulário selecionado*/
         angular.forEach(segments[i],function(value,key){
-            /*ver se o segmento já foi adicionado, se não adicionado então é retornado -1 */
-            // if(segments.indexOf(value.segment)==-1){
-            //     segments.push(value.segment);
-            // }
-            console.log(key,value);
+
+            /*adiciona o nome do segmento e um array com os DOM's que lhe pertece*/
+            if(Object.keys(formSegment).indexOf(key)==-1){
+              
+                formSegment[key]= [value];
+            }else{
+
+              formSegment[key].push(value);
+            }
         })
     }
-    
+    console.log(formSegment);
 };
 
-/* retorna um node a partir de um objeto JSON passado*/
+/**
+ * retorna um node a partir de um objeto JSON passado
+ * 
+ * @object é um json view como o seguinte:
+ * "view": {
+                "title": "--",
+                "readOnly": true,
+                "show": false,
+                "showAs": "text",
+                "defaultValue": "",
+                "width": "",
+                "mask": "",
+                "segment": "Dados Pessoais"
+              }
+  * a partir desse objeto é retornado um objeto, tendo como chave o segmento a que ele pertence
+  * e o valor é um node html, que é de acordo com o showAs desse objeto
+**/
 var jsontoDOM = function(object){
+
     var nameInput = object.title.toLowerCase();
     var value = object.title.toUpperCase();
     var defaultValues = object.defaultValue.split(",");
@@ -48,6 +72,8 @@ var jsontoDOM = function(object){
             ]}
         ]};
     }
+    
+    {'tag':'label','for':'${b}','html':'a'};
     
     /*retorna o html e o nome do segmento a que ele é pertecente*/
     var segmentName = object.segment;
