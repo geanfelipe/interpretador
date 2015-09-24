@@ -48,7 +48,7 @@ modelagemApp.controller('modelagemCtrl',[
                 }
             };
            
-            $scope.segmetos = function(secretaria,formulario){
+            $scope.segmentos = function(secretaria,formulario){
                 /* objeto contruido com as views de cada entidade do campo semantico selecionado*/
                 var objView = {};
                 /* iteração dentro das entidades de um campo semantico */
@@ -62,9 +62,13 @@ modelagemApp.controller('modelagemCtrl',[
                         });
                     }
                 });
-                console.log(objView);
-                buildSegment(objView);
+                $scope.campoDeFormulario = buildSegment(objView);
+                console.log($scope.campoDeFormulario);
             };
         });
-      }
+      
+      $scope.renderizar = function(field)  {
+        renderize(field);
+      };
+    }
 ]);

@@ -1,6 +1,30 @@
 /*objeto que mostra a classe do semantic ui para os tipos devidos de showAs dos objetos*/
 var classesParaTipos = {'select':'ui selection dropdown',};
 
+/**
+*@object é um objeto como este:
+* "view": {
+                "title": "--",
+                "readOnly": true,
+                "show": false,
+                "showAs": "text",
+                "defaultValue": "",
+                "width": "",
+                "mask": "",
+                "segment": "Dados Pessoais"
+              }
+* 
+* O retorno é um objeto que possui a estrutura: 
+* {"Dados Pessoais":{
+   "fields":
+     ["<label for="Nome">Nome</label><input type="text" name="Nome"></input>",
+     "<label for="Sexo">Sexo</label><div class="ui selection dropdown"><input type="hidden" name=\"Sexo\"></input><div class=\"text\"></div><i class=\"dropdown icon\"></i><div class=\"menu\"><div class=\"item\" data-value=\"Masculino\">Masculino</div><div class=\"item\" data-value=\"Feminino\">Feminino</div><div class=\"item active\" data-value=\"\"></div></div></div>"],
+   "contextmenu":"dados-pessoais"
+   }
+* }
+* 
+**/
+
 var buildSegment = function (object){
     
     var formSegment = {};
@@ -15,9 +39,6 @@ var buildSegment = function (object){
         }
     });
     
-    console.log(formSegment);
-    console.log(segments);
-    
     for(var i in segments){
 
         /*procurando os segmentos do formulário selecionado*/
@@ -25,15 +46,20 @@ var buildSegment = function (object){
 
             /*adiciona o nome do segmento e um array com os DOM's que lhe pertece*/
             if(Object.keys(formSegment).indexOf(key)==-1){
-              
-                formSegment[key]= [value];
+                formSegment[key]= {};
+                formSegment[key]['fields']= [value[0]];
             }else{
-
-              formSegment[key].push(value);
+              formSegment[key]['fields'].push(value[0]);
             }
+            
+            /*contrucao do contextmenu*/
+            var contextmenu = buildContextMenu(key);
+
+            formSegment[key]['contextmenu']=contextmenu;
+            formSegment[key]['id']=value[1];
         })
     }
-    console.log(formSegment);
+    return formSegment;
 };
 
 /**
@@ -41,9 +67,9 @@ var buildSegment = function (object){
  * 
  * @object é um json view como o seguinte:
  * "view": {
-                "title": "--",
+                "title": "CPF",
                 "readOnly": true,
-                "show": false,
+                "show": true,
                 "showAs": "text",
                 "defaultValue": "",
                 "width": "",
@@ -55,14 +81,21 @@ var buildSegment = function (object){
 **/
 var jsontoDOM = function(object){
 
-    var nameInput = object.title.toLowerCase();
+    var nameInput = object.title;
     var value = object.title.toUpperCase();
     var defaultValues = object.defaultValue.split(",");
     var html = {};
+    /* label do elemento */
+    var data = {'tag':'label','for':'${title}','html':'${title}'};
+    var label = json2html.transform(object,data);
+    /*retorna o html e o nome do segmento a que ele é pertecente*/
+    var segmentName = object.segment;
+    var response = {};
+    var id = object.title+'-'+object.segment;
     
-    if(object.showAs=="select"){
+    if(object.showAs=="select") {
         html={"tag":"div","class":"ui selection dropdown","children":[
-            {"tag":"input","type":"hidden","name":nameInput},
+            {"tag":"input","type":"hidden","name":"${title}"},
             {"tag":"div","class":"text","html":""},
             {"tag":"i","class":"dropdown icon"},
             {"tag":"div","class":"menu","children":[
@@ -72,26 +105,39 @@ var jsontoDOM = function(object){
             ]}
         ]};
     }
+    else if(object.showAs=='text') {
+        html = {"tag":"input","type":"${showAs}","name":"${title}","html":""};
+    }
+    else if(object.showAs=='multiple select, data preloaded') {
+        html = {"tag":"div","class":"ui fluid dropdown selection multiple","tabindex":"0",
+          "children":[
+              {"tag":"select","name":"${title}","multiple":"","children":[
+                {"tag":"option","value":"maca","html":"Maca"},  
+                {"tag":"option","value":"uva","html":"Uva"}  
+              ]},
+              {"tag":"i","class":"dropdown icon"},
+              {"tag":"div","class":"menu transition hidden preload","tabindex":"2",
+                "children":[
+                  {"tag":"div","class":"item","data-value":"maca","html":"Maca"},
+                  {"tag":"div","class":"item","data-value":"uva","html":"Uva"}
+              ]}
+        ]};
+    }
+    else {
+      
+    }
     
-    {'tag':'label','for':'${b}','html':'a'};
-    
-    /*retorna o html e o nome do segmento a que ele é pertecente*/
-    var segmentName = object.segment;
-    
-    var response = {};
-    response[segmentName]=json2html.transform(object,html);
+    response[segmentName]=[label + json2html.transform(object,html),id];
     
     return response;
 };
 
-/*
-<div class="ui selection dropdown">
-  <input type="hidden" name="gender">
-  <i class="dropdown icon"></i>
-  <div class="default text">Gender</div>
-  <div class="menu">
-    <div class="item" data-value="1">Male</div>
-    <div class="item" data-value="0">Female</div>
-  </div>
-</div>
-*/
+var buildContextMenu= function(key){
+  var contextmenu;
+   if(key.toLowerCase().split(' ').length==1) {
+      contextmenu = key.toLowerCase().split(' ')[0];
+   }else {
+      contextmenu = key.toLowerCase().split(' ')[0]+'-'+key.toLowerCase().split(' ')[1];
+  }
+  return contextmenu;
+}

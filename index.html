@@ -96,7 +96,7 @@
                                         <i class="icon dropdown"></i>
                                         <div class="menu" >
                                             <!--Inserindo os formulário de cada secretaria-->
-                                            <a class="item" ng-repeat="formulario in listarFormularioDeSecretaria(secretariaSelecionada) track by $index" ng-click="selecionarFormulario(formulario);segmetos(secretariaSelecionada,formulario)">{{formulario}}</a>
+                                            <a class="item" ng-repeat="formulario in listarFormularioDeSecretaria(secretariaSelecionada) track by $index" ng-click="selecionarFormulario(formulario);segmentos(secretariaSelecionada,formulario)">{{formulario}}</a>
                                         </div>
                                     </div>
 
@@ -142,7 +142,7 @@
 
 
                                 <!--
-                                BLOCO DE SEGMENTOS E FORMULARIOS COMECAM AQUI
+                                BLOCO DE  E FORMULARIOS COMECAM AQUI
                                  -->
 
                                 <div ng-show="formularioSelecionado">
@@ -151,13 +151,10 @@
                                         <div class="row">
                                             <div class="one wide column">
                                                 <div class="ui segiment">
-                                                    <div id="grupo-de-dados" class="ui pointing vertical menu">
-                                                        <!-- OS SEGMENTOS COMEÇAM AQUI
-                                                            possui a class active quando seu nome é  o mesmo da variável segAct.
-                                                            Essa variável segAct é alterada quando clicar em um outro segmento.
-                                                        -->
-                                                        <a contextmenu="dados-pessoais" class="active item"> SEGMENTO NOME</a>
-                                                        <!-- OS SEGMENTOS TERMINAM AQUI -->
+                                                    <div id="grupo-de-dados" class="ui pointing vertical menu" ng-repeat="(key,value) in campoDeFormulario">
+                                                        <!-- OS  COMEÇAM AQUI-->
+                                                        <a contextmenu="dados-pessoais" class="item"> {{key}}</a>
+                                                        <!-- OS  TERMINAM AQUI -->
                                                     </div>
                                                 </div>
                                             </div>
@@ -168,32 +165,30 @@
                                             DE ACORDO COM O JSON FORNECIDO -->
                                             <div class="twelve wide column">
                                                 <div id="dados-pessoais" class="sessao-de-dados">
-                                                    <div class="ui form segment">
+                                                    <div class="ui form segment" >
                                                         <div class="ui ribbon label" style="margin-bottom: 15px;">
-                                                           SESSÃO DE DADOS: LOTAÇÃO
+                                                           SESSÃO DE DADOS: {{formularioSelecionado | uppercase}}
                                                         </div>
-                                                        <input hidden="true" name="Cidadao-id" value="" type="text">
-                                                        <div class="field error {{inp.show}}" ng-repeat="inp in seg.inputs">
-                                                            <div id="Cidadao-nome" class="field">
-                                                                <label for="Cidadao-nome">{{inp.title}}</label>
-                                                                <input name="Cidadao-nome"
-                                                                type="{{inp.showAs}}" class="obrigatorio semAcentosECaracteres semEspaco semNumeros">
-                                                            </div>
-                                                        </div>
+                                                      <div ng-repeat="(key,value) in campoDeFormulario">
+                                                          <div class="field" id="{{}}" ng-repeat="field in value.fields">
+                                                              <!--{{renderizar(field)}}-->{{field}}
+                                                          </div>
+                                                      </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <!-- BLOCO DE SEGMENTOS E FORMULARIOS TERMINAM AQUI -->
-                            </div>
+                                <!-- BLOCO DE  E FORMULARIOS TERMINAM AQUI -->
+                              </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    
+    
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
     <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>

@@ -344,7 +344,7 @@
                 "primaryKey": false
               },
               "view": {
-                "title": "N&aacute;mero",
+                "title": "N&uacute;mero",
                 "readOnly": false,
                 "show": true,
                 "showAs": "multiple select, data preloaded",
