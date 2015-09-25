@@ -19,7 +19,7 @@ var classesParaTipos = {'select':'ui selection dropdown',};
    "fields":
      ["<label for="Nome">Nome</label><input type="text" name="Nome"></input>",
      "<label for="Sexo">Sexo</label><div class="ui selection dropdown"><input type="hidden" name=\"Sexo\"></input><div class=\"text\"></div><i class=\"dropdown icon\"></i><div class=\"menu\"><div class=\"item\" data-value=\"Masculino\">Masculino</div><div class=\"item\" data-value=\"Feminino\">Feminino</div><div class=\"item active\" data-value=\"\"></div></div></div>"],
-   "contextmenu":"dados-pessoais"
+   "contextmenu":"dados-pessoais, "id": "Dados-Pessoais.cpf"
    }
 * }
 * 
@@ -43,20 +43,19 @@ var buildSegment = function (object){
 
         /*procurando os segmentos do formulário selecionado*/
         angular.forEach(segments[i],function(value,key){
-
+            var valor = {};
+            valor[value[1]] = value[0];
             /*adiciona o nome do segmento e um array com os DOM's que lhe pertece*/
             if(Object.keys(formSegment).indexOf(key)==-1){
                 formSegment[key]= {};
-                formSegment[key]['fields']= [value[0]];
+                formSegment[key]['fields']= [valor];
             }else{
-              formSegment[key]['fields'].push(value[0]);
+              formSegment[key]['fields'].push(valor);
             }
             
-            /*contrucao do contextmenu*/
             var contextmenu = buildContextMenu(key);
 
-            formSegment[key]['contextmenu']=contextmenu;
-            formSegment[key]['id']=value[1];
+            formSegment[key]['contextmenu']=contextmenu.toLowerCase();
         })
     }
     return formSegment;
@@ -76,8 +75,9 @@ var buildSegment = function (object){
                 "mask": "",
                 "segment": "Dados Pessoais"
               }
-  * a partir desse objeto é retornado um objeto, tendo como chave o segmento a que ele pertence
-  * e o valor é um node html, que é de acordo com o showAs desse objeto
+  * a partir desse objeto é retornado um array de objeto, tendo como chave o segmento a que 
+  * ele pertence e o valor um node html que é de acordo com o showAs desse objeto
+  * no outro índice é um objeto com tendo como chave ID e o valor o nomedocampo
 **/
 var jsontoDOM = function(object){
 
@@ -91,7 +91,7 @@ var jsontoDOM = function(object){
     /*retorna o html e o nome do segmento a que ele é pertecente*/
     var segmentName = object.segment;
     var response = {};
-    var id = object.title+'-'+object.segment;
+    var id = buildContextMenu(object.segment)+'_'+object.title.toLowerCase();
     
     if(object.showAs=="select") {
         html={"tag":"div","class":"ui selection dropdown","children":[
@@ -127,7 +127,7 @@ var jsontoDOM = function(object){
       
     }
     
-    response[segmentName]=[label + json2html.transform(object,html),id];
+    response[segmentName]=[label+ '<br>'+ json2html.transform(object,html),id];
     
     return response;
 };
@@ -135,9 +135,9 @@ var jsontoDOM = function(object){
 var buildContextMenu= function(key){
   var contextmenu;
    if(key.toLowerCase().split(' ').length==1) {
-      contextmenu = key.toLowerCase().split(' ')[0];
+      contextmenu = key.split(' ')[0];
    }else {
-      contextmenu = key.toLowerCase().split(' ')[0]+'-'+key.toLowerCase().split(' ')[1];
+      contextmenu = key.split(' ')[0]+'-'+key.split(' ')[1];
   }
   return contextmenu;
 }

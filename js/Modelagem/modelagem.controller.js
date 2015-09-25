@@ -31,9 +31,13 @@ modelagemApp.controller('modelagemCtrl',[
             $scope.formularioSelecionado = formulario;
         };
         
-        $scope.construtorDoSegmento = function(objView){
-            
+        $scope.mostrarForms = function(objView){
+            if($scope.aba==2 && $scope.formularioSelecionado){
+              return true;
+            } 
+            return false;
         };
+        
         /*retornado o json faca as seguintes operacoes*/
         /*Vide: o promise é a ultima coisa que é carregada no controller*/
         json.$promise.then(function(data){
@@ -67,8 +71,8 @@ modelagemApp.controller('modelagemCtrl',[
             };
         });
       
-      $scope.renderizar = function(field)  {
-        renderize(field);
+      $scope.renderizar = function(key,field)  {
+        renderize(key,field);
       };
     }
 ]);

@@ -43,7 +43,7 @@
                                         Aba secundária, com o nome da secretaria selecionada na página principal. Ao clicar alterna a variavel de controle da abaPrincipal
                                     -->
 
-                                    <a id="aba-de-aplicativo" class="item"  ng-class="{'active': aba==2}" ng-click="aba=2;tabAplicativo=true">{{secretariaSelecionada}}</a>
+                                    <a id="aba-de-aplicativo" class="item"  ng-class="{'active': aba==2}" ng-click="aba=2;tabAplicativo=true;">{{secretariaSelecionada}}</a>
 
 
                                     <div class="right menu">
@@ -91,7 +91,7 @@
                                         ficando visível apenas quando a secretaria é seleciona no menu de secretarias, através da tag
                                         ng-show
                                     -->
-                                    <div class="ui dropdown item">
+                                    <div class="ui dropdown item modulo">
                                         Cadastro
                                         <i class="icon dropdown"></i>
                                         <div class="menu" >
@@ -145,7 +145,7 @@
                                 BLOCO DE  E FORMULARIOS COMECAM AQUI
                                  -->
 
-                                <div ng-show="formularioSelecionado">
+                                <div ng-show="mostrarForms()">
                                 <!-- mostrada apenas quando o segmentView for igual a secretaria atual, segmentView é alterado aproximadamente na linha 105 desse código (está comentado)-->
                                     <div class="ui celled grid">
                                         <div class="row">
@@ -153,7 +153,7 @@
                                                 <div class="ui segiment">
                                                     <div id="grupo-de-dados" class="ui pointing vertical menu" ng-repeat="(key,value) in campoDeFormulario">
                                                         <!-- OS  COMEÇAM AQUI-->
-                                                        <a contextmenu="dados-pessoais" class="item"> {{key}}</a>
+                                                        <a contextmenu="dados-pessoais" class="item menu"> {{key}}</a>
                                                         <!-- OS  TERMINAM AQUI -->
                                                     </div>
                                                 </div>
@@ -170,8 +170,10 @@
                                                            SESSÃO DE DADOS: {{formularioSelecionado | uppercase}}
                                                         </div>
                                                       <div ng-repeat="(key,value) in campoDeFormulario">
-                                                          <div class="field" id="{{}}" ng-repeat="field in value.fields">
-                                                              <!--{{renderizar(field)}}-->{{field}}
+                                                          <div class="field" id="{{value.id}}" ng-repeat="field in value.fields track by $index">
+                                                              <div ng-repeat="(key,value) in field" id={{key}}>
+                                                                {{renderizar(key,value)}}
+                                                              </div>
                                                           </div>
                                                       </div>
                                                     </div>

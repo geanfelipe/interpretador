@@ -1,3 +1,6 @@
-var renderize = function(field){
-  $("#divteste").html(field); 
+var renderize = function(id,field){
+    $("#"+id).html(field);
+    $('.ui.dropdown').dropdown();
+    multipleSelect();
+    
 };
