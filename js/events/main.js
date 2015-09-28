@@ -1,3 +1,6 @@
+/*
+* Evento de ativar e desativar segmento de formulário
+*/
 var clickSegmentActive = function(){
     
     $('.item.menu').click(function(){

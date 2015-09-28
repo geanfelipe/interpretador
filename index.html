@@ -164,19 +164,21 @@
                                             ESSA BLOCO É EXATAMETNE OQ UE ESTÁ FALTANDO SER IMPLEMENTADO, A CRIAÇÃO DOS FORMULÁRIOS
                                             DE ACORDO COM O JSON FORNECIDO -->
                                             <div class="twelve wide column">
-                                                <div id="dados-pessoais" class="sessao-de-dados">
-                                                    <div class="ui form segment" >
-                                                        <div class="ui ribbon label" style="margin-bottom: 15px;">
-                                                           SESSÃO DE DADOS: {{formularioSelecionado | uppercase}}
-                                                        </div>
-                                                      <div ng-repeat="(key,value) in campoDeFormulario">
-                                                          <div class="field" id="{{value.id}}" ng-repeat="field in value.fields track by $index">
-                                                              <div ng-repeat="(key,value) in field" id={{key}}>
-                                                                {{renderizar(key,value)}}
-                                                              </div>
-                                                          </div>
-                                                      </div>
-                                                    </div>
+                                                <div id="{{value.contextmenu}}" class="sessao-de-dados" ng-repeat="(key,value) in campoDeFormulario">
+                                                    <!--<div class="ui form segment" >-->
+                                                    <!--    <div class="ui ribbon label" style="margin-bottom: 15px;">-->
+                                                    <!--       SESSÃO DE DADOS: {{formularioSelecionado | uppercase}}-->
+                                                    <!--    </div>-->
+                                                    <!--  <div ng-repeat="(key,value) in campoDeFormulario">-->
+                                                    <!--      <div class="field" id="{{value.id}}" ng-repeat="field in value.fields track by $index">-->
+                                                    <!--          <div ng-repeat="(key,value) in field" id={{key}}>-->
+                                                    <!--            {{renderizar(key,value)}}-->
+                                                    <!--          </div>-->
+                                                    <!--      </div>-->
+                                                    <!--  </div>-->
+                                                    <!--</div>-->
+                                                    {{renderizar(key,value)}}
+                                                    
                                                 </div>
                                             </div>
                                         </div>

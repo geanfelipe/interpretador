@@ -5,5 +5,5 @@ $(document).ready(function(){
 	});
 	$('.ui.dropdown').dropdown();
 	$('div.row div.one.wide.column').delegate('.item.menu','click',clickSegmentActive);
-	$('#aba-de-aplicativo').delegate('.item.menu',)
+	$('#aba-de-aplicativo').delegate('.item.menu');
 });
