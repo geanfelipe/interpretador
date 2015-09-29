@@ -1,3 +1,4 @@
+
 var renderize = function(id,field){
     $("#"+field.contextmenu).html(HTML(id,field));
     $('.ui.dropdown').dropdown();
@@ -5,22 +6,31 @@ var renderize = function(id,field){
     
 };
 
-/* */
-var HTML = function(key,field){
-  console.log(field)
+/* construcao de UMA SESSAO DE DADOS*/
+var HTML = function(key , sessaoDeDados){
+  
+  var classField = '';
+  
+  for(var i in sessaoDeDados.fields) {
+    
+      var dataObj = sessaoDeDados.fields[i] ;
+      var idField = Object.keys(dataObj)[0];
+      var field = dataObj[idField];
+      
+      classField +='<div class="field" id='+ idField +' >'+ field + '</div>';
+  }
+  
   var html ='<div class="ui form segment"><div class="ui ribbon label" style="margin-bottom: 15px;">'+
-  'Sessão de Dados:'+ key+'</div>'+
-  '<div ng-repeat="(key,value) in campoDeFormulario">'+
-    '<div class="field" id="{{value.id}}" ng-repeat="field in'+ field +'track by $index">'+
-      '<div ng-repeat="(key,value) in field" id={{key}}>'+angular.forEach(field.,
-          function(value,key){ 
-            console.log(  value);
-          }) +
-        
-       '</div>'+
-      '</div>'+
-   '</div> </div>';
+  'Sessão de Dados : '+ key+'</div>'+ classField + '</div>';
+
   return html;
 };
 	
 
+// <div class="ui form segment">
+// 					<div class="ui ribbon label" style="margin-bottom: 15px;">
+// 						Sessão de Dados: Família</div>
+// 					<div class="field">
+// 						<label for="Cidadao-pPai">Pai</label> <input name="Cidadao-pPai" class="semAcentosECaracteres semEspaco semNumeros" type="text">
+// 					</div>
+// </div>

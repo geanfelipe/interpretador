@@ -29,6 +29,7 @@ modelagemApp.controller('modelagemCtrl',[
 
         $scope.selecionarFormulario = function(formulario){
             $scope.formularioSelecionado = formulario;
+            
         };
         
         $scope.mostrarForms = function(objView){
@@ -53,6 +54,7 @@ modelagemApp.controller('modelagemCtrl',[
             };
            
             $scope.segmentos = function(secretaria,formulario){
+               
                 /* objeto contruido com as views de cada entidade do campo semantico selecionado*/
                 var objView = {};
                 /* iteração dentro das entidades de um campo semantico */

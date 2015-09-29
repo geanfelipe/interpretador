@@ -127,7 +127,7 @@ var jsontoDOM = function(object){
       
     }
     
-    response[segmentName]=[label+ '<br>'+ json2html.transform(object,html),id];
+    response[segmentName]=[label + json2html.transform(object,html),id];
     
     return response;
 };
