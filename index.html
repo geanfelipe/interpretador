@@ -151,7 +151,7 @@
                                         <div class="row">
                                             <div class="one wide column">
                                                 <div class="ui segiment">
-                                                    <div id="grupo-de-dados" class="ui pointing vertical menu" ng-repeat="(key,value) in campoDeFormulario track by $index ">
+                                                    <div id="grupo-de-dados" class="ui pointing vertical menu" ng-repeat="(key,value) in campoDeFormulario  ">
                                                         <!-- OS  COMEÇAM AQUI-->
                                                         <a contextmenu="{{value.contextmenu}}" ng-class="{active : $index==0}" class="item menu"> {{key}}  </a>
                                                         <!-- OS  TERMINAM AQUI -->
@@ -178,7 +178,6 @@
                                                     <!--  </div>-->
                                                     <!--</div>-->
                                                     {{renderizar(key,value)}}
-                                                    
                                                 </div>
                                             </div>
                                         </div>
