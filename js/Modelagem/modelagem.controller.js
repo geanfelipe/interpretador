@@ -16,8 +16,9 @@ modelagemApp.controller('modelagemCtrl',[
         var lista_de_secretarias= {};
         var json =angular.fromJson(modelagemService.query());
       
-        $scope.trocarAba = function(secretaria){
-            $scope.secretariaSelecionada=secretaria;
+        $scope.trocarAba = function(secretaria,subordinada)
+        {
+            $scope.secretariaSelecionada=secretaria+":"+subordinada;
             $scope.aba = $scope.aba==1 ? $scope.aba=2:$scope.aba=1;
             
             if($scope.secretariaSelecionada===null){
@@ -27,13 +28,16 @@ modelagemApp.controller('modelagemCtrl',[
             }
         };
 
-        $scope.selecionarFormulario = function(formulario){
+        $scope.selecionarFormulario = function(formulario)
+        {
             $scope.formularioSelecionado = formulario;
             
         };
         
-        $scope.mostrarForms = function(objView){
-            if($scope.aba==2 && $scope.formularioSelecionado){
+        $scope.mostrarForms = function(objView)
+        {
+            if($scope.aba==2 && $scope.formularioSelecionado)
+            {
               return true;
             } 
             return false;
@@ -41,15 +45,18 @@ modelagemApp.controller('modelagemCtrl',[
         
         /*retornado o json faca as seguintes operacoes*/
         /*Vide: o promise é a ultima coisa que é carregada no controller*/
-        json.$promise.then(function(data){
-          
+        json.$promise.then(function(data)
+        {
             $scope.user = data.user;
             
-            $scope.secretarias = Object.keys(data.groups);
+            $scope.secretarias = menuSecretaria(data.groups);
             
-            $scope.listarFormularioDeSecretaria = function(secretaria){
-                if(secretaria!==null){
-                  return Object.keys(data.groups[secretaria]);
+            $scope.listarFormularioDeSecretaria = function(secretaria)
+            {
+                console.log(secretaria);
+                if(secretaria!==null)
+                {
+                    return Object.keys(data.groups[secretaria]);
                 }
             };
            
@@ -73,8 +80,9 @@ modelagemApp.controller('modelagemCtrl',[
             };
         });
       
-      $scope.renderizar = function(key,field)  {
-        renderize(key,field);
+      $scope.renderizar = function(key,field)
+      {
+          renderize(key,field);
       };
     }
 ]);

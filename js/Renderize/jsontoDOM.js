@@ -140,4 +140,4 @@ var buildContextMenu= function(key){
       contextmenu = key.split(' ')[0]+'-'+key.split(' ')[1];
   }
   return contextmenu;
-}
+};

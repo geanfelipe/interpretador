@@ -15,7 +15,7 @@ var multipleSelect = function(){
       /*retirando da área de seleção*/
       $('i.delete.icon').on('click',function(){
           console.log('delete');
-          var textContent = $($(this)[0].parentNode).text(); 
+          var textContent = $($(this)[0].parentNode).text();
           var dataValue = $($(this)[0].parentNode).data().value;
           
           $('div.menu.transition.preload.ui.visible').

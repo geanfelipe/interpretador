@@ -73,13 +73,20 @@
                                         <i class="dropdown icon">
                                         </i>
 
+                                                                    <!--barramenuhorizontal-->
+                                        <div id="aplicativos" class="ui vertical menu " style="margin-top: 1px;">
 
-                                        <div id="aplicativos" class="menu barramenuhorizontal" style="margin-top: 1px;">
-
-                                             <!-- LAÇO DE REPETICAO para inserir no menu principal todas as secretarias -->
-                                            <a ng-repeat="secretaria in secretarias">
-                                                <span class="item sessao itemmenuhorizontal" contextmenu="funcionario" ng-click="trocarAba(secretaria)">{{secretaria}}</span>
-                                            </a>
+                                              <!-- LAÇO DE REPETICAO para inserir no menu principal todas as secretarias -->
+                                              <div> <!--itemmenuhorizontal-->
+                                                <div class="ui simple dropdown item sessao " contextmenu="secretarias" ng-repeat="(key,value) in secretarias">
+                                                    {{key | uppercase }}
+                                                    <i class="dropdown icon"></i>
+                                                    <div class="menu">
+                                                        <a class="item" ng-repeat="item in value" ng-click="trocarAba(key,item)">{{item}}</a>
+                                                    </div>
+                                                </div>
+                                              </div>
+                                              
                                         </div>
                                     </div>
                                 </div>
