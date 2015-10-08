@@ -43,12 +43,12 @@
                                         Aba secundária, com o nome da secretaria selecionada na página principal. Ao clicar alterna a variavel de controle da abaPrincipal
                                     -->
 
-                                    <a id="aba-de-aplicativo" class="item"  ng-class="{'active': aba==2}" ng-click="aba=2;tabAplicativo=true;">{{secretariaSelecionada}}</a>
+		                                 <a id="aba-de-aplicativo" class="item"  ng-class="{'active': aba==2}" ng-click="aba=2;tabAplicativo=true;">{{uri(secretariaSelecionada)(formularioSelecionado)}}</a>
 
 
                                     <div class="right menu">
                                         <div class="ui dropdown item">
-                                            {{user}}, Mat. 7500
+                                            {{analyst}}, Mat. 7500
                                             <i class="dropdown icon">
                                             </i>
                                             <div class="menu">
@@ -82,7 +82,7 @@
                                                     {{key | uppercase }}
                                                     <i class="dropdown icon"></i>
                                                     <div class="menu">
-                                                        <a class="item" ng-repeat="item in value" ng-click="trocarAba(key,item)">{{item}}</a>
+                                                        <a class="item" ng-repeat="item in value" ng-click="trocarAba(key,item)">{{item | firstUpper }}</a>
                                                     </div>
                                                 </div>
                                               </div>
@@ -103,7 +103,7 @@
                                         <i class="icon dropdown"></i>
                                         <div class="menu" >
                                             <!--Inserindo os formulário de cada secretaria-->
-                                            <a class="item" ng-repeat="formulario in listarFormularioDeSecretaria(secretariaSelecionada) track by $index" ng-click="selecionarFormulario(formulario);segmentos(secretariaSelecionada,formulario)">{{formulario}}</a>
+                                            <a class="item" ng-repeat="formulario in listarFormularioDeSecretaria(secretariaSelecionada) track by $index" ng-click="selecionarFormulario(formulario);segmentos(secretariaSelecionada,formulario)">{{formulario | firstUpper}}</a>
                                         </div>
                                     </div>
 

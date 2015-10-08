@@ -6,7 +6,7 @@ modelagemApp.controller('modelagemCtrl',[
         $scope.tabAplicativo=false;
         $scope.secretaria ='';
         $scope.salvado='';
-        $scope.user ='';
+        $scope.analyst ='';
         $scope.secretarias = '';
         $scope.secretariaSelecionada=null;
         $scope.formulariosDeSecretaria=null;
@@ -27,11 +27,25 @@ modelagemApp.controller('modelagemCtrl',[
               $scope.tabAplicativo = $scope.tabAplicativo===false ? $scope.tabAplicativo=true:$scope.tabAplicativo=false;
             }
         };
+        
+        $scope.uri = function(secretaria){
+        	var uri = '';
+        	if(secretaria){
+        		secretaria = secretaria.split(':')[0].toUpperCase()+' : '+secretaria.split(':')[1].capitalizeFirstLetter();
+        		uri = secretaria.replace(':','/');
+        	}
+        	
+        	return function(formulario) {
+        		if(formulario!=null & formulario!=''){
+        			uri += ' / '+formulario.capitalizeFirstLetter();
+        		}
+        		return uri;
+        	};
+        }
 
         $scope.selecionarFormulario = function(formulario)
         {
             $scope.formularioSelecionado = formulario;
-            
         };
         
         $scope.mostrarForms = function(objView)
@@ -47,7 +61,7 @@ modelagemApp.controller('modelagemCtrl',[
         /*Vide: o promise é a ultima coisa que é carregada no controller*/
         json.$promise.then(function(data)
         {
-            $scope.user = data.user;
+            $scope.analyst = data.analyst;
             
             $scope.secretarias = menuSecretaria(data.groups);
             

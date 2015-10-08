@@ -2,45 +2,45 @@
 1 verbose cli [ 'c:\\Program Files\\nodejs\\node.exe',
 1 verbose cli   'c:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
 1 verbose cli   'install',
-1 verbose cli   'http-server',
-1 verbose cli   '-g' ]
+1 verbose cli   '-g',
+1 verbose cli   'bower-installer' ]
 2 info using npm@2.11.3
 3 info using node@v0.12.7
 4 verbose install initial load of C:\Users\Administrador\AppData\Local\npm\package.json
 5 verbose readDependencies loading dependencies from C:\Users\Administrador\AppData\Local\npm\package.json
-6 silly cache add args [ 'http-server', null ]
-7 verbose cache add spec http-server
-8 silly cache add parsed spec { raw: 'http-server',
+6 silly cache add args [ 'bower-installer', null ]
+7 verbose cache add spec bower-installer
+8 silly cache add parsed spec { raw: 'bower-installer',
 8 silly cache add   scope: null,
-8 silly cache add   name: 'http-server',
+8 silly cache add   name: 'bower-installer',
 8 silly cache add   rawSpec: '',
 8 silly cache add   spec: '*',
 8 silly cache add   type: 'range' }
-9 silly addNamed http-server@*
-10 verbose addNamed "*" is a valid semver range for http-server
-11 silly addNameRange { name: 'http-server', range: '*', hasData: false }
-12 silly mapToRegistry name http-server
+9 silly addNamed bower-installer@*
+10 verbose addNamed "*" is a valid semver range for bower-installer
+11 silly addNameRange { name: 'bower-installer', range: '*', hasData: false }
+12 silly mapToRegistry name bower-installer
 13 silly mapToRegistry using default registry
 14 silly mapToRegistry registry https://registry.npmjs.org/
-15 silly mapToRegistry uri https://registry.npmjs.org/http-server
-16 verbose addNameRange registry:https://registry.npmjs.org/http-server not in flight; fetching
-17 verbose request uri https://registry.npmjs.org/http-server
+15 silly mapToRegistry uri https://registry.npmjs.org/bower-installer
+16 verbose addNameRange registry:https://registry.npmjs.org/bower-installer not in flight; fetching
+17 verbose request uri https://registry.npmjs.org/bower-installer
 18 verbose request no auth needed
-19 info attempt registry request try #1 at 10:13:52
-20 verbose request id a09c25d471a82141
-21 http request GET https://registry.npmjs.org/http-server
+19 info attempt registry request try #1 at 12:58:32
+20 verbose request id dfdd5d0570cc9855
+21 http request GET https://registry.npmjs.org/bower-installer
 22 info retry will retry, error on last attempt: Error: connect ETIMEDOUT
-23 info attempt registry request try #2 at 10:14:25
-24 http request GET https://registry.npmjs.org/http-server
+23 info attempt registry request try #2 at 12:59:03
+24 http request GET https://registry.npmjs.org/bower-installer
 25 info retry will retry, error on last attempt: Error: connect ETIMEDOUT
-26 info attempt registry request try #3 at 10:15:46
-27 http request GET https://registry.npmjs.org/http-server
+26 info attempt registry request try #3 at 13:00:24
+27 http request GET https://registry.npmjs.org/bower-installer
 28 verbose stack Error: connect ETIMEDOUT
 28 verbose stack     at exports._errnoException (util.js:746:11)
 28 verbose stack     at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1010:19)
-29 verbose cwd d:\apache-tomcat-7.0.62\webapps\modelador
+29 verbose cwd d:\apache-tomcat-7.0.62\webapps\interpretador
 30 error Windows_NT 6.1.7601
-31 error argv "c:\\Program Files\\nodejs\\node.exe" "c:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "http-server" "-g"
+31 error argv "c:\\Program Files\\nodejs\\node.exe" "c:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "-g" "bower-installer"
 32 error node v0.12.7
 33 error npm  v2.11.3
 34 error code ETIMEDOUT
