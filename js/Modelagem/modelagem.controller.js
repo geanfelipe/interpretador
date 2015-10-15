@@ -36,12 +36,13 @@ modelagemApp.controller('modelagemCtrl',[
         	}
         	
         	return function(formulario) {
-        		if(formulario!=null & formulario!=''){
+        	  console.log(formulario);
+        		if(formulario!=null && formulario!=''){
         			uri += ' / '+formulario.capitalizeFirstLetter();
         		}
         		return uri;
         	};
-        }
+        };
 
         $scope.selecionarFormulario = function(formulario)
         {

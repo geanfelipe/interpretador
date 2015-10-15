@@ -123,6 +123,14 @@ var jsontoDOM = function(object){
               ]}
         ]};
     }
+    else if (object.showAs == 'search') {
+      html = {"tag":"div","class":"ui search","children":[
+          {"tag":"div","class":"ui input","children":[
+            {"tag":"input","class":"prompt","type":"text","placeholder":"Nome"}
+          ]},
+          {"tag":"div","class":"results"}
+        ]};
+    }
     else {
       
     }
