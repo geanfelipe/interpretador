@@ -25,12 +25,12 @@
             <div class="ui segment">
                 <div id="area-de-cabecalho" class="ui vertically divided grid">
                     <div class="ten row">
-                        <div class="ten wide column">
-                            <h3 class="ui dividing header">
+                        <div class="ten column">
+                            <h2 class="ui dividing header">
                             Prefeitura Municipal de Parnamirim
                             </h3>
-                            <div id="area-de-menu-principal" class="ui tiered menu" style="margin-top: -5px">
-                                <div id="barra-de-menu-principal" class="menu" ng-init= "">
+                            <div id="area-de-menu-principal" class="menu" style="margin-top: -5px">
+                                <div id="barra-de-menu-principal" class="ui menu" ng-init= "">
 
                                     <!--
                                         Aba principal do sistema com título Portal Administrativo, quando clicado altera a 'class'
@@ -159,7 +159,7 @@
                                         <div class="row">
                                             <div class="one wide column">
                                                 <div class="ui segiment">
-                                                    <div id="grupo-de-dados" class="ui pointing vertical menu" ng-repeat="(key,value) in campoDeFormulario  ">
+                                                    <div id="grupo-de-dados" class="ui vertical pointing menu" ng-repeat="(key,value) in campoDeFormulario  ">
                                                         <!-- OS  COMEÇAM AQUI-->
                                                         <a contextmenu="{{value.contextmenu}}" ng-class="{active : $index==0}" class="item menu"> {{key}}  </a>
                                                         <!-- OS  TERMINAM AQUI -->
@@ -193,8 +193,8 @@
                                 <!-- BLOCO DE  E FORMULARIOS TERMINAM AQUI -->
                               </div>
                         </div>
-                        <input type="text" id="esporte" class="ui input" placeholder="Informe um esporte"/>
                         
+                       
                     </div>
                 </div>
             </div>
