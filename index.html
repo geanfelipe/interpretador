@@ -6,17 +6,17 @@
         <meta name="description" content="">
         <meta name=viewport content="width=device-width, initial-scale=1">
         <meta name="mobile-web-app-capable" content="yes">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
         <link rel="import" href="imports.html">
 
         <style type="text/css">
-        .true {
-        display: block;
-        }
-        .false {
-        display: none;
-        }
+            .ui.menu.ui.dropdown.menu > .item{
+                font-family: 'Open Sans';
+                font-size: 1.05em;
+            }
         
         </style>
+
     </head>
     <body>
        <body>
@@ -26,10 +26,10 @@
                 <div id="area-de-cabecalho" class="ui vertically divided grid">
                     <div class="ten row">
                         <div class="ten column">
-                            <h2 class="ui dividing header">
+                            <h3 class="ui dividing header" style="font-family: 'Open Sans'">
                             Prefeitura Municipal de Parnamirim
                             </h3>
-                            <div id="area-de-menu-principal" class="menu" style="margin-top: -5px">
+                            <div id="area-de-menu-principal" class="tiered menu" style="margin-top: -5px">
                                 <div id="barra-de-menu-principal" class="ui menu" ng-init= "">
 
                                     <!--
@@ -49,22 +49,20 @@
 
                                     <div class="right menu">
                                         <div class="ui dropdown item">
-                                            {{analyst}}, Mat. 7500
+                                            {{analyst | uppercase}}, Mat. 7500
                                             <i class="dropdown icon">
                                             </i>
                                             <div class="menu">
                                                 <a id="botao-de-logout-de-sessao" class="item"><i class="sign out icon"></i>Sair</a>
                                                 <a class="item"><i class="warning sign icon"></i> Mudar Senha </a>
                                                 <a class="item"><i class="comment icon"></i> Suporte </a>
-                                                <i class="dropdown icon">
-                                                </i>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
   
-                                <div id="modulos" class="ui menu" ng-class="{'none': tabAplicativo}" ng-init="clickado=true">
+                                <div id="modulos" style="font-family: 'Open Sans'" class="ui menu" ng-hide="tabAplicativo" ng-init="clickado=true">
                                     <div class="ui dropdown item modulo">
                                         <span contextmenu="secretarias">
                                             <i class="text file icon">
@@ -92,7 +90,7 @@
                                     </div>
                                 </div>
 
-                                <div id="sessao" class="ui sub menu none" ng-class="{'block':tabAplicativo}">
+                                <div id="sessao" style="font-family: 'Open Sans'" class="ui menu" ng-show="tabAplicativo">
 
                                     <!--
                                         ng-repeat cria todos os submenus de cada secretaria, inicialmente todos estão invisíveis,
@@ -159,9 +157,9 @@
                                         <div class="row">
                                             <div class="one wide column">
                                                 <div class="ui segiment">
-                                                    <div id="grupo-de-dados" class="ui vertical pointing menu" ng-repeat="(key,value) in campoDeFormulario  ">
+                                                    <div id="grupo-de-dados" class="ui vertical pointing menu" >
                                                         <!-- OS  COMEÇAM AQUI-->
-                                                        <a contextmenu="{{value.contextmenu}}" ng-class="{active : $index==0}" class="item menu"> {{key}}  </a>
+                                                        <a ng-repeat="(key,value) in campoDeFormulario"  contextmenu= "{{value.contextmenu}}" ng-class="{active : $index==0}" class="item menu"> {{key}}  </a>
                                                         <!-- OS  TERMINAM AQUI -->
                                                     </div>
                                                 </div>
@@ -173,18 +171,7 @@
                                             DE ACORDO COM O JSON FORNECIDO -->
                                             <div class="twelve wide column">
                                                 <div id="{{value.contextmenu}}" class="sessao-de-dados" ng-class="{hidden : $index!=0}" ng-repeat="(key,value) in campoDeFormulario">
-                                                    <!--<div class="ui form segment" >-->
-                                                    <!--    <div class="ui ribbon label" style="margin-bottom: 15px;">-->
-                                                    <!--       SESSÃO DE DADOS: {{formularioSelecionado | uppercase}}-->
-                                                    <!--    </div>-->
-                                                    <!--  <div ng-repeat="(key,value) in campoDeFormulario">-->
-                                                    <!--      <div class="field" id="{{value.id}}" ng-repeat="field in value.fields track by $index">-->
-                                                    <!--          <div ng-repeat="(key,value) in field" id={{key}}>-->
-                                                    <!--            {{renderizar(key,value)}}-->
-                                                    <!--          </div>-->
-                                                    <!--      </div>-->
-                                                    <!--  </div>-->
-                                                    <!--</div>-->
+                                                    
                                                     {{renderizar(key,value)}}
                                                 </div>
                                             </div>
@@ -200,15 +187,6 @@
             </div>
         </div>
     </div>
-    
-    
-    <!-- build:js scripts/vendor.js -->
-    <!-- bower:js -->
-    <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="js/semantic.js"></script>
-    <script src="js/script.js"></script> -->
-    <!-- endbower -->
-    <!-- endbuild -->
 </body>
     </body>
 </html>

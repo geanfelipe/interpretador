@@ -109,17 +109,12 @@ var jsontoDOM = function(object){
         html = {"tag":"input","type":"${showAs}","name":"${title}","html":""};
     }
     else if(object.showAs=='multiple select, data preloaded') {
-        html = {"tag":"div","class":"ui fluid multiple search selection dropdown",
-          "children":[
-              {"tag":"input","name":"${title}","type":"hidden"},
-              {"tag":"i","class":"dropdown icon"},
-              {"tag":"div","class":"default text","html":"frutas"},
-              {"tag":"div","class":"menu",
-                "children":[
-                  {"tag":"div","class":"item","data-value":"maca","html":"Maca"},
-                  {"tag":"div","class":"item","data-value":"uva","html":"Uva"}
-              ]}
+        html = {"tag":"select","class":"ui fluid dropdown", "multiple": "", "children":[
+          {"tag":"option","value":"maca","html":"Maca"},
+          {"tag":"option","value":"uva","html":"Uva"}
+             
         ]};
+     
     }
     else if (object.showAs == 'search') {
       html = {"tag":"div", "class":"frutas", "children":[
