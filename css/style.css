@@ -103,7 +103,8 @@ div .menu .barramenuhorizontal{
 .false {
  display: none;
 }
-        
+    
+   
 .none{
  display: none;
 }  
@@ -119,3 +120,37 @@ div .menu .barramenuhorizontal{
 #modulos,#sessao {
   margin-top: 0px;
 }
+
+/***************************************************************/
+
+
+.submenu{
+  font-family: 'Open Sans' !important;
+  background: #FAFAFA !important;
+  font-size: 1em !important;
+  border-radius: 0px 2px 2px 0px !important;
+  border-top: 0px !important;
+  box-shadow: none !important;
+  
+}
+            
+.item{
+  border: 0px !important;
+  marign: 0px !important;
+}
+            
+.active{
+  background: #FAFAFA !important;
+}
+            
+#barra-de-menu-principal{
+   box-shadow: none !important;
+}
+            
+.ui.label{
+ font-size: 0.9em;
+}
+            
+.divMenuDados{
+   width: auto !important;
+} 
