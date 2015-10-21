@@ -1,12 +1,21 @@
 
+
 var renderize = function(id,field){
     $("#"+field.contextmenu).html(HTML(id,field));
     $('.ui.dropdown').dropdown();
-    multipleSelect();
-    
 };
 
-/* construcao de UMA SESSAO DE DADOS*/
+
+/* construção de UMA SESSÃO DE DADOS */
+/******** SAIDA DESTA FUÇÃO É COMO O SEGUINTE: ********/
+/* 
+<div class="ui form segment">
+  <div class="ui ribbon label" style="margin-bottom: 15px;">Sessão de Dados: Família</div>
+    <div class="field">
+      <label for="Cidadao-pPai">Pai</label> <input name="Cidadao-pPai" class="semAcentosECaracteres semEspaco semNumeros" type="text">
+    </div>
+</div>
+ */
 var HTML = function(key , sessaoDeDados){
   
   var classField = '';
@@ -26,11 +35,3 @@ var HTML = function(key , sessaoDeDados){
   return html;
 };
 	
-
-// <div class="ui form segment">
-// 					<div class="ui ribbon label" style="margin-bottom: 15px;">
-// 						Sessão de Dados: Família</div>
-// 					<div class="field">
-// 						<label for="Cidadao-pPai">Pai</label> <input name="Cidadao-pPai" class="semAcentosECaracteres semEspaco semNumeros" type="text">
-// 					</div>
-// </div>
