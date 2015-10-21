@@ -14,187 +14,186 @@
     <div class="area-de-sistema" style="display: block" ng-controller="modelagemCtrl">
         <div class="ui segment">
             <div id="area-de-cabecalho" class="ui vertically divided grid">
+                
                 <div class="ten apptoppanelcolumn  row" style="margin-bottom: 0">
                     <div class="fifteen wide column" style="margin-bottom: 0;">
                        <h2 class="ui header">Prefeitura Municipal de Parnamirim</h2>
                     </div>
                 </div>
-        <div class="sixteen wide column" style="margin-top: 0px">
-            <div id="area-de-menu-principal" class="" style="margin-top: -5px">
-                <div id="barra-de-menu-principal" class="ui menu" style="border-radius: 2px 0px 0px 2px; font-size: 1.1em; " ng-init="">
 
-                                    <!--
-                                        Aba principal do sistema com título Portal Administrativo, quando clicado altera a 'class'
-                                        da aba selecionada atualmente e
-                                      -->
+                <div class="sixteen wide column" style="margin-top: 0px">
+                    <div id="area-de-menu-principal" class="" style="margin-top: -5px">
+                        <div id="barra-de-menu-principal" class="ui menu" style="border-radius: 2px 0px 0px 2px; font-size: 1.1em; " ng-init="">
 
-                                    <a id="aba-do-portal-administrativo" class="item" ng-click="aba=1;tabAplicativo=false" ng-class="{'active':aba==1}"> <i class="rss icon"></i> Portal Administrativo
-                                    </a>
+                            <!--
+                            Aba principal do sistema com título Portal Administrativo, quando clicado altera a 'class'
+                            da aba selecionada atualmente e
+                            -->
 
-                                    <!--
-                                        Aba secundária, com o nome da secretaria selecionada na página principal. Ao clicar alterna a variavel de controle da abaPrincipal
-                                    -->
+                            <a id="aba-do-portal-administrativo" class="item" ng-click="aba=1;tabAplicativo=false" ng-class="{'active':aba==1}"> <i class="rss icon"></i> Portal Administrativo </a>
 
-                                         <a id="aba-de-aplicativo" class="item" ng-class="{'active': aba==2}" ng-click="aba=2;tabAplicativo=true;">{{uri(secretariaSelecionada)(formularioSelecionado)}}</a>
+                            <!--
+                            Aba secundária, com o nome da secretaria selecionada na página principal. Ao clicar alterna a variavel de controle da abaPrincipal
+                            -->
+
+                            <a id="aba-de-aplicativo" class="item" ng-class="{'active': aba==2}" ng-click="aba=2;tabAplicativo=true;">{{uri(secretariaSelecionada)(formularioSelecionado)}}</a>
 
 
-                                    <div class="right menu">
-                                        <div class="ui dropdown item" tabindex="0">
-                                            {{analyst | uppercase}}, Mat. 7500
-                                            <i class="dropdown icon">
-                                            </i>
+                            <div class="right menu">
+                                <div class="ui dropdown item" tabindex="0">
+                                    {{analyst | uppercase}}, Mat. 7500
+                                    <i class="dropdown icon"></i>
+                                    <div class="menu" tabindex="-1">
+                                        <a id="botao-de-logout-de-sessao" class="item"><i class="sign out icon"></i>Sair</a>
+                                        <a class="item"><i class="warning sign icon"></i> Mudar Senha </a>
+                                        <a class="item"><i class="comment icon"></i> Suporte </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+          
+                        <div id="modulos" class="ui menu submenu" ng-hide="tabAplicativo" ng-init="clickado=true">
+                            <div class="ui dropdown item modulo" tabindex="0">
+                                <span contextmenu="secretarias">
+                                    <i class="text file icon"></i>
+                                    Secretarias
+                                </span>
+                                <i class="dropdown icon"></i>
+                                
+                                <!--barramenuhorizontal-->
+                                <div id="aplicativos" class="ui vertical menu transition hidden" style="margin-top: 1px;" tabindex="-1">
+
+                                    <!-- LAÇO DE REPETICAO para inserir no menu principal todas as secretarias -->
+                                    <div> <!--itemmenuhorizontal-->
+                                        <div class="ui simple dropdown item sessao " contextmenu="secretarias" ng-repeat="(key,value) in secretarias" tabindex="0">
+                                            {{key | uppercase }}
+                                            <i class="dropdown icon"></i>
                                             <div class="menu" tabindex="-1">
-                                                <a id="botao-de-logout-de-sessao" class="item"><i class="sign out icon"></i>Sair</a>
-                                                <a class="item"><i class="warning sign icon"></i> Mudar Senha </a>
-                                                <a class="item"><i class="comment icon"></i> Suporte </a>
+                                                <a class="item" ng-repeat="item in value" ng-click="trocarAba(key,item)">{{item | firstUpper }}</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
 
-  
-                                <div id="modulos" class="ui menu submenu" ng-hide="tabAplicativo" ng-init="clickado=true">
-                                    <div class="ui dropdown item modulo" tabindex="0">
-                                        <span contextmenu="secretarias">
-                                            <i class="text file icon">
-                                            </i>
-                                            Secretarias
-                                        </span>
-                                        <i class="dropdown icon">
-                                        </i>
+                        <div id="sessao" class="ui menu submenu" ng-show="tabAplicativo">
 
-                                                                    <!--barramenuhorizontal-->
-                                        <div id="aplicativos" class="ui vertical menu transition hidden" style="margin-top: 1px;" tabindex="-1">
+                            <!--
+                            ng-repeat cria todos os submenus de cada secretaria, inicialmente todos estão invisíveis,
+                            ficando visível apenas quando a secretaria é seleciona no menu de secretarias, através da tag
+                            ng-show
+                            -->
+                            <div class="ui dropdown item modulo" tabindex="0">
+                                Cadastro
+                                <i class="icon dropdown"></i>
+                                <div class="menu" tabindex="-1">
+                                    <!--Inserindo os formulário de cada secretaria-->
+                                    <a class="item" ng-repeat="formulario in listarFormularioDeSecretaria(secretariaSelecionada) track by $index" ng-click="selecionarFormulario(formulario);segmentos(secretariaSelecionada,formulario)">{{formulario | firstUpper}}</a>
+                                </div>
+                            </div>
 
-                                              <!-- LAÇO DE REPETICAO para inserir no menu principal todas as secretarias -->
-                                              <div> <!--itemmenuhorizontal-->
-                                                <div class="ui simple dropdown item sessao " contextmenu="secretarias" ng-repeat="(key,value) in secretarias" tabindex="0">
-                                                    {{key | uppercase }}
-                                                    <i class="dropdown icon"></i>
-                                                    <div class="menu" tabindex="-1">
-                                                        <a class="item" ng-repeat="item in value" ng-click="trocarAba(key,item)">{{item | firstUpper }}</a>
-                                                    </div>
-                                                </div>
-                                              </div>
-                                              
+                            <!-- MENU FIXO DE NOTIFICAÇÕES, FUTURAMENTE SERÁ ALTERADO -->
+                            <div class="ui dropdown item" tabindex="0">
+                                Notificações
+                                <i class="icon dropdown"></i>
+                                <div class="menu" tabindex="-1">
+                                    <a class="item"><i class="mail icon"></i> Enviar e-Mail</a>
+                                    <a class="item"><i class="phone icon"></i> Número: (84) 3644 8125</a>
+                                    <a class="item"><i class="chat icon"></i> Chamar on-line</a>
+                                </div>
+                            </div>
+
+                            <!-- MENU FIXO DE RELATÓRIOS, FUTURAMENTE SERÁ ALTERADO -->
+                            <div class="ui dropdown item" tabindex="0">
+                                Relatórios <i class="icon dropdown"></i>
+                                <div class="menu" tabindex="-1">
+                                    <a class="item"><i class="mail icon"></i> Enviar e-Mail</a>
+                                    <a class="item"><i class="phone icon"></i> Número: (84) 3644 8125</a>
+                                    <a class="item"><i class="chat icon"></i> Chamar on-line</a>
+                                </div>
+                            </div>
+
+                            <!-- MENU FIXO NO LADO DIRETO, FUTURAMENTE SERÁ ALTERADO -->
+                            <div class="right menu" id="utilidades">
+                                <a id="formulario" class="ui dropdown item" tabindex="0">
+                                <i class="edit icon"></i> Formulário<div class="menu" tabindex="-1"></div></a>
+                                <a id="listagem" class="item modo-de-exibicao">
+                                <i class="list layout icon"></i>Listagem</a>
+                                <a id="mapa" class="item modo-de-exibicao"><i class="map icon"></i>Mapa</a>
+                            </div>
+                        </div>
+
+
+                        <!--
+                        BLOCO DE  E FORMULARIOS COMECAM AQUI
+                        -->
+                        <div ng-show="mostrarForms()">
+                            <!-- mostrada apenas quando o segmentView for igual a secretaria atual, segmentView é alterado aproximadamente na linha 105 desse código (está comentado)-->
+                            <div class="ui celled grid">
+                                <div class="row">
+                                    <div class="three wide column divMenuDados">
+                                        <div class="ui segiment">
+                                            <div id="grupo-de-dados" class="ui vertical pointing menu">
+                                                
+                                                <!-- OS SEGMENTOS COMEÇAM AQUI-->
+
+                                                <a ng-repeat="(key,value) in campoDeFormulario" contextmenu="{{value.contextmenu}}"  class="item">{{key}}</a>
+
+                                                <!-- OS SEGMENTOS TERMINAM AQUI -->
+
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-
-                                <div id="sessao" class="ui menu submenu" ng-show="tabAplicativo">
-
+                                    
+                                    <!-- BLOCO DE FORMULARIOS COMECAM AQUI -->
                                     <!--
-                                        ng-repeat cria todos os submenus de cada secretaria, inicialmente todos estão invisíveis,
-                                        ficando visível apenas quando a secretaria é seleciona no menu de secretarias, através da tag
-                                        ng-show
-                                    -->
-                                    <div class="ui dropdown item modulo" tabindex="0">
-                                        Cadastro
-                                        <i class="icon dropdown"></i>
-                                        <div class="menu" tabindex="-1">
-                                            <!--Inserindo os formulário de cada secretaria-->
-                                            <a class="item" ng-repeat="formulario in listarFormularioDeSecretaria(secretariaSelecionada) track by $index" ng-click="selecionarFormulario(formulario);segmentos(secretariaSelecionada,formulario)">{{formulario | firstUpper}}</a>
+                                    ESSA BLOCO É EXATAMETNE OQ UE ESTÁ FALTANDO SER IMPLEMENTADO, A CRIAÇÃO DOS FORMULÁRIOS
+                                    DE ACORDO COM O JSON FORNECIDO -->
+                                    
+                                    <div class="twelve wide column">
+                                        <div id="{{value.contextmenu}}" class="sessao-de-dados" ng-repeat="(key,value) in campoDeFormulario | orderBy : 'key'">
+                                            {{renderizar(key,value)}}
                                         </div>
                                     </div>
+                                    
+                                    <!-- BLOCO DE  E FORMULARIOS TERMINAM AQUI -->
 
-                                    <!-- MENU FIXO DE NOTIFICAÇÕES, FUTURAMENTE SERÁ ALTERADO -->
-
-                                    <div class="ui dropdown item" tabindex="0">
-                                        Notificações <i class="icon dropdown"></i>
-                                        <div class="menu" tabindex="-1">
-                                            <a class="item">
-                                            <i class="mail icon"></i> Enviar e-Mail</a>
-                                            <a class="item">
-                                            <i class="phone icon"></i> Número: (84) 3644 8125</a>
-                                            <a class="item">
-                                                s<i class="chat icon"></i> Chamar
-                                            on-line</a>
-                                        </div>
-                                    </div>
-
-                                    <!-- MENU FIXO DE RELATÓRIOS, FUTURAMENTE SERÁ ALTERADO -->
-
-
-                                    <div class="ui dropdown item" tabindex="0">
-                                        Relatórios <i class="icon dropdown"></i>
-                                        <div class="menu" tabindex="-1">
-                                            <a class="item"><i class="mail icon"></i> Enviar e-Mail</a>
-                                            <a class="item"><i class="phone icon"></i> Número: (84) 3644 8125</a>
-                                            <a class="item"><i class="chat icon"></i> Chamar on-line</a>
-                                        </div>
-                                    </div>
-
-                                    <!-- MENU FIXO NO LADO DIRETO, FUTURAMENTE SERÁ ALTERADO -->
-
-                                    <div class="right menu" id="utilidades">
-                                        <a id="formulario" class="ui dropdown item" tabindex="0">
-                                        <i class="edit icon"></i> Formulário<div class="menu" tabindex="-1"></div></a>
-                                        <a id="listagem" class="item modo-de-exibicao">
-                                        <i class="list layout icon"></i>Listagem</a>
-                                        <a id="mapa" class="item modo-de-exibicao">
-                                            <i class="map icon">
-                                        </i>Mapa</a>
-                                    </div>
                                 </div>
+                            </div>
 
+                            <!-- BUTOES DE CRUD -->
+                            <div id="area-de-operacoes-crud" class="row">
+        						<div class="one wide column">
 
-                                <!--
-                                BLOCO DE  E FORMULARIOS COMECAM AQUI
-                                 -->
+        							<div class="large ui buttons" style="float: left;">
+        								<button class="ui button"><i class="search icon"></i>Localizar</button>
+        								<button class="ui button"><i class="plus icon"></i>Adicionar</button>
+        							</div>
 
-                                <div ng-show="mostrarForms()">
-                                <!-- mostrada apenas quando o segmentView for igual a secretaria atual, segmentView é alterado aproximadamente na linha 105 desse código (está comentado)-->
-                                    <div class="ui celled grid">
-                                        <div class="row">
-                                            <div class="three wide column divMenuDados">
-                                                <div class="ui segiment">
-                                                    <div id="grupo-de-dados" class="ui vertical pointing menu">
-                                                        <!-- OS  COMEÇAM AQUI-->
-                                                        <a ng-repeat="(key,value) in campoDeFormulario" contextmenu="{{value.contextmenu}}"  class="item">{{key}}</a>
-                                                        <!-- OS  TERMINAM AQUI -->
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- BLOCO DE FORMULARIOS COMECAM AQUI -->
+            						<div class="large ui buttons" style="float: right;">
+            						  <button class="ui button"><i class="remove icon"></i>Limpar</button>
+            						</div>
 
-                                            <!--
-                                            ESSA BLOCO É EXATAMETNE OQ UE ESTÁ FALTANDO SER IMPLEMENTADO, A CRIAÇÃO DOS FORMULÁRIOS
-                                            DE ACORDO COM O JSON FORNECIDO -->
-                                            <div class="twelve wide column">
-                                                <div id="{{value.contextmenu}}" class="sessao-de-dados" ng-repeat="(key,value) in campoDeFormulario | orderBy : 'key'">
-                                                    {{renderizar(key,value)}}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                <!-- BLOCO DE  E FORMULARIOS TERMINAM AQUI -->
-                <div id="area-de-operacoes-crud" class="row">
-									<div class="one wide column">
-										<div class="large ui buttons" style="float: left;">
-										  <button class="ui button"><i class="search icon"></i>Localizar</button>
-										  <button class="ui button"><i class="plus icon"></i>Adicionar</button>
-											
-										</div>
-										
-										<div class="large ui buttons" style="float: right;">
-											<button class="ui button"><i class="remove icon"></i>Limpar</button>
-										</div>
-										<div style="float:left; margin-left: 15px; margin-top: 5px">
-										<div class="ui red label" id="msgErroProtocolo" style="display: none">
-											<i class="warning icon"></i>OPERAÇÃO NÃO REALIZADA! CONTATE O ADMINISTRADOR DO SISTEMA
-										</div>
-										<div class="ui green label" id="msgOkProtocolo" style="display: none">
-    										<i class="warning icon"></i>OPERAÇÃO REALIZADA COM SUCESSO!
- 										</div>
-										</div>
-									</div>
-									
-								</div>
+        							<div style="float:left; margin-left: 15px;margin-top:5px">
+            							<div class="ui red label" id="msgErroProtocolo" style="display: none">
+        									<i class="warning icon"></i>OPERAÇÃO NÃO REALIZADA! CONTATE O ADMINISTRADOR DO SISTEMA
+        								</div>
+        								<div class="ui green label" id="msgOkProtocolo" style="display: none">
+            								<i class="warning icon"></i>OPERAÇÃO REALIZADA COM SUCESSO!
+         								</div>
+        							</div>
+
+        						</div>
+        					</div>
+                            <!-- BUTOES DE CRUD TERMINAM AQUI -->
+
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-      </div>
     </div>
-</div>
-    </div>
-	</body>
+    </body>
 </html>
