@@ -15,21 +15,10 @@
         <div class="ui segment">
             <div id="area-de-cabecalho" class="ui vertically divided grid">
                 <div class="ten apptoppanelcolumn  row" style="margin-bottom: 0">
-                    <div class="one wide column">
-                         <img class="ui image" src="img/logo_pmp.png">
-                    </div>
                     <div class="fifteen wide column" style="margin-bottom: 0;">
-                        <h2 class="ui dividing header">Prefeitura Municipal de
-                            Parnamirim</h2>
-                
-                    <div class="ui text menu">
-                    <div class="medium header item">
-                        SGI - Sistema Gerenciador de Informação
+                       <h2 class="ui header">Prefeitura Municipal de Parnamirim</h2>
                     </div>
-
                 </div>
-            </div>
-        </div>
         <div class="sixteen wide column" style="margin-top: 0px">
             <div id="area-de-menu-principal" class="" style="margin-top: -5px">
                 <div id="barra-de-menu-principal" class="ui menu" style="border-radius: 2px 0px 0px 2px; font-size: 1.1em; " ng-init="">
@@ -161,7 +150,7 @@
                                                 <div class="ui segiment">
                                                     <div id="grupo-de-dados" class="ui vertical pointing menu">
                                                         <!-- OS  COMEÇAM AQUI-->
-                                                        <a ng-repeat="(key,value) in campoDeFormulario" contextmenu="{{value.contextmenu}}" ng-class="{active : $index==0}" class="item"> {{key}}  </a>
+                                                        <a ng-repeat="(key,value) in campoDeFormulario" contextmenu="{{value.contextmenu}}"  class="item">{{key}}</a>
                                                         <!-- OS  TERMINAM AQUI -->
                                                     </div>
                                                 </div>
@@ -171,16 +160,15 @@
                                             <!--
                                             ESSA BLOCO É EXATAMETNE OQ UE ESTÁ FALTANDO SER IMPLEMENTADO, A CRIAÇÃO DOS FORMULÁRIOS
                                             DE ACORDO COM O JSON FORNECIDO -->
-                                            <div class="thirteen wide column">
-                                                <div id="{{value.contextmenu}}" class="sessao-de-dados" ng-class="{hidden : $index!=0}" ng-repeat="(key,value) in campoDeFormulario">
-                                                    
+                                            <div class="twelve wide column">
+                                                <div id="{{value.contextmenu}}" class="sessao-de-dados" ng-repeat="(key,value) in campoDeFormulario | orderBy : 'key'">
                                                     {{renderizar(key,value)}}
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 <!-- BLOCO DE  E FORMULARIOS TERMINAM AQUI -->
-                                <div id="area-de-operacoes-crud" class="row">
+                <div id="area-de-operacoes-crud" class="row">
 									<div class="one wide column">
 										<div class="large ui buttons" style="float: left;">
 										  <button class="ui button"><i class="search icon"></i>Localizar</button>
@@ -202,9 +190,9 @@
 									</div>
 									
 								</div>
-                              </div>
-                        </div>
+            </div>
         </div>
+      </div>
     </div>
 </div>
     </div>

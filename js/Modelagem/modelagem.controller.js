@@ -97,7 +97,8 @@ modelagemApp.controller('modelagemCtrl',[
       
       $scope.renderizar = function(key,field)
       {
-          renderize(key,field);
+            renderize(key,field);
+            segmentFormActive();      
       };
     }
 ]);

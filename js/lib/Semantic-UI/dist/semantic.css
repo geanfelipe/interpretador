@@ -17728,7 +17728,7 @@ ol.ui.horizontal.list li:before,
 .ui.grid > .column.row > [class*="twelve wide"].column,
 .ui.grid > [class*="twelve wide"].column,
 .ui.column.grid > [class*="twelve wide"].column {
-  width: 75% !important;
+  width: 80% !important;
 }
 
 .ui.grid > .row > [class*="thirteen wide"].column,

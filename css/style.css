@@ -75,6 +75,7 @@ tr.details td.details-control {
     background: url('../images/details_close.png') no-repeat center center;
 }
 
+
 /*TESTE: ; */
 .ui.menu .dropdown.item .menu .itemmenuhorizontal {
 	display: inline;
@@ -89,12 +90,13 @@ div .menu .barramenuhorizontal{
 	padding: 18px;
 }
 
-            .none {
- display: none;
+.none {
+  display: none;
 }
+
 .block {
-                display: block;
-            }
+  display: block;
+}
 
 
 .true {
@@ -154,3 +156,23 @@ div .menu .barramenuhorizontal{
 .divMenuDados{
    width: auto !important;
 } 
+
+#grupo-de-dados {
+  width : 100% !important;
+}
+
+.sessao-de-dados {
+  width: 100%;
+}
+
+.three.wide.column {
+  width : 20% !important;
+}
+
+.twelve.wide.column {
+  width : 80% !important;
+}
+
+.ui.menu .item:before {
+  width: 0px !important;
+}
