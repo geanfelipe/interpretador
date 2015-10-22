@@ -117,14 +117,16 @@ var jsontoDOM = function(object){
      
     }
     else if (object.showAs == 'search') {
-      html = {"tag":"div", "class":"frutas", "children":[
-              {"tag":"div","class":"ui search","children":[
-                {"tag":"div","class":"ui input","children":[
-                  {"tag":"input","class":"prompt", "id":"esporte" ,"type":"text","placeholder":"Nome"}
-                ]},
-                {"tag":"div","class":"results"}
+      html = {"tag":"div", "class":"ui fluid search selection dropdown", "children":[
+              {"tag":"input", "class": "hidden"},
+              {"tag": "i", "class": "dropdown icon"},
+              {"tag":"div", "class":"default text", "html": "Os resultados aparecerão abaixo"},
+              {"tag":"div", "class": "menu", "children":[
+                {"tag":"div", "class": "item", "data-value": "teste", "html": "danilo"},
+                {"tag":"div", "class": "item", "data-value": "teste2", "html": "raiane"},
+                {"tag":"div", "class": "item", "data-value": "teste3", "html": "maria"},
               ]}
-              ]};
+            ]};
     }
     else {
       
