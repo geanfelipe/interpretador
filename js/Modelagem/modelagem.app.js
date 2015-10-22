@@ -1,1 +1,0 @@
-var modelagemApp = angular.module('Modelagem',['modelagemService','ModelagemFilters']);

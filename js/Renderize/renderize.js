@@ -3,6 +3,7 @@
 var renderize = function(id,field){
     $("#"+field.contextmenu).html(HTML(id,field));
     $('.ui.dropdown').dropdown();
+    segmentFormActive();
 };
 
 
