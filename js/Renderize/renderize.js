@@ -30,9 +30,11 @@ var HTML = function(key , sessaoDeDados){
         classField +='<div class="field" id='+ idField +' >'+ field + '</div>';
     }
     
+    var content = ("Sessão de Dados: "+ key).toUpperCase();
+    
     var html ='<div class="ui form segment">'+
     '<div class="ui ribbon label" style="margin-bottom: 15px;">'+
-      'Sessão de Dados : '+ key+'</div>'+ classField + '</div>';
+    content +'</div>'+ classField + '</div>';
 
     return html;
 };

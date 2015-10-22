@@ -10,6 +10,7 @@ body{
 
 * {
   font-size: 1em;
+  
 }
 .hidden
 {
@@ -46,6 +47,7 @@ body{
   -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
   box-sizing: border-box;
+  font-family: 'Open Sans' !important;
 }
 
 .ui.selection.dropdown {
@@ -82,12 +84,14 @@ tr.details td.details-control {
 	width: 35%;
 	backgound-border: ffffff;
 	border-top: none;
+	font-family: 'Open Sans' !important;
 	
 }
 
 div .menu .barramenuhorizontal{
 	margin-top:2px;
 	padding: 18px;
+	font-family: 'Open Sans' !important;
 }
 
 .none {
@@ -117,10 +121,13 @@ div .menu .barramenuhorizontal{
 
 #barra-de-menu-principal {
  margin-bottom: 0px;
+ font-family: 'Open Sans' !important;
+ box-shadow: none !important;
 }
 
 #modulos,#sessao {
   margin-top: 0px;
+  font-family: 'Open Sans' !important;
 }
 
 /***************************************************************/
@@ -133,21 +140,19 @@ div .menu .barramenuhorizontal{
   border-radius: 0px 2px 2px 0px !important;
   border-top: 0px !important;
   box-shadow: none !important;
-  
+  font-family: 'Open Sans' !important;
 }
             
 .item{
   border: 0px !important;
   marign: 0px !important;
+  font-family: 'Open Sans' !important;
 }
             
 .active{
   background: #FAFAFA !important;
 }
             
-#barra-de-menu-principal{
-   box-shadow: none !important;
-}
             
 .ui.label{
  font-size: 0.9em;
@@ -155,10 +160,12 @@ div .menu .barramenuhorizontal{
             
 .divMenuDados{
    width: auto !important;
+   font-family: 'Open Sans' !important;
 } 
 
 #grupo-de-dados {
   width : 100% !important;
+  font-family: 'Open Sans' !important;
 }
 
 .sessao-de-dados {
@@ -167,12 +174,31 @@ div .menu .barramenuhorizontal{
 
 .three.wide.column {
   width : 20% !important;
+  font-family: 'Open Sans' !important;
+}
+
+input{
+  font-family: 'Open Sans' !important;
+}
+
+.button{
+  font-weight: bold !important;
+}
+
+.label{
+  font-family: 'Open Sans' !important;
+}
+
+.header{
+  font-family: 'Open Sans' !important;
 }
 
 .twelve.wide.column {
   width : 80% !important;
+  font-family: 'Open Sans' !important;
 }
 
 .ui.menu .item:before {
   width: 0px !important;
+  font-family: 'Open Sans' !important;
 }
