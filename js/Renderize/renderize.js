@@ -19,20 +19,21 @@ var renderize = function(id,field){
  */
 var HTML = function(key , sessaoDeDados){
   
-  var classField = '';
-  
-  for(var i in sessaoDeDados.fields) {
+    var classField = '';
     
-      var dataObj = sessaoDeDados.fields[i] ;
-      var idField = Object.keys(dataObj)[0];
-      var field = dataObj[idField];
+    for(var i in sessaoDeDados.fields) {
       
-      classField +='<div class="field" id='+ idField +' >'+ field + '</div>';
-  }
-  
-  var html ='<div class="ui form segment"><div class="ui ribbon label" style="margin-bottom: 15px;">'+
-  'Sessão de Dados : '+ key+'</div>'+ classField + '</div>';
+        var dataObj = sessaoDeDados.fields[i] ;
+        var idField = Object.keys(dataObj)[0];
+        var field = dataObj[idField];
+              
+        classField +='<div class="field" id='+ idField +' >'+ field + '</div>';
+    }
+    
+    var html ='<div class="ui form segment">'+
+    '<div class="ui ribbon label" style="margin-bottom: 15px;">'+
+      'Sessão de Dados : '+ key+'</div>'+ classField + '</div>';
 
-  return html;
+    return html;
 };
 	
