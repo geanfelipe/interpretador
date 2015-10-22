@@ -120,7 +120,7 @@ var jsontoDOM = function(object){
       html = {"tag":"div", "class":"frutas", "children":[
               {"tag":"div","class":"ui search","children":[
                 {"tag":"div","class":"ui input","children":[
-                  {"tag":"input","class":"prompt", "id":"esporte" ,"type":"text","placeholder":"Nome"}
+                  {"tag":"input","class":"prompt", "id":"esporte" ,"type":"text","placeholder":"${title}"}
                 ]},
                 {"tag":"div","class":"results"}
               ]}
