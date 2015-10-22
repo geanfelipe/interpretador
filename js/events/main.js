@@ -12,6 +12,5 @@ var clickSegmentActive = function(){
     $('.sessao-de-dados').addClass('hidden');
     $('.sessao-de-dados#'+idsessaodedados).removeClass("hidden");
     
-
     
 };

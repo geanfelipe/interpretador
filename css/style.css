@@ -25,6 +25,16 @@ body{
   }
 }
 
+#tabela_de_dados{
+  font-size: 18px !important;
+}
+
+#tabela_de_dados > tbody{
+  text-align: center;
+}
+
+
+
 
 
 .ui.form input[type="week"] {

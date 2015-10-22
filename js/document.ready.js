@@ -8,6 +8,8 @@ $(document).ready(function(){
 	$('div.row div.three.wide.column').delegate('a.item','click',clickSegmentActive);
 	$('#aba-de-aplicativo').delegate('a.menu');
 	//colocando tudo em maisculo
+ 
+  
 
 });
 

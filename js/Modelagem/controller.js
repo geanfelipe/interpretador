@@ -96,6 +96,8 @@ modelagemApp.controller('modelagemCtrl',[
         $scope.renderizar = function(key,field)
         {
             renderize(key,field);
+            $("#area-listagem").hide();
+            $("#area-formulario").show();
         };
     }
 ]);
