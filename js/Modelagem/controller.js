@@ -59,8 +59,7 @@ modelagemApp.controller('modelagemCtrl',[
         {
             $scope.formularioSelecionado = formulario;
             console.log(formulario);
-            area=formulario;
-            listagemDeDados();
+            
         };
         
         $scope.mostrarForms = function(objView)
