@@ -111,10 +111,7 @@ modelagemApp.controller('modelagemCtrl',[
       
         $scope.renderizar = function(key,field)
         {
-            // $scope.$digest();
             renderize(key,field);
-            $("#area-listagem").hide();
-            $("#area-formulario").show();
             console.log($scope.Nome);
             
         };
