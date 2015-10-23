@@ -12,7 +12,7 @@ modelagemApp.controller('modelagemCtrl',[
         $scope.formulariosDeSecretaria=null;
         $scope.formulario='';
         $scope.formularioSelecionado = false;
-        $scope.Nome = null;
+        
         $scope.AbaDeAplicativo=false;
 
         var lista_de_secretarias= {};
@@ -65,6 +65,8 @@ modelagemApp.controller('modelagemCtrl',[
         /*Vide: o promise é a ultima coisa que é carregada no controller*/
         json.$promise.then(function(data)
         {
+            $scope.Nome = "null";
+
             $scope.analyst = data.analyst;
             
             $scope.secretarias = menuSecretaria(data.groups);
@@ -99,8 +101,12 @@ modelagemApp.controller('modelagemCtrl',[
       
         $scope.renderizar = function(key,field)
         {
+            // $scope.$digest();
             renderize(key,field);
             console.log($scope.Nome);
+            
         };
+
+
     }
 ]);
