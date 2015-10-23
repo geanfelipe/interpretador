@@ -25,6 +25,16 @@ body{
   }
 }
 
+#tabela_de_dados{
+  font-size: 18px !important;
+}
+
+#tabela_de_dados > tbody{
+  text-align: center;
+}
+
+
+
 
 
 .ui.form input[type="week"] {
@@ -133,6 +143,7 @@ div .menu .barramenuhorizontal{
 /***************************************************************/
 
 
+
 .submenu{
   font-family: 'Open Sans' !important;
   background: #FAFAFA !important;
@@ -147,6 +158,10 @@ div .menu .barramenuhorizontal{
   border: 0px !important;
   marign: 0px !important;
   font-family: 'Open Sans' !important;
+}
+
+#pesquisa{
+  margin: 0px !important;
 }
             
 .active{

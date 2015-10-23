@@ -40,6 +40,12 @@
 
 
                             <div class="right menu">
+                              <div class="item" style="display: none">
+                                <div class="ui small icon input">
+                                  <input type="text" placeholder="Pesquisar" id="pesquisa">
+                                  <i class="search icon"></i>
+                                </div>
+                              </div>
                                 <div class="ui dropdown item" tabindex="0">
                                     {{analyst | uppercase}}, Mat. 7500
                                     <i class="dropdown icon"></i>
@@ -117,6 +123,7 @@
 
                             <!-- MENU FIXO NO LADO DIRETO, FUTURAMENTE SERÁ ALTERADO -->
                             <div class="right menu" id="utilidades">
+                              
                                 <a id="formulario" class="ui dropdown item" tabindex="0">
                                 <i class="edit icon"></i> Formulário<div class="menu" tabindex="-1"></div></a>
                                 <a id="listagem" class="item modo-de-exibicao">
@@ -132,7 +139,7 @@
                         <div ng-show="mostrarForms()">
                             <!-- mostrada apenas quando o segmentView for igual a secretaria atual, segmentView é alterado aproximadamente na linha 105 desse código (está comentado)-->
                          
-                            
+                            <div id="area-formulario">
                             <div class="ui celled grid" id="area-de-cadastro">
                                 <div class="row">
                                     <div class="three wide column divMenuDados">
@@ -192,6 +199,27 @@
                             <!-- BUTOES DE CRUD TERMINAM AQUI -->
                             Nome: <input name="name" type="text" ng-model="Nome"> </h2>
                         </div>
+                        
+                        <div id="area-listagem" style="display: none">
+                          <table id="tabela_de_dados" onselectstart="return false" class="display dataTable" style="display: table;">
+								<thead>
+									<tr>
+										<th style="outline: none" class="sorting" aria-controls="protocoloRecebimento" rowspan="1" colspan="1" aria-label="LAtID: activate to sort column ascending" aria-sort="descending">teste</th>
+										<th style="outline: none" class="sorting" aria-controls="protocoloRecebimento" rowspan="1" colspan="1" aria-label="Servi&amp;ccedil;o: activate to sort column ascending">teste</th>
+										<th style="outline: none" class="sorting" aria-controls="protocoloRecebimento" rowspan="1" colspan="1" aria-label="Servi&amp;ccedil;o: activate to sort column ascending">teste
+											em</th>
+									
+											
+									</tr>
+								</thead>
+								<tbody style="cursor: pointer"><tr><td>exemplo</td><td>exemplo</td><td>exemplo</td></tr><tr><td>exemplo</td><td>exemplo</td><td>exemplo</td></tr><tr><td>exemplo</td><td>exemplo</td><td>exemplo</td></tr></tbody>
+								
+								
+							<tfoot><tr><th colspan="7"><div class="ui right floated pagination menu"><a class="item page-number active">1</a></div><p id="informacoesRegistrosProtocolosRecebimento"> Exibindo 3 de 3 dados da tabela de</p></th></tr></tfoot></table>
+                            
+                        </div>
+                        
+                    </div>
                     </div>
                 </div>
             </div>
