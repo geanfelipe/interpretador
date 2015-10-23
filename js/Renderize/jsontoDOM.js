@@ -94,7 +94,7 @@ var jsontoDOM = function(object){
     var id = buildContextMenu(object.segment)+'_'+object.title.toLowerCase();
     
     if(object.showAs=="select") {
-        html={"tag":"div","class":"ui selection dropdown","children":[
+        /*html={"tag":"div","class":"ui selection dropdown","children":[
             {"tag":"input","type":"hidden","name":"${title}"},
             {"tag":"div","class":"text","html":""},
             {"tag":"i","class":"dropdown icon"},
@@ -103,33 +103,129 @@ var jsontoDOM = function(object){
                 {"tag":"div","class":"item","data-value":defaultValues[1],"html":defaultValues[1]},
                 {"tag":"div","class":"item active","data-value":"","html":""}
             ]}
-        ]};
+        ]};*/
+
+        var divPai = document.createElement('div');
+
+        var divSelection = document.createElement('div');
+        divSelection.className = "ui selection dropdown";
+
+        var input = document.createElement("input");
+        input.type = "hidden";
+        input.name = object.title;
+
+        var divText = document.createElement("div");
+        divText.className = "text";
+
+        var icon = document.createElement("i");
+        icon.className = "dropdown icon";
+
+        var divMenu = document.createElement("div");
+        divMenu.className = "menu";
+
+        var divItemOne = document.createElement("div");
+        divItemOne.className = "item";
+        divItemOne.setAttribute("data-value",defaultValues[0]);
+        divItemOne.textContent = defaultValues[0];
+
+        var divItemTwo = document.createElement("div");
+        divItemTwo.className = "item";
+        divItemTwo.setAttribute("data-value",defaultValues[1]);
+        divItemTwo.textContent = defaultValues[1];        
+
+        var divItemDefault = document.createElement("div");
+        divItemDefault.className = "item";
+        divItemDefault.setAttribute("data-value","");
+        divItemDefault.textContent = "";
+
+        divPai.appendChild(divSelection);
+
+        divSelection.appendChild(input);
+        input.insertAdjacentElement("afterend",divText);
+        divText.insertAdjacentElement("afterend",icon);
+        icon.insertAdjacentElement("afterend",divMenu);
+
+        divMenu.appendChild(divItemOne);
+        divItemOne.insertAdjacentElement("afterend",divItemTwo);
+        divItemTwo.insertAdjacentElement("afterend",divItemDefault);
+
+        html = divPai.innerHTML;
     }
     else if(object.showAs=='text') {
-        html = {"tag":"input","type":"${showAs}","name":"${title}","html":""};
+        /*html = {"tag":"input","type":"${showAs}","name":"${title}","html":""};*/
+
+        var divPai = document.createElement('div');
+
+        var input = document.createElement('input');
+        input.type = object.showAs || "text";
+        input.name = object.title;
+
+        divPai.appendChild(input);
+
+        html = divPai.innerHTML;
     }
     else if(object.showAs=='multiple select, data preloaded') {
-        html = {"tag":"select","class":"ui fluid dropdown", "multiple": "", "children":[
+        /*html = {"tag":"select","class":"ui fluid dropdown", "multiple": "", "children":[
           {"tag":"option","value":"maca","html":"Maca"},
           {"tag":"option","value":"uva","html":"Uva"}
              
-        ]};
-     
+        ]};*/
+
+        var divPai = divPai = document.createElement('div');
+
+        var select = document.createElement("select");
+        select.className = "ui fluid dropdown";
+        select.setAttribute("multiple","");
+
+        var optionOne = document.createElement("option");
+        optionOne.value = "maca";
+        optionOne.textContent = "maca";
+
+        var optionTwo = document.createElement("option");
+        optionTwo.value = "uva";
+        optionTwo.textContent = "uva";
+
+        select.appendChild(optionOne);
+        divPai.appendChild(select);
+
+        optionOne.insertAdjacentElement("afterend",optionTwo);
+
+        html = divPai.innerHTML;
+
     }
     else if (object.showAs == 'search') {
-        html = {"tag":"div","class":"ui search","children":[
+       /* html = {"tag":"div","class":"ui search","children":[
                 {"tag":"div","class":"ui input","children":[
                   {"tag":"input","class":"prompt","ng-model":"${title}","id":"esporte" ,"type":"text","placeholder":"${title}"}
                 ]},
                 {"tag":"div","class":"results"}
-              ]};
+              ]};*/
+        var divPai = document.createElement('div');
+
+        var divSearch = document.createElement('div');
+        divSearch.className = "ui search";
+
+        var input = document.createElement('input');
+        input.className = "prompt";
+        input.setAttribute("ng-model",object.title);
+        input.type = "text";
+
+        var divResults = document.createElement("div");
+        divResults.className = "results";
+
+        divSearch.appendChild(input);
+        divPai.appendChild(divSearch);
+
+        divSearch.insertAdjacentElement('afterend',divResults);
+
+        html = divPai.innerHTML;
     }
     else {
       
     }
     
-    response[segmentName]=[label + json2html.transform(object,html),id];
-    
+    // response[segmentName]=[label + json2html.transform(object,html),id];
+    response[segmentName]=[label + html,id];
     return response;
 };
 
