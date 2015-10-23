@@ -1,3 +1,10 @@
+var area = "";
+
+function getArea(){
+  return area;
+}
+
+
 modelagemApp.controller('modelagemCtrl',[
     '$scope',
     'modelagemService',
@@ -12,10 +19,13 @@ modelagemApp.controller('modelagemCtrl',[
         $scope.formulariosDeSecretaria=null;
         $scope.formulario='';
         $scope.formularioSelecionado = false;
-        
+        $scope.Nome = null;
+        $scope.AbaDeAplicativo=false;
+
         var lista_de_secretarias= {};
         var json =angular.fromJson(modelagemService.query());
       
+
         $scope.trocarAba = function(secretaria,subordinada)
         {
             $scope.secretariaSelecionada=secretaria+":"+subordinada;
@@ -25,6 +35,8 @@ modelagemApp.controller('modelagemCtrl',[
               //FACA NADA
             }else{
               $scope.tabAplicativo = $scope.tabAplicativo===false ? $scope.tabAplicativo=true:$scope.tabAplicativo=false;
+              $scope.AbaDeAplicativo=true;
+              $("#aba-de-aplicativo").addClass("active");
             }
         };
         
@@ -46,6 +58,9 @@ modelagemApp.controller('modelagemCtrl',[
         $scope.selecionarFormulario = function(formulario)
         {
             $scope.formularioSelecionado = formulario;
+            console.log(formulario);
+            area=formulario;
+            listagemDeDados();
         };
         
         $scope.mostrarForms = function(objView)
@@ -98,6 +113,7 @@ modelagemApp.controller('modelagemCtrl',[
             renderize(key,field);
             $("#area-listagem").hide();
             $("#area-formulario").show();
+            console.log($scope.Nome);
         };
     }
 ]);

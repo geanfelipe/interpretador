@@ -143,6 +143,7 @@ div .menu .barramenuhorizontal{
 /***************************************************************/
 
 
+
 .submenu{
   font-family: 'Open Sans' !important;
   background: #FAFAFA !important;
@@ -157,6 +158,10 @@ div .menu .barramenuhorizontal{
   border: 0px !important;
   marign: 0px !important;
   font-family: 'Open Sans' !important;
+}
+
+#pesquisa{
+  margin: 0px !important;
 }
             
 .active{
