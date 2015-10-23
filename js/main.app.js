@@ -1,6 +1,6 @@
 var mainApp= angular.module('mainApp',[
   'Modelagem',
-  'modelagemService'
+  'modelagemService',
   ]);
 
 mainApp.config(['$compileProvider', function ($compileProvider) {
