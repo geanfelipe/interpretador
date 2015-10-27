@@ -1,3 +1,4 @@
+//area e o local que esta selecionado. E usado posteriormente em switcharea.js
 var area = "";
 
 function getArea(){
@@ -59,6 +60,8 @@ modelagemApp.controller('modelagemCtrl',[
         {
             $scope.formularioSelecionado = formulario;
             console.log(formulario);
+            area=formulario;
+            exibirFormularios();
             
         };
         
@@ -106,6 +109,9 @@ modelagemApp.controller('modelagemCtrl',[
                 });
                 $scope.campoDeFormulario = buildSegment(objView);
                 console.log($scope.campoDeFormulario);
+
+              
+
             };
         });
       

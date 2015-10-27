@@ -40,12 +40,7 @@
 
 
                             <div class="right menu">
-                              <div class="item" style="display: none">
-                                <div class="ui small icon input">
-                                  <input type="text" placeholder="Pesquisar" id="pesquisa">
-                                  <i class="search icon"></i>
-                                </div>
-                              </div>
+                           
                                 <div class="ui dropdown item" tabindex="0">
                                     {{analyst | uppercase}}, Mat. 7500
                                     <i class="dropdown icon"></i>
@@ -99,35 +94,43 @@
                                     <a class="item" ng-repeat="formulario in listarFormularioDeSecretaria(secretariaSelecionada) track by $index" ng-click="selecionarFormulario(formulario);segmentos(secretariaSelecionada,formulario)">{{formulario | firstUpper}}</a>
                                 </div>
                             </div>
+							
+							<a id="formulario" class="ui dropdown item" tabindex="0">
+                                <i class="edit icon"></i> Formulário<div class="menu" tabindex="-1"></div></a>
+								
+							<a id="listagem" class="item modo-de-exibicao">
+                                <i class="list layout icon"></i>Listagem</a>
 
-                            <!-- MENU FIXO DE NOTIFICAÇÕES, FUTURAMENTE SERÁ ALTERADO -->
-                            <div class="ui dropdown item" tabindex="0">
-                                Notificações
-                                <i class="icon dropdown"></i>
-                                <div class="menu" tabindex="-1">
-                                    <a class="item"><i class="mail icon"></i> Enviar e-Mail</a>
-                                    <a class="item"><i class="phone icon"></i> Número: (84) 3644 8125</a>
-                                    <a class="item"><i class="chat icon"></i> Chamar on-line</a>
-                                </div>
-                            </div>
+                            
+                            
 
-                            <!-- MENU FIXO DE RELATÓRIOS, FUTURAMENTE SERÁ ALTERADO -->
-                            <div class="ui dropdown item" tabindex="0">
-                                Relatórios <i class="icon dropdown"></i>
-                                <div class="menu" tabindex="-1">
-                                    <a class="item"><i class="mail icon"></i> Enviar e-Mail</a>
-                                    <a class="item"><i class="phone icon"></i> Número: (84) 3644 8125</a>
-                                    <a class="item"><i class="chat icon"></i> Chamar on-line</a>
-                                </div>
-                            </div>
+                            
 
                             <!-- MENU FIXO NO LADO DIRETO, FUTURAMENTE SERÁ ALTERADO -->
                             <div class="right menu" id="utilidades">
-                              
-                                <a id="formulario" class="ui dropdown item" tabindex="0">
-                                <i class="edit icon"></i> Formulário<div class="menu" tabindex="-1"></div></a>
-                                <a id="listagem" class="item modo-de-exibicao">
-                                <i class="list layout icon"></i>Listagem</a>
+							
+								<!-- MENU FIXO DE NOTIFICAÇÕES, FUTURAMENTE SERÁ ALTERADO -->
+								<div class="ui dropdown item" tabindex="0">
+									Notificações
+									<i class="icon dropdown"></i>
+									<div class="menu" tabindex="-1">
+										<a class="item"><i class="mail icon"></i> Enviar e-Mail</a>
+										<a class="item"><i class="phone icon"></i> Número: (84) 3644 8125</a>
+										<a class="item"><i class="chat icon"></i> Chamar on-line</a>
+									</div>
+								</div>
+								
+								<!-- MENU FIXO DE RELATÓRIOS, FUTURAMENTE SERÁ ALTERADO -->
+								<div class="ui dropdown item" tabindex="0">
+									Relatórios <i class="icon dropdown"></i>
+									<div class="menu" tabindex="-1">
+										<a class="item"><i class="mail icon"></i> Enviar e-Mail</a>
+										<a class="item"><i class="phone icon"></i> Número: (84) 3644 8125</a>
+										<a class="item"><i class="chat icon"></i> Chamar on-line</a>
+									</div>
+								</div>
+                                
+                                
                                 <a id="mapa" class="item modo-de-exibicao"><i class="map icon"></i>Mapa</a>
                             </div>
                         </div>
@@ -201,23 +204,58 @@
                         </div>
                         
                         <div id="area-listagem" style="display: none">
-                          <table id="tabela_de_dados" onselectstart="return false" class="display dataTable" style="display: table;">
+						<div class="ui segment">
+					
+						
+						  <div class="field" style="width: 100%">
+							<div class="ui icon input" style="width: 100%">
+							  <input type="text" id='termo-pesquisa' placeholder="Termo de Pesquisa">
+                              <i class="search icon"></i>
+							</div>
+						
+							</div>
+						
+						
+						
+                          
+                              
+                          <table id="tabela_de_dados" onselectstart="return false" class="ui small center aligned selectable table" style="display: table;">
 								<thead>
 									<tr>
-										<th style="outline: none" class="sorting" aria-controls="protocoloRecebimento" rowspan="1" colspan="1" aria-label="LAtID: activate to sort column ascending" aria-sort="descending">teste</th>
-										<th style="outline: none" class="sorting" aria-controls="protocoloRecebimento" rowspan="1" colspan="1" aria-label="Servi&amp;ccedil;o: activate to sort column ascending">teste</th>
-										<th style="outline: none" class="sorting" aria-controls="protocoloRecebimento" rowspan="1" colspan="1" aria-label="Servi&amp;ccedil;o: activate to sort column ascending">teste
-											em</th>
+										<th style="outline: none" class="sorting" aria-controls="protocoloRecebimento" rowspan="1" colspan="1" aria-label="LAtID: activate to sort column ascending" aria-sort="descending">ID</th>
+										<th style="outline: none" class="sorting" aria-controls="protocoloRecebimento" rowspan="1" colspan="1" aria-label="Servi&amp;ccedil;o: activate to sort column ascending">Nome</th>
+										<th style="outline: none" class="sorting" aria-controls="protocoloRecebimento" rowspan="1" colspan="1" aria-label="Servi&amp;ccedil;o: activate to sort column ascending">CPF</th>
+                                        <th style="outline: none" class="sorting" aria-controls="protocoloRecebimento" rowspan="1" colspan="1" aria-label="Servi&amp;ccedil;o: activate to sort column ascending">Telefone</th>
 									
 											
 									</tr>
 								</thead>
-								<tbody style="cursor: pointer"><tr><td>exemplo</td><td>exemplo</td><td>exemplo</td></tr><tr><td>exemplo</td><td>exemplo</td><td>exemplo</td></tr><tr><td>exemplo</td><td>exemplo</td><td>exemplo</td></tr></tbody>
+								<tbody style="cursor: pointer">
+                                    <tr>
+                                        <td>12321</td>
+                                        <td>Maria</td>
+                                        <td>111.665.456.96</td>
+                                        <td>(84)32434-4452</td>
+                                    </tr>
+                                    <tr>
+                                        <td>12312</td>
+                                        <td>José</td>
+                                        <td>556.879.654.65</td>
+                                        <td>(84)23434-4452</td>
+                                    </tr>
+                                    <tr>
+                                        <td>43233</td>
+                                        <td>Júlio</td>
+                                        <td>789.654.542.65</td>
+                                        <td>(84)82345-3454</td>
+                                    </tr>
+                                </tbody>
 								
 								
-							<tfoot><tr><th colspan="7"><div class="ui right floated pagination menu"><a class="item page-number active">1</a></div><p id="informacoesRegistrosProtocolosRecebimento"> Exibindo 3 de 3 dados da tabela de</p></th></tr></tfoot></table>
+							<tfoot><tr><th colspan="7"><div class="ui right floated pagination menu"><a class="item page-number active">1</a></div><p id="informacoesRegistrosProtocolosRecebimento"></p></th></tr></tfoot></table>
                             
                         </div>
+						</div>
                         
                     </div>
                     </div>

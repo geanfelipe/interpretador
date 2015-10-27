@@ -129,6 +129,10 @@ div .menu .barramenuhorizontal{
   display: flex;
 }
 
+.ativo{
+  background: rgba(0, 0, 0, 0.05) !important;
+}
+
 #barra-de-menu-principal {
  margin-bottom: 0px;
  font-family: 'Open Sans' !important;
