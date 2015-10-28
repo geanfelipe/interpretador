@@ -21,7 +21,14 @@ modelagemApp.controller("modelagemCtrl",[
         $scope.formulario='';
         $scope.formularioSelecionado = false;
         $scope.AbaDeAplicativo=false;
+        
         $scope.autor = "Felipe";
+        $scope.title = 'Valor inicial do controller';
+        $scope.flavor = "flavor";
+
+        $scope.$watch(function(scope){
+            console.log(scope.flavor)
+        });
 
         var lista_de_secretarias= {};
         var json =angular.fromJson(modelagemService.query());
@@ -120,35 +127,18 @@ modelagemApp.controller("modelagemCtrl",[
     }
 ]);
 
-modelagemApp.directive('teste', function() {
+modelagemApp.directive('transcludeElement', function() {
     return {
       restrict: 'A',
-      transclude: true,
-      scope:{title:'title'},
-      // compile: function($element, $attrs, transcludeFn) {
-      //   return function ($scope, el, $attrs) {
-      //     transcludeFn($scope, function cloneConnectFn(cElement) {
-      //       var elemento = document.createElement('input');
-      //       elemento.name="Nome";
-      //       elemento.type="text";
-      //       elemento.setAttribute('ng-model','nome');
-
-      //       $element
-      //         .after('<h2>Eu fui adicionado durante compilação </h2>')
-      //         .after(elemento);
-      //         // .after(cElement);
-      //         console.log($attrs.transcludeElement);
-      //         console.log(el);
-      //     });
-      //   };
-      // },
-      template:'<input ng-model="title type="text" name="nome">',
-      link: function($scope,$elem,$attrs){
-        console.log($scope);
-      },
-      controller : function($scope,$element,$attrs) {
-        $scope.nome="nome";
-        console.log($scope.nome);
+      transclude: 'element',
+      compile: function($element, $attrs, transcludeFn) {
+        return function ($scope, el, $attrs) {
+          transcludeFn($scope, function cloneConnectFn(cElement) {
+              $element
+              .after('<h2>Eu fui adicionado durante compilação </h2>')
+              .after(cElement);
+          });
+        };
       }
     };
   })
@@ -159,4 +149,26 @@ modelagemApp.directive('teste', function() {
           element.html(' com meu filho');
       }
     };
-  });
+  })
+  .directive("drink", function () {
+  return {
+    restrict: 'E',
+    scope: {
+      flavor: "@"   
+    },
+    // transclude: true,
+    template: '<input ng-model="flavor" type="text" name="nome"> {{flavor}}',
+    controller:function($scope,$element,$attrs) {
+        console.log($scope.flavor);
+        console.log($scope.$parent.flavor);
+        console.log($element);
+        console.log($attrs);
+        $scope.$watch(function(scope){
+            scope.$parent.flavor = scope.flavor;
+            console.log(scope.flavor);
+            console.log(scope.$parent.flavor);
+        });
+    }
+  };
+})
+;
