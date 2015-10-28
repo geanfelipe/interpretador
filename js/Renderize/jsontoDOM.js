@@ -159,6 +159,7 @@ var jsontoDOM = function(object){
         var input = document.createElement('input');
         input.type = object.showAs || "text";
         input.name = object.title;
+        console.log('input--> '+input.name);
 
         divPai.appendChild(input);
 
@@ -206,8 +207,8 @@ var jsontoDOM = function(object){
         divSearch.className = "ui search";
 
         var input = document.createElement('input');
-        input.className = "prompt";
-        input.setAttribute("ng-model",object.title);
+        input.className = "prompt "+"ng-valid ng-dirty ng-valid-parse ng-touched";
+        input.setAttribute("ng-model","nome.eu");
         input.type = "text";
 
         var divResults = document.createElement("div");

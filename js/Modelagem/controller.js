@@ -5,11 +5,11 @@ function getArea(){
   return area;
 }
 
+modelagemApp.controller("modelagemCtrl",[
+    "$scope",
+    "modelagemService",
 
-modelagemApp.controller('modelagemCtrl',[
-    '$scope',
-    'modelagemService',
-    function($scope,modelagemService){
+    function($scope,modelagemService,$compile,$rootScope){
         $scope.aba = 1;
         $scope.tabAplicativo=false;
         $scope.secretaria ='';
@@ -20,13 +20,12 @@ modelagemApp.controller('modelagemCtrl',[
         $scope.formulariosDeSecretaria=null;
         $scope.formulario='';
         $scope.formularioSelecionado = false;
-        
         $scope.AbaDeAplicativo=false;
+        $scope.autor = "Felipe";
 
         var lista_de_secretarias= {};
         var json =angular.fromJson(modelagemService.query());
       
-
         $scope.trocarAba = function(secretaria,subordinada)
         {
             $scope.secretariaSelecionada=secretaria+":"+subordinada;
@@ -59,10 +58,6 @@ modelagemApp.controller('modelagemCtrl',[
         $scope.selecionarFormulario = function(formulario)
         {
             $scope.formularioSelecionado = formulario;
-            console.log(formulario);
-            area=formulario;
-            exibirFormularios();
-            
         };
         
         $scope.mostrarForms = function(objView)
@@ -78,7 +73,7 @@ modelagemApp.controller('modelagemCtrl',[
         /*Vide: o promise é a ultima coisa que é carregada no controller*/
         json.$promise.then(function(data)
         {
-            $scope.Nome = "null";
+            $scope.nome = {};
 
             $scope.analyst = data.analyst;
             
@@ -118,10 +113,50 @@ modelagemApp.controller('modelagemCtrl',[
         $scope.renderizar = function(key,field)
         {
             renderize(key,field);
-            console.log($scope.Nome);
-            
+            console.log($scope.nome);
         };
 
 
     }
 ]);
+
+modelagemApp.directive('teste', function() {
+    return {
+      restrict: 'A',
+      transclude: true,
+      scope:{title:'title'},
+      // compile: function($element, $attrs, transcludeFn) {
+      //   return function ($scope, el, $attrs) {
+      //     transcludeFn($scope, function cloneConnectFn(cElement) {
+      //       var elemento = document.createElement('input');
+      //       elemento.name="Nome";
+      //       elemento.type="text";
+      //       elemento.setAttribute('ng-model','nome');
+
+      //       $element
+      //         .after('<h2>Eu fui adicionado durante compilação </h2>')
+      //         .after(elemento);
+      //         // .after(cElement);
+      //         console.log($attrs.transcludeElement);
+      //         console.log(el);
+      //     });
+      //   };
+      // },
+      template:'<input ng-model="title type="text" name="nome">',
+      link: function($scope,$elem,$attrs){
+        console.log($scope);
+      },
+      controller : function($scope,$element,$attrs) {
+        $scope.nome="nome";
+        console.log($scope.nome);
+      }
+    };
+  })
+  .directive('filho', function(){
+    return {
+      restrict: 'E',
+      link: function($scope, element, attrs) {
+          element.html(' com meu filho');
+      }
+    };
+  });
