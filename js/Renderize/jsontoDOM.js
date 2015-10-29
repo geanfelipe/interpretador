@@ -1,5 +1,3 @@
-/*objeto que mostra a classe do semantic ui para os tipos devidos de showAs dos objetos*/
-var classesParaTipos = {'select':'ui selection dropdown',};
 
 /**
 *@object é um objeto como este:
@@ -26,7 +24,7 @@ var classesParaTipos = {'select':'ui selection dropdown',};
 **/
 
 var buildSegment = function (object){
-    
+
     var formSegment = {};
     var segments = [];
     
@@ -58,6 +56,7 @@ var buildSegment = function (object){
             formSegment[key]['contextmenu']=contextmenu.toLowerCase();
         })
     }
+    console.log(formSegment);
     return formSegment;
 };
 

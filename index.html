@@ -152,7 +152,8 @@
                                                 <!-- OS SEGMENTOS COMEÇAM AQUI-->
 
                                                 <a ng-repeat="(key,value) in campoDeFormulario" contextmenu="{{value.contextmenu}}"  class="item">{{key}}</a>
-
+                                                
+                                                <segmentos tipo="nome" ng-model="campoDeFormulario" data="campoDeFormulario"></segmentos>
                                                 <!-- OS SEGMENTOS TERMINAM AQUI -->
 
                                             </div>
@@ -272,6 +273,7 @@
                     
                     <h3>Diretiva</h3>
                     <task-form task="title" />
+
                 </div>
             </div>
         </div>

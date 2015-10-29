@@ -13,7 +13,6 @@ modelagemApp.controller("modelagemCtrl",[
         $scope.aba = 1;
         $scope.tabAplicativo=false;
         $scope.secretaria ='';
-        $scope.salvado='';
         $scope.analyst ='';
         $scope.secretarias = '';
         $scope.secretariaSelecionada=null;
@@ -27,11 +26,11 @@ modelagemApp.controller("modelagemCtrl",[
         $scope.flavor = "flavor";
 
         $scope.$watch(function(scope){
-            console.log(scope.flavor)
+            // console.log(scope.flavor)
         });
 
         var lista_de_secretarias= {};
-        var json =angular.fromJson(modelagemService.query());
+        var json = $scope.$parent.json;
       
         $scope.trocarAba = function(secretaria,subordinada)
         {
@@ -110,23 +109,18 @@ modelagemApp.controller("modelagemCtrl",[
                     }
                 });
                 $scope.campoDeFormulario = buildSegment(objView);
-                console.log($scope.campoDeFormulario);
-
-              
-
             };
         });
       
         $scope.renderizar = function(key,field)
         {
             renderize(key,field);
-            console.log($scope.nome);
         };
 
 
     }
 ]);
-
+                                                            
 modelagemApp.directive('transcludeElement', function() {
     return {
       restrict: 'A',
@@ -154,20 +148,20 @@ modelagemApp.directive('transcludeElement', function() {
   return {
     restrict: 'E',
     scope: {
-      flavor: "@"   
+      flavor: "@                    "   
     },
     // transclude: true,
     template: '<input ng-model="flavor" type="text" name="nome"> {{flavor}}',
     controller:function($scope,$element,$attrs) {
-        console.log($scope.flavor);
-        console.log($scope.$parent.flavor);
-        console.log($element);
-        console.log($attrs);
-        $scope.$watch(function(scope){
-            scope.$parent.flavor = scope.flavor;
-            console.log(scope.flavor);
-            console.log(scope.$parent.flavor);
-        });
+        // console.log($scope.flavor);
+        // console.log($scope.$parent.flavor);
+        // console.log($element);
+        // console.log($attrs);
+        // $scope.$watch(function(scope){
+        //     scope.$parent.flavor = scope.flavor;
+        //     console.log(scope.flavor);
+        //     console.log(scope.$parent.flavor);
+        // });
     }
   };
 })

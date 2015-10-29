@@ -1,5 +1,5 @@
-var modelagemApp = angular.module('Modelagem',['modelagemService','ModelagemFilters']);
+var modelagemApp = angular.module('Modelagem',[]);
 
-modelagemApp.run(function($rootScope){
-   $rootScope.autor = "Gean" ;
+modelagemApp.run(function($rootScope,modelagemService){
+   $rootScope.json = angular.fromJson(modelagemService.query());
 });
