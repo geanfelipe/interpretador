@@ -143,137 +143,120 @@
                             <!-- mostrada apenas quando o segmentView for igual a secretaria atual, segmentView é alterado aproximadamente na linha 105 desse código (está comentado)-->
                          
                             <div id="area-formulario">
-                            <div class="ui celled grid" id="area-de-cadastro">
-                                <div class="row">
-                                    <div class="three wide column divMenuDados">
-                                        <div class="ui segiment">
-                                            <div id="grupo-de-dados" class="ui vertical pointing menu">
-                                                
-                                                <!-- OS SEGMENTOS COMEÇAM AQUI-->
+                                <div class="ui celled grid" id="area-de-cadastro">
+                                    <div class="row">
+                                        <div class="three wide column divMenuDados">
+                                            <div class="ui segiment">
+                                                <div id="grupo-de-dados" class="ui vertical pointing menu">
+                                                    
+                                                    <!-- OS SEGMENTOS COMEÇAM AQUI-->
 
-                                                <a ng-repeat="(key,value) in campoDeFormulario" contextmenu="{{value.contextmenu}}"  class="item">{{key}}</a>
-                                                
-                                                <segmentos tipo="nome" ng-model="campoDeFormulario" data="campoDeFormulario"></segmentos>
-                                                <!-- OS SEGMENTOS TERMINAM AQUI -->
+                                                    <a ng-repeat="(key,value) in campoDeFormulario" contextmenu="{{value.contextmenu}}"  class="item">{{key}}</a>
+                                                    
+                                                    <segmentos tipo="nome" data="analyst"></segmentos>
+                                                    <!-- OS SEGMENTOS TERMINAM AQUI -->
 
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    
-                                    <!-- BLOCO DE FORMULARIOS COMECAM AQUI -->
-                                    <!--
-                                    ESSA BLOCO É EXATAMETNE OQ UE ESTÁ FALTANDO SER IMPLEMENTADO, A CRIAÇÃO DOS FORMULÁRIOS
-                                    DE ACORDO COM O JSON FORNECIDO -->
-                                    
-                                    <div class="twelve wide column">
-                                        <div id="{{value.contextmenu}}" class="sessao-de-dados" ng-repeat="(key,value) in campoDeFormulario | orderBy : 'key'">
-                                            {{renderizar(key,value)}}
+                                        
+                                        <!-- BLOCO DE FORMULARIOS COMECAM AQUI -->
+                                        <!--
+                                        ESSA BLOCO É EXATAMETNE OQ UE ESTÁ FALTANDO SER IMPLEMENTADO, A CRIAÇÃO DOS FORMULÁRIOS
+                                        DE ACORDO COM O JSON FORNECIDO -->
+                                        
+                                        <div class="twelve wide column">
+                                            <div id="{{value.contextmenu}}" class="sessao-de-dados" ng-repeat="(key,value) in campoDeFormulario | orderBy : 'key'">
+                                                {{renderizar(key,value)}}
+                                            </div>
                                         </div>
+                                        
+                                        <!-- BLOCO DE  E FORMULARIOS TERMINAM AQUI -->
+
                                     </div>
-                                    
-                                    <!-- BLOCO DE  E FORMULARIOS TERMINAM AQUI -->
-
                                 </div>
-                            </div>
 
-                            <!-- BUTOES DE CRUD -->
-                            <div id="area-de-operacoes-crud" class="row">
-        						<div class="one wide column">
+                                <!-- BUTOES DE CRUD -->
+                                <div id="area-de-operacoes-crud" class="row">
+            						<div class="one wide column">
 
-        							<div class="large ui buttons" style="float: left;">
-        								<button class="ui button"><i class="search icon"></i>LOCALIZAR</button>
-        								<button class="ui button"><i class="plus icon"></i>ADICIONAR</button>
-        							</div>
+            							<div class="large ui buttons" style="float: left;">
+            								<button class="ui button"><i class="search icon"></i>LOCALIZAR</button>
+            								<button class="ui button"><i class="plus icon"></i>ADICIONAR</button>
+            							</div>
 
-            						<div class="large ui buttons" style="float: right;">
-            						  <button class="ui button"><i class="remove icon"></i>LIMPAR</button>
+                						<div class="large ui buttons" style="float: right;">
+                						  <button class="ui button"><i class="remove icon"></i>LIMPAR</button>
+                						</div>
+
+            							<div style="float:left; margin-left: 15px;margin-top:5px">
+                							<div class="ui red label" id="msgErroProtocolo" style="display: none">
+            									<i class="warning icon"></i>OPERAÇÃO NÃO REALIZADA! CONTATE O ADMINISTRADOR DO SISTEMA
+            								</div>
+            								<div class="ui green label" id="msgOkProtocolo" style="display: none">
+                								<i class="warning icon"></i>OPERAÇÃO REALIZADA COM SUCESSO!
+             								</div>
+            							</div>
+
             						</div>
-
-        							<div style="float:left; margin-left: 15px;margin-top:5px">
-            							<div class="ui red label" id="msgErroProtocolo" style="display: none">
-        									<i class="warning icon"></i>OPERAÇÃO NÃO REALIZADA! CONTATE O ADMINISTRADOR DO SISTEMA
-        								</div>
-        								<div class="ui green label" id="msgOkProtocolo" style="display: none">
-            								<i class="warning icon"></i>OPERAÇÃO REALIZADA COM SUCESSO!
-         								</div>
-        							</div>
-
-        						</div>
+            					</div>
+                                <!-- BUTOES DE CRUD TERMINAM AQUI -->
+                            </div>
+                        
+                            <div id="area-listagem" style="display: none">
+            					<div class="ui segment">
+            				
+            					
+            					  <div class="field" style="width: 100%">
+            						<div class="ui icon input" style="width: 100%">
+            						  <input type="text" id='termo-pesquisa' placeholder="Termo de Pesquisa">
+                                      <i class="search icon"></i>
+            						</div>
+            					
+            						</div>
+            					
+            					
+            					
+                                  
+                                      
+                                  <table id="tabela_de_dados" onselectstart="return false" class="ui small center aligned selectable table" style="display: table;">
+            							<thead>
+            								<tr>
+            									<th style="outline: none" class="sorting" aria-controls="protocoloRecebimento" rowspan="1" colspan="1" aria-label="LAtID: activate to sort column ascending" aria-sort="descending">ID</th>
+            									<th style="outline: none" class="sorting" aria-controls="protocoloRecebimento" rowspan="1" colspan="1" aria-label="Servi&amp;ccedil;o: activate to sort column ascending">Nome</th>
+            									<th style="outline: none" class="sorting" aria-controls="protocoloRecebimento" rowspan="1" colspan="1" aria-label="Servi&amp;ccedil;o: activate to sort column ascending">CPF</th>
+                                                <th style="outline: none" class="sorting" aria-controls="protocoloRecebimento" rowspan="1" colspan="1" aria-label="Servi&amp;ccedil;o: activate to sort column ascending">Telefone</th>
+            								
+            										
+            								</tr>
+            							</thead>
+            							<tbody style="cursor: pointer">
+                                            <tr>
+                                                <td>12321</td>
+                                                <td>Maria</td>
+                                                <td>111.665.456.96</td>
+                                                <td>(84)32434-4452</td>
+                                            </tr>
+                                            <tr>
+                                                <td>12312</td>
+                                                <td>José</td>
+                                                <td>556.879.654.65</td>
+                                                <td>(84)23434-4452</td>
+                                            </tr>
+                                            <tr>
+                                                <td>43233</td>
+                                                <td>Júlio</td>
+                                                <td>789.654.542.65</td>
+                                                <td>(84)82345-3454</td>
+                                            </tr>
+                                        </tbody>
+            							
+            							
+            						<tfoot><tr><th colspan="7"><div class="ui right floated pagination menu"><a class="item page-number active">1</a></div><p id="informacoesRegistrosProtocolosRecebimento"></p></th></tr></tfoot></table>
+                                </div>
         					</div>
-                            <!-- BUTOES DE CRUD TERMINAM AQUI -->
-                            
                         </div>
-                        
-                        <div id="area-listagem" style="display: none">
-						<div class="ui segment">
-					
-						
-						  <div class="field" style="width: 100%">
-							<div class="ui icon input" style="width: 100%">
-							  <input type="text" id='termo-pesquisa' placeholder="Termo de Pesquisa">
-                              <i class="search icon"></i>
-							</div>
-						
-							</div>
-						
-						
-						
-                          
-                              
-                          <table id="tabela_de_dados" onselectstart="return false" class="ui small center aligned selectable table" style="display: table;">
-								<thead>
-									<tr>
-										<th style="outline: none" class="sorting" aria-controls="protocoloRecebimento" rowspan="1" colspan="1" aria-label="LAtID: activate to sort column ascending" aria-sort="descending">ID</th>
-										<th style="outline: none" class="sorting" aria-controls="protocoloRecebimento" rowspan="1" colspan="1" aria-label="Servi&amp;ccedil;o: activate to sort column ascending">Nome</th>
-										<th style="outline: none" class="sorting" aria-controls="protocoloRecebimento" rowspan="1" colspan="1" aria-label="Servi&amp;ccedil;o: activate to sort column ascending">CPF</th>
-                                        <th style="outline: none" class="sorting" aria-controls="protocoloRecebimento" rowspan="1" colspan="1" aria-label="Servi&amp;ccedil;o: activate to sort column ascending">Telefone</th>
-									
-											
-									</tr>
-								</thead>
-								<tbody style="cursor: pointer">
-                                    <tr>
-                                        <td>12321</td>
-                                        <td>Maria</td>
-                                        <td>111.665.456.96</td>
-                                        <td>(84)32434-4452</td>
-                                    </tr>
-                                    <tr>
-                                        <td>12312</td>
-                                        <td>José</td>
-                                        <td>556.879.654.65</td>
-                                        <td>(84)23434-4452</td>
-                                    </tr>
-                                    <tr>
-                                        <td>43233</td>
-                                        <td>Júlio</td>
-                                        <td>789.654.542.65</td>
-                                        <td>(84)82345-3454</td>
-                                    </tr>
-                                </tbody>
-								
-								
-							<tfoot><tr><th colspan="7"><div class="ui right floated pagination menu"><a class="item page-number active">1</a></div><p id="informacoesRegistrosProtocolosRecebimento"></p></th></tr></tfoot></table>
-                            
-                        </div>
-						</div>
-                        
                     </div>
-                    </div>
-                    <com-scope></com-scope>
-                    
-                    <div transclude-element="oi">I fui "transcluído"<filho></filho></div>
-                    
-                    <teste model=""></teste>
-                    
-                    <drink></drink>
-
-                    <h3>Controller {{title}}</h3>
-                    <!-- <input ng-model="title" class="form-control"> -->
-                    
-                    <h3>Diretiva</h3>
-                    <task-form task="title" />
-
                 </div>
             </div>
         </div>

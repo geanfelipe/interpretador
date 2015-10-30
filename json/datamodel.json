@@ -617,7 +617,7 @@
                 "primaryKey": false
               },
               "view": {
-                "title": "N&uacute;mero",
+                "title": "Número",
                 "readOnly": false,
                 "show": true,
                 "showAs": "text",
@@ -1141,7 +1141,7 @@
                 "primaryKey": false
               },
               "view": {
-                "title": "N&aacute;mero",
+                "title": "Número",
                 "readOnly": false,
                 "show": true,
                 "showAs": "multiple select, data preloaded",
@@ -1388,7 +1388,7 @@
                 "primaryKey": false
               },
               "view": {
-                "title": "N&uacute;mero",
+                "title": "Número",
                 "readOnly": false,
                 "show": true,
                 "showAs": "text",
