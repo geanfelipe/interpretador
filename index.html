@@ -2,7 +2,7 @@
 <html class="no-js" ng-app="mainApp">
 	<head>
 		<meta charset="utf-8">
-		<title>{{app}}</title>
+		<title>SGI</title>
 		<meta name="description" content="">
         <meta name=viewport content="width=device-width, initial-scale=1">
         <meta name="mobile-web-app-capable" content="yes">
@@ -151,8 +151,6 @@
                                                     
                                                     <!-- OS SEGMENTOS COMEÇAM AQUI-->
 
-                                                    <!-- <a ng-repeat="(key,value) in campoDeFormulario" contextmenu="{{value.contextmenu}}"  class="item">{{key}}</a> -->
-                                                    
                                                     <segmentos data="campoDeFormulario"></segmentos>
                                                     <!-- OS SEGMENTOS TERMINAM AQUI -->
 
@@ -161,9 +159,6 @@
                                         </div>
                                         
                                         <!-- BLOCO DE FORMULARIOS COMECAM AQUI -->
-                                        <!--
-                                        ESSA BLOCO É EXATAMETNE OQ UE ESTÁ FALTANDO SER IMPLEMENTADO, A CRIAÇÃO DOS FORMULÁRIOS
-                                        DE ACORDO COM O JSON FORNECIDO -->
                                         
                                         <div class="twelve wide column">
                                             <div id="{{value.contextmenu}}" class="sessao-de-dados" ng-repeat="(key,value) in campoDeFormulario | orderBy : 'key'">

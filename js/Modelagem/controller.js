@@ -21,14 +21,6 @@ modelagemApp.controller("modelagemCtrl",[
         $scope.formularioSelecionado = false;
         $scope.AbaDeAplicativo=false;
         
-        $scope.autor = "Felipe";
-        $scope.title = 'Valor inicial do controller';
-        $scope.flavor = "flavor";
-
-        $scope.$watch(function(scope){
-            // console.log(scope.flavor)
-        });
-
         var lista_de_secretarias= {};
         var json = $scope.$parent.json;
       
@@ -109,7 +101,6 @@ modelagemApp.controller("modelagemCtrl",[
                     }
                 });
                 $scope.campoDeFormulario = new ElementFactory().buildSegment(objView);
-                console.log($scope.campoDeFormulario);
             };
         });
       
