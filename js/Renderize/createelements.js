@@ -1,5 +1,3 @@
-/*objeto que mostra a classe do semantic ui para os tipos devidos de showAs dos objetos*/
-var classesParaTipos = {'select':'ui selection dropdown',};
 
 /**
 *@object é um objeto como este:
@@ -25,35 +23,39 @@ var classesParaTipos = {'select':'ui selection dropdown',};
 * 
 **/
 
-var buildSegment = function (object){
+/*FUNCAO MESTRA*/
+function ElementFactory() {
     
+}
+
+ElementFactory.prototype.buildSegment = function (object) {
+
     var formSegment = {};
     var segments = [];
     
-    /*montando DOM HTML*/
-    angular.forEach(object,function(value,key){
+    angular.forEach(object,function(value,key) {
         
-        if(value.show){
-            
-            segments.push(jsontoDOM(value));
+        if(value.show) {
+            segments.push(new ElementFactory().createElement(value));
         }
     });
-    
-    for(var i in segments){
+
+    for(var i in segments) {
 
         /*procurando os segmentos do formulário selecionado*/
-        angular.forEach(segments[i],function(value,key){
+        angular.forEach(segments[i],function(value,key) {
             var valor = {};
             valor[value[1]] = value[0];
+
             /*adiciona o nome do segmento e um array com os DOM's que lhe pertece*/
-            if(Object.keys(formSegment).indexOf(key)==-1){
+            if(Object.keys(formSegment).indexOf(key)==-1) {
                 formSegment[key]= {};
                 formSegment[key]['fields']= [valor];
-            }else{
+            }else {
               formSegment[key]['fields'].push(valor);
             }
             
-            var contextmenu = buildContextMenu(key);
+            var contextmenu = new ElementFactory().buildContextMenu(key);
 
             formSegment[key]['contextmenu']=contextmenu.toLowerCase();
         })
@@ -79,31 +81,21 @@ var buildSegment = function (object){
   * ele pertence e o valor um node html que é de acordo com o showAs desse objeto
   * no outro índice é um objeto com tendo como chave ID e o valor o nomedocampo
 **/
-var jsontoDOM = function(object){
+ElementFactory.prototype.createElement = function(object) {
 
-    var nameInput = object.title;
-    var value = object.title.toUpperCase();
-    var defaultValues = object.defaultValue.split(",");
+    this.nameInput = object.title;
+    this.value = object.title.toUpperCase();
+    this.defaultValues = object.defaultValue.split(",");
     var html = {};
     /* label do elemento */
     var data = {'tag':'label','for':'${title}','html':'${title}'};
-    var label = json2html.transform(object,data);
+    this.label = json2html.transform(object,data);
     /*retorna o html e o nome do segmento a que ele é pertecente*/
-    var segmentName = object.segment;
-    var response = {};
-    var id = buildContextMenu(object.segment)+'_'+object.title.toLowerCase();
-    
+    this.segmentName = object.segment;
+    this.response = {};
+    this.id = new ElementFactory.prototype.buildContextMenu(object.segment).contextmenu+'_'+object.title.toLowerCase();
+
     if(object.showAs=="select") {
-        /*html={"tag":"div","class":"ui selection dropdown","children":[
-            {"tag":"input","type":"hidden","name":"${title}"},
-            {"tag":"div","class":"text","html":""},
-            {"tag":"i","class":"dropdown icon"},
-            {"tag":"div","class":"menu","children":[
-                {"tag":"div","class":"item","data-value":defaultValues[0],"html":defaultValues[0]},
-                {"tag":"div","class":"item","data-value":defaultValues[1],"html":defaultValues[1]},
-                {"tag":"div","class":"item active","data-value":"","html":""}
-            ]}
-        ]};*/
 
         var divPai = document.createElement('div');
 
@@ -125,13 +117,13 @@ var jsontoDOM = function(object){
 
         var divItemOne = document.createElement("div");
         divItemOne.className = "item";
-        divItemOne.setAttribute("data-value",defaultValues[0]);
-        divItemOne.textContent = defaultValues[0];
+        divItemOne.setAttribute("data-value",this.defaultValues[0]);
+        divItemOne.textContent = this.defaultValues[0];
 
         var divItemTwo = document.createElement("div");
         divItemTwo.className = "item";
-        divItemTwo.setAttribute("data-value",defaultValues[1]);
-        divItemTwo.textContent = defaultValues[1];        
+        divItemTwo.setAttribute("data-value",this.defaultValues[1]);
+        divItemTwo.textContent = this.defaultValues[1];        
 
         var divItemDefault = document.createElement("div");
         divItemDefault.className = "item";
@@ -152,25 +144,18 @@ var jsontoDOM = function(object){
         html = divPai.innerHTML;
     }
     else if(object.showAs=='text') {
-        /*html = {"tag":"input","type":"${showAs}","name":"${title}","html":""};*/
 
         var divPai = document.createElement('div');
 
         var input = document.createElement('input');
         input.type = object.showAs || "text";
         input.name = object.title;
-        console.log('input--> '+input.name);
 
         divPai.appendChild(input);
 
         html = divPai.innerHTML;
     }
     else if(object.showAs=='multiple select, data preloaded') {
-        /*html = {"tag":"select","class":"ui fluid dropdown", "multiple": "", "children":[
-          {"tag":"option","value":"maca","html":"Maca"},
-          {"tag":"option","value":"uva","html":"Uva"}
-             
-        ]};*/
 
         var divPai = divPai = document.createElement('div');
 
@@ -195,12 +180,7 @@ var jsontoDOM = function(object){
 
     }
     else if (object.showAs == 'search') {
-       /* html = {"tag":"div","class":"ui search","children":[
-                {"tag":"div","class":"ui input","children":[
-                  {"tag":"input","class":"prompt","ng-model":"${title}","id":"esporte" ,"type":"text","placeholder":"${title}"}
-                ]},
-                {"tag":"div","class":"results"}
-              ]};*/
+
         var divPai = document.createElement('div');
 
         var divSearch = document.createElement('div');
@@ -208,7 +188,6 @@ var jsontoDOM = function(object){
 
         var input = document.createElement('input');
         input.className = "prompt "+"ng-valid ng-dirty ng-valid-parse ng-touched";
-        input.setAttribute("ng-model","nome.eu");
         input.type = "text";
 
         var divResults = document.createElement("div");
@@ -224,18 +203,15 @@ var jsontoDOM = function(object){
     else {
       
     }
-    
-    // response[segmentName]=[label + json2html.transform(object,html),id];
-    response[segmentName]=[label + html,id];
-    return response;
+
+    this.response[this.segmentName]=[this.label + html,this.id];
+
+    return this.response;
 };
 
-var buildContextMenu= function(key){
-  var contextmenu;
-   if(key.toLowerCase().split(' ').length==1) {
-      contextmenu = key.split(' ')[0];
-   }else {
-      contextmenu = key.split(' ')[0]+'-'+key.split(' ')[1];
-  }
-  return contextmenu;
+ElementFactory.prototype.buildContextMenu= function(key){
+
+    this.contextmenu= key.replace(/ /g,'-');
+
+    return this.contextmenu;
 };

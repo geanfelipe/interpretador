@@ -1,7 +1,8 @@
 
 
-var renderize = function(id,field){
-    $("#"+field.contextmenu).html(HTML(id,field));
+var renderize = function(id,fields) {
+
+    $("#"+fields.contextmenu).html(HTML(id,fields));
     $('.ui.dropdown').dropdown();
     segmentFormActive();
 };
@@ -17,8 +18,8 @@ var renderize = function(id,field){
     </div>
 </div>
  */
-var HTML = function(key , sessaoDeDados){
-  
+var HTML = function(key , sessaoDeDados) {
+
     var classField = '';
     
     for(var i in sessaoDeDados.fields) {

@@ -17,6 +17,5 @@ var menuSecretaria = function(groups)
             secretarias[secretarianome].push(subordinada);  
         }
     }
-    console.log(secretarias);
     return secretarias;
 };

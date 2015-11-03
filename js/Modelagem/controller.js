@@ -13,7 +13,6 @@ modelagemApp.controller("modelagemCtrl",[
         $scope.aba = 1;
         $scope.tabAplicativo=false;
         $scope.secretaria ='';
-        $scope.salvado='';
         $scope.analyst ='';
         $scope.secretarias = '';
         $scope.secretariaSelecionada=null;
@@ -22,16 +21,8 @@ modelagemApp.controller("modelagemCtrl",[
         $scope.formularioSelecionado = false;
         $scope.AbaDeAplicativo=false;
         
-        $scope.autor = "Felipe";
-        $scope.title = 'Valor inicial do controller';
-        $scope.flavor = "flavor";
-
-        $scope.$watch(function(scope){
-            console.log(scope.flavor)
-        });
-
         var lista_de_secretarias= {};
-        var json =angular.fromJson(modelagemService.query());
+        var json = $scope.$parent.json;
       
         $scope.trocarAba = function(secretaria,subordinada)
         {
@@ -109,18 +100,14 @@ modelagemApp.controller("modelagemCtrl",[
                         });
                     }
                 });
-                $scope.campoDeFormulario = buildSegment(objView);
+                $scope.campoDeFormulario = new ElementFactory().buildSegment(objView);
                 console.log($scope.campoDeFormulario);
-
-              
-
             };
         });
       
         $scope.renderizar = function(key,field)
         {
             renderize(key,field);
-            console.log($scope.nome);
         };
 
 
