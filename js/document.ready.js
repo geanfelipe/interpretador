@@ -1,11 +1,7 @@
 
 $(document).ready(function(){
 
-	$('#termo-pesquisa').keyup(function()
-		{
-			searchTable($(this).val());
-			
-		});
+
   
 	$('.right.menu.open').on("click",function(e){
 	  

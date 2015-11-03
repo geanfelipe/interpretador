@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="no-js" ng-app="mainApp">
+<html class="no-js" ng-app="mainApp" ng-init="area=1">
 	<head>
 		<meta charset="utf-8">
 		<title>SGI</title>
@@ -95,10 +95,10 @@
                                 </div>
                             </div>
 							
-							<a id="formulario" class="ui dropdown item" tabindex="0">
+							<a id="formulario" class="ui dropdown item" tabindex="0" ng-click="area=1">
                                 <i class="edit icon"></i> Formulário<div class="menu" tabindex="-1"></div></a>
 								
-							<a id="listagem" class="item modo-de-exibicao">
+							<a id="listagem" class="item modo-de-exibicao" ng-click="area=2">
                                 <i class="list layout icon"></i>Listagem</a>
 
                             
@@ -142,7 +142,7 @@
                         <div ng-show="mostrarForms()">
                             <!-- mostrada apenas quando o segmentView for igual a secretaria atual, segmentView é alterado aproximadamente na linha 105 desse código (está comentado)-->
                          
-                            <div id="area-formulario">
+                            <div id="area-formulario" ng-show="area==1">
                                 <div class="ui celled grid" id="area-de-cadastro">
                                     <div class="row">
                                         <div class="three wide column divMenuDados">
@@ -198,13 +198,13 @@
                                 <!-- BUTOES DE CRUD TERMINAM AQUI -->
                             </div>
                         
-                            <div id="area-listagem" style="display: none">
+                            <div id="area-listagem" ng-show="area==2">
             					<div class="ui segment">
             				
             					
             					  <div class="field" style="width: 100%">
             						<div class="ui icon input" style="width: 100%">
-            						  <input type="text" id='termo-pesquisa' placeholder="Termo de Pesquisa">
+            						  <input type="text" id='termo-pesquisa' ng-model="search" placeholder="Termo de Pesquisa">
                                       <i class="search icon"></i>
             						</div>
             					
@@ -216,33 +216,13 @@
                                       
                                   <table id="tabela_de_dados" onselectstart="return false" class="ui small center aligned selectable table" style="display: table;">
             							<thead>
-            								<tr>
-            									<th style="outline: none" class="sorting" aria-controls="protocoloRecebimento" rowspan="1" colspan="1" aria-label="LAtID: activate to sort column ascending" aria-sort="descending">ID</th>
-            									<th style="outline: none" class="sorting" aria-controls="protocoloRecebimento" rowspan="1" colspan="1" aria-label="Servi&amp;ccedil;o: activate to sort column ascending">Nome</th>
-            									<th style="outline: none" class="sorting" aria-controls="protocoloRecebimento" rowspan="1" colspan="1" aria-label="Servi&amp;ccedil;o: activate to sort column ascending">CPF</th>
-                                                <th style="outline: none" class="sorting" aria-controls="protocoloRecebimento" rowspan="1" colspan="1" aria-label="Servi&amp;ccedil;o: activate to sort column ascending">Telefone</th>
-            								
-            										
-            								</tr>
+            								<tr><th ng-repeat="atributo in atributos"><a ng-click="setSortType(atributo)" >{{atributo}}</a></th></tr>
             							</thead>
             							<tbody style="cursor: pointer">
-                                            <tr>
-                                                <td>12321</td>
-                                                <td>Maria</td>
-                                                <td>111.665.456.96</td>
-                                                <td>(84)32434-4452</td>
-                                            </tr>
-                                            <tr>
-                                                <td>12312</td>
-                                                <td>José</td>
-                                                <td>556.879.654.65</td>
-                                                <td>(84)23434-4452</td>
-                                            </tr>
-                                            <tr>
-                                                <td>43233</td>
-                                                <td>Júlio</td>
-                                                <td>789.654.542.65</td>
-                                                <td>(84)82345-3454</td>
+                                            <tr ng-repeat="pessoa in pessoal | filter:search | orderBy:sortType:sortReverse">
+                                                <td>{{pessoa.id}}</td>
+                                                <td>{{pessoa.nome}}</td>
+                                                <td>{{pessoa.sexo}}</td>
                                             </tr>
                                         </tbody>
             							

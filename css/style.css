@@ -33,8 +33,14 @@ body{
   text-align: center;
 }
 
+a{
+  cursor: pointer;
+}
 
 
+.link-ativo{
+  color: red !important;
+}
 
 
 .ui.form input[type="week"] {

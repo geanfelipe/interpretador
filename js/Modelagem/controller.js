@@ -65,8 +65,36 @@ modelagemApp.controller("modelagemCtrl",[
               return true;
             } 
             return false;
+
+
         };
+
+        $scope.sortType     = 'id'; // set the default sort type
+        $scope.sortReverse  = false;  // set the default sort order
+
+        $scope.pessoal = [{id: "01", nome : "Joaquim", sexo: "Masculino"}, 
+                            {id: "03", nome : "Aparecida", sexo: "Masculino"}, 
+                            {id: "02", nome : "Raiane", sexo: "Feminino"}];
+
+        $scope.atributos = Object.keys($scope.pessoal[0]);
+
+        for (atributo in $scope.atributos){
+            $scope.atributos[atributo]= $scope.atributos[atributo].capitalizeFirstLetter();
+        }
         
+        $scope.setSortType = function(atributo){
+
+            $scope.sortType = atributo.toLowerCase();
+                
+            console.log($scope.sortType);
+
+            $scope.sortReverse = !$scope.sortReverse;
+
+            
+                    
+        }
+
+
         /*retornado o json faca as seguintes operacoes*/
         /*Vide: o promise é a ultima coisa que é carregada no controller*/
         json.$promise.then(function(data)
