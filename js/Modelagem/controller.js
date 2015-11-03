@@ -101,6 +101,7 @@ modelagemApp.controller("modelagemCtrl",[
                     }
                 });
                 $scope.campoDeFormulario = new ElementFactory().buildSegment(objView);
+                console.log($scope.campoDeFormulario);
             };
         });
       
