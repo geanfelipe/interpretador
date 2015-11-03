@@ -1,4 +1,4 @@
-angular.module("ModelagemDirectives",[])
+modelagemApp
 
 .directive("segmentos",function() {
 	return {

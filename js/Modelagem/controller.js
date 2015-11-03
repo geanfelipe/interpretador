@@ -101,13 +101,12 @@ modelagemApp.controller("modelagemCtrl",[
                     }
                 });
                 $scope.campoDeFormulario = new ElementFactory().buildSegment(objView);
-                console.log($scope.campoDeFormulario);
             };
         });
       
         $scope.renderizar = function(key,field)
         {
-            renderize(key,field);
+            new Renderize().renderize(key,field);
         };
 
 

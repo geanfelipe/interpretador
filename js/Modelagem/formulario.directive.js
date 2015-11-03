@@ -1,4 +1,4 @@
-angular.module("ModelagemDirectives",[])
+modelagemApp
 
 .directive("formulario",function() {
 	return {
@@ -7,10 +7,25 @@ angular.module("ModelagemDirectives",[])
 		scope : {
 			data:"=",
 		},
-		controller : function($scope) {
-			console.log("HELLO");
+		compile: function($scope,$element,$attrs) {
+			console.log($scope.data);
+			return  {
+				
+				// angular.forEach($scope.data,function(value,key) {
+				// 	var formulario = new Renderize().renderize(key,value);	
+				// 	console.log(formulario);
+				// });
+
+				// Pre-link function
+		        post: function (scope, element, attrs) {
+		        	console.log($scope.data);
+		        },
+		          // Post-link function
+		        pre: function (scope, element, attrs) {
+		        	console.log($scope.data);
+		        }
+			}
 		},
-		template:'<a ng-repeat="(key,value) in data" contextmenu="{{value.contextmenu}}"  class="item">{{key}}</a>'
 	}
 })
 ;
