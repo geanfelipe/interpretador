@@ -189,6 +189,8 @@ ElementFactory.prototype.createElement = function(object) {
         var input = document.createElement('input');
         input.className = "prompt "+"ng-valid ng-dirty ng-valid-parse ng-touched";
         input.type = "text";
+        input.name = object.title;
+        input.setAttribute('formulario','');
 
         var divResults = document.createElement("div");
         divResults.className = "results";
