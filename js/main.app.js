@@ -2,7 +2,7 @@ var mainApp= angular.module('mainApp',[
   'Modelagem',
   'modelagemService',
   'ModelagemFilters',
-  'ModelagemDirectives',
+  // 'ModelagemDirectives',
   ]);
 
 mainApp.config(['$compileProvider', function ($compileProvider) {
