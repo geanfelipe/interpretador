@@ -217,7 +217,7 @@
                                       
                                   <table id="tabela_de_dados" onselectstart="return false" class="ui small center aligned selectable table" style="display: table;">
             							<thead>
-            								<tr><th ng-repeat="atributo in atributos"><a ng-click="setSortType(atributo)" >{{atributo}}</a></th></tr>
+            								<tr><th ng-repeat="atributo in atributos"><a ng-click="setSortType(atributo)" >{{atributo}}<i ng-class="{'caret down icon':atributo==selecao && !sortReverse, 'caret up icon':atributo==selecao && sortReverse}"></i></a></th></tr>
             							</thead>
             							<tbody style="cursor: pointer">
                                             <tr ng-repeat="pessoa in pessoal | filter:search | orderBy:sortType:sortReverse">
