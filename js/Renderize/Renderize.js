@@ -1,10 +1,15 @@
 
+function Renderize() {
 
-var renderize = function(id,fields) {
+}
 
-    $("#"+fields.contextmenu).html(HTML(id,fields));
+Renderize.prototype.renderize = function(id,fields) {
+
+    // $("#"+fields.contextmenu).html(new Renderize().HTML(id,fields));
     $('.ui.dropdown').dropdown();
     segmentFormActive();
+    return  new Renderize().HTML(id,fields);
+    
 };
 
 
@@ -18,8 +23,8 @@ var renderize = function(id,fields) {
     </div>
 </div>
  */
-var HTML = function(key , sessaoDeDados) {
-
+Renderize.prototype.HTML = function(key , sessaoDeDados) {
+    
     var classField = '';
     
     for(var i in sessaoDeDados.fields) {
