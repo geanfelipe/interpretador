@@ -5,10 +5,16 @@ function Renderize() {
 
 Renderize.prototype.renderize = function(id,fields) {
 
-    // $("#"+fields.contextmenu).html(new Renderize().HTML(id,fields));
+    $("#"+fields.contextmenu).html(new Renderize().HTML(id,fields));
     $('.ui.dropdown').dropdown();
     segmentFormActive();
-    return  new Renderize().HTML(id,fields);
+    
+    var elemento = angular.element('input[name=Nome]');
+    elemento.on("blur keyup change",function(){
+        if (elemento.val().length>4) {
+            console.log(elemento.val());
+        }
+    });
     
 };
 

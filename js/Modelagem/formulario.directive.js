@@ -2,30 +2,36 @@ modelagemApp
 
 .directive("formulario",function() {
 	return {
-		restrict: "E",
+		restrict: "A",
 		replace: true,
 		scope : {
 			data:"=",
 		},
-		compile: function($scope,$element,$attrs) {
-			console.log($scope.data);
-			return  {
-				
-				// angular.forEach($scope.data,function(value,key) {
-				// 	var formulario = new Renderize().renderize(key,value);	
-				// 	console.log(formulario);
-				// });
+		require: '?ngModel',
+		compile: function($element, $attrs) {
+			var elemento = angular.element('input[name=Nome]');
 
-				// Pre-link function
-		        post: function (scope, element, attrs) {
-		        	console.log($scope.data);
-		        },
-		          // Post-link function
-		        pre: function (scope, element, attrs) {
-		        	console.log($scope.data);
-		        }
-			}
+			return {
+			    pre: function (scope, element, attrs) {
+			    	var elemento = angular.element('input[name=Nome]');
+			    	console.log(elemento);
+			    },
+			    post: function (scope, element, attrs) {
+			        var elemento = angular.element('input[name=Nome]');
+			    	console.log(elemento);
+			    }
+		    }
+		},
+		link: function(scope, element, attrs, ngModel) {
+			var elemento = angular.element('input[name=Nome]');
+
+			console.log(elemento);
+
+			elemento.on('blur keyup change', function() {
+	          
+	        });
 		},
 	}
 })
+
 ;
