@@ -220,9 +220,7 @@
             							</thead>
             							<tbody style="cursor: pointer">
                                             <tr ng-repeat="pessoa in pessoal | filter:search | orderBy:sortType:sortReverse">
-                                                <td>{{pessoa.id}}</td>
-                                                <td>{{pessoa.nome}}</td>
-                                                <td>{{pessoa.sexo}}</td>
+                                                <td ng-repeat="atributo in atributos">{{pessoa[atributo]}}</td>
                                             </tr>
                                         </tbody>
             							

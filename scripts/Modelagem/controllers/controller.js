@@ -92,9 +92,7 @@ modelagemApp.controller("modelagemCtrl",[
 
         $scope.atributos = Object.keys($scope.pessoal[0]); //cria um array com os atributos dos objetos
 
-        for (atributo in $scope.atributos){     //coloca a primeira letra maiscula
-            $scope.atributos[atributo]= $scope.atributos[atributo].capitalizeFirstLetter();
-        }
+        
       
 
         //esta funcao define o sortType e e diparada a partir do ng-click do cabecalho da coluna do respectivo atributo
