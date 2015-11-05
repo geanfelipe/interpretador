@@ -76,7 +76,7 @@ modelagemApp.controller("modelagemCtrl",[
 
 //este bloco simplesmente serve para realizar as funções de ordenar e de listar os valores da tabela.
 
-        //sera alterado posteriormente para o dado recebido do get
+        //sera alterado posteriormente para o dado recebido do get (service)
         $scope.pessoal = [{id: "01", nome : "Joaquim Teixeira", sexo: "Masculino"}, 
                             {id: "03", nome : "Aparecida", sexo: "Masculino"}, 
                             {id: "02", nome : "Raiane Karla Miranda Silva", sexo: "Feminino"},
