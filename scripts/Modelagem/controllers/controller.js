@@ -7,9 +7,10 @@ function getArea(){
 
 modelagemApp.controller("modelagemCtrl",[
     "$scope",
-    "modelagemService",
+    "getDataModel",
+    "sendDatasource",
 
-    function($scope,modelagemService,$compile,$rootScope){
+    function($scope,getDataModel,sendDatasource,$compile,$rootScope){
         $scope.aba = 1;
         $scope.tabAplicativo=false;
         $scope.secretaria ='';
@@ -24,6 +25,9 @@ modelagemApp.controller("modelagemCtrl",[
         var lista_de_secretarias= {};
         var json = $scope.$parent.json;
       
+        var teste = sendDatasource.get({user:"geanfelipe"});
+        console.log(teste);
+
         $scope.trocarAba = function(secretaria,subordinada)
         {
             $scope.secretariaSelecionada=secretaria+":"+subordinada;
