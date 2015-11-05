@@ -9,6 +9,8 @@ modelagemApp.controller("modelagemCtrl",[
     "$scope",
     "modelagemService",
 
+
+
     function($scope,modelagemService,$compile,$rootScope){
         $scope.aba = 1;
         $scope.tabAplicativo=false;
@@ -36,6 +38,8 @@ modelagemApp.controller("modelagemCtrl",[
               $scope.AbaDeAplicativo=true;
               $("#aba-de-aplicativo").addClass("active");
             }
+
+
         };
         
         $scope.uri = function(secretaria){
@@ -70,11 +74,7 @@ modelagemApp.controller("modelagemCtrl",[
         };
 
 
-
 //este bloco simplesmente serve para realizar as funções de ordenar e de listar os valores da tabela.
-
-        $scope.sortType     = 'id'; // define o atributo que servira de parametro para a listagem
-        $scope.sortReverse  = false;  // define se a listagem será na ordem normal (true) ou inversa(false)
 
         //sera alterado posteriormente para o dado recebido do get
         $scope.pessoal = [{id: "01", nome : "Joaquim Teixeira", sexo: "Masculino"}, 
@@ -90,25 +90,20 @@ modelagemApp.controller("modelagemCtrl",[
                             {id: "11", nome : "Almeida", sexo: "Masculino"},
                             {id: "12", nome : "Rosa", sexo: "Feminino"}];
 
-        $scope.atributos = Object.keys($scope.pessoal[0]); //cria um array com os atributos dos objetos
-
         
-      
+        
+        $scope.renderizarTabela= function(){
 
-        //esta funcao define o sortType e e diparada a partir do ng-click do cabecalho da coluna do respectivo atributo
+            $scope.dados = $scope.pessoal;
 
-        $scope.setSortType = function(atributo){
+            $scope.atributos = Object.keys($scope.dados[0]); //cria um array com os atributos dos objetos
 
-            $scope.selecao = atributo; //variavel que recebe o atributo com letra maiscula
-                                        //e e usada para mudar a classe do icone do cabecalho
+            for (atributo in $scope.atributos)  //coloca a primeira letra maiscula
+            {     
+                $scope.atributos[atributo]= $scope.atributos[atributo].capitalizeFirstLetter();
+            }
 
-            $scope.sortType = atributo.toLowerCase();
-
-            $scope.sortReverse = !$scope.sortReverse;   //inverte o valor do sortReverse
-                    
-        }
-
-        $scope.paginas = [];
+            $scope.paginas = [];
         $scope.pagina = [];
         $scope.itemsPorPagina = 7;
         var contador = 0;
@@ -126,6 +121,27 @@ modelagemApp.controller("modelagemCtrl",[
         }
         
         console.log($scope.paginas);
+        }
+
+        $scope.sortType     = 'id'; // define o atributo que servira de parametro para a listagem
+        $scope.sortReverse  = false;  // define se a listagem será na ordem normal (true) ou inversa(false)
+
+        $scope.setSortType = function(atributo){    
+
+            //esta funcao define o sortType e e diparada a partir do ng-click do cabecalho da coluna do respectivo atributo
+
+            $scope.selecao = atributo; //variavel que recebe o atributo com letra maiscula
+                                        //e e usada para mudar a classe do icone do cabecalho
+
+            $scope.sortType = atributo.toLowerCase();
+
+            $scope.sortReverse = !$scope.sortReverse;   //inverte o valor do sortReverse
+                    
+        }
+
+        
+
+
 
 //FIM DO BLOCO DE FUNCOES RELACIONADAS A TABELA
 
