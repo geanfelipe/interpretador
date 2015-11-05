@@ -98,7 +98,7 @@
 							<a id="formulario" class="ui dropdown item" tabindex="0" ng-click="area=1">
                                 <i class="edit icon"></i> Formulário<div class="menu" tabindex="-1"></div></a>
 								
-							<a id="listagem" class="item modo-de-exibicao" ng-click="area=2">
+							<a id="listagem" class="item modo-de-exibicao" ng-click="area=2; renderizarTabela()">
                                 <i class="list layout icon"></i>Listagem</a>
 
                             
@@ -161,9 +161,10 @@
                                         <!-- BLOCO DE FORMULARIOS COMECAM AQUI -->
                                         
                                         <div class="twelve wide column">
-                                            <div id="{{value.contextmenu}}" class="sessao-de-dados" ng-repeat="(key,value) in campoDeFormulario | orderBy : 'key'" >
-                                                {{renderizar(key,value)}}
-                                            </div>
+                                            <!-- <div id="{{value.contextmenu}}" class="sessao-de-dados" ng-repeat="(key,value) in campoDeFormulario | orderBy : 'key'"> -->
+                                                <!-- {{renderizar(key,value)}} -->
+                                                <formulario data="campoDeFormulario"></formulario>
+                                            <!-- </div> -->
                                         </div>
                                         
                                         <!-- BLOCO DE  E FORMULARIOS TERMINAM AQUI -->
@@ -209,25 +210,36 @@
             						</div>
             					
             						</div>
+
             					
             					
             					
                                   
+                                    <!-- TABELA DE DADOS -->
+                       
+                                               
+
                                       
                                   <table id="tabela_de_dados" onselectstart="return false" class="ui small center aligned selectable table" style="display: table;">
-            							<thead>
-            								<tr><th ng-repeat="atributo in atributos"><a ng-click="setSortType(atributo)" >{{atributo}}<i ng-class="{'caret down icon':atributo==selecao && !sortReverse, 'caret up icon':atributo==selecao && sortReverse}"></i></a></th></tr>
+            						<thead>
+            						  <tr><th ng-repeat="atributo in atributos"><a ng-click="setSortType(atributo)" >{{atributo}}<i ng-class="{'caret down icon':atributo==selecao && !sortReverse, 'caret up icon':atributo==selecao && sortReverse}"></i></a></th></tr>
             							</thead>
-            							<tbody style="cursor: pointer">
-                                            <tr ng-repeat="pessoa in pessoal | filter:search | orderBy:sortType:sortReverse">
-                                                <td>{{pessoa.id}}</td>
-                                                <td>{{pessoa.nome}}</td>
-                                                <td>{{pessoa.sexo}}</td>
+            						  <tbody style="cursor: pointer">
+                                            <tr ng-repeat="dado in dados | filter:search | orderBy:sortType:sortReverse">
+                                                <td ng-repeat="atributo in atributos">{{dado[atributo.toLowerCase()]}}</td>
+
                                             </tr>
+
                                         </tbody>
             							
-            							
-            						<tfoot><tr><th colspan="7"><div class="ui right floated pagination menu"><a class="item page-number active">1</a></div><p id="informacoesRegistrosProtocolosRecebimento"></p></th></tr></tfoot></table>
+
+            						<tfoot>
+                                        <tr>
+                                            <th colspan="7"><div class="ui right floated pagination menu"><a class="item page-number active">1</a></div></th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+
                                 </div>
         					</div>
                         </div>
