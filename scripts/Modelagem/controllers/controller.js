@@ -10,13 +10,7 @@ modelagemApp.controller("modelagemCtrl",[
     "getDataModel",
     "sendDatasource",
 
-<<<<<<< HEAD
     function($scope,getDataModel,sendDatasource,$compile,$rootScope){
-=======
-
-
-    function($scope,modelagemService,$compile,$rootScope){
->>>>>>> e80c874a98f43631ce7d51c7f1ef432c3184a75c
         $scope.aba = 1;
         $scope.tabAplicativo=false;
         $scope.secretaria ='';
@@ -98,7 +92,6 @@ modelagemApp.controller("modelagemCtrl",[
                             {id: "11", nome : "Almeida", sexo: "Masculino"},
                             {id: "12", nome : "Rosa", sexo: "Feminino"}];
 
-<<<<<<< HEAD:js/Modelagem/controller.js
         $scope.atributos = Object.keys($scope.pessoal[0]); //cria um array com os atributos dos objetos
         $scope.cabecalhos = $scope.atributos;
       
@@ -113,12 +106,10 @@ modelagemApp.controller("modelagemCtrl",[
         console.log("Cabeçalhos: "+ $scope.cabecalhos);
         //esta funcao define o sortType e e diparada a partir do ng-click do cabecalho da coluna do respectivo atributo
 
-        $scope.setSortType = function(atributo){
-=======
+        $scope.setSortType = function(atributo){}
         
         
         $scope.renderizarTabela= function(){
->>>>>>> work:scripts/Modelagem/controllers/controller.js
 
             $scope.dados = $scope.pessoal;
 
@@ -130,24 +121,24 @@ modelagemApp.controller("modelagemCtrl",[
             }
 
             $scope.paginas = [];
-        $scope.pagina = [];
-        $scope.itemsPorPagina = 7;
-        var contador = 0;
+            $scope.pagina = [];
+            $scope.itemsPorPagina = 7;
+            var contador = 0;
 
-        for (item in $scope.pessoal){
-            if (contador<$scope.itemsPorPagina && item<$scope.pessoal.length){
-                contador++
-                $scope.pagina.push($scope.pessoal[item]);
-                
-            } else{
-                contador=0;
-                $scope.paginas.push($scope.pagina);
-                $scope.pagina = [];
+            for (item in $scope.pessoal){
+                if (contador<$scope.itemsPorPagina && item<$scope.pessoal.length){
+                    contador++
+                    $scope.pagina.push($scope.pessoal[item]);
+                    
+                } else{
+                    contador=0;
+                    $scope.paginas.push($scope.pagina);
+                    $scope.pagina = [];
+                }
             }
-        }
-        
-        console.log($scope.paginas);
-        }
+            
+            console.log($scope.paginas);
+        };
 
         $scope.sortType     = 'id'; // define o atributo que servira de parametro para a listagem
         $scope.sortReverse  = false;  // define se a listagem será na ordem normal (true) ou inversa(false)
@@ -190,7 +181,7 @@ modelagemApp.controller("modelagemCtrl",[
                 }
             };
            
-            $scope.segmentos = function(secretaria,formulario){
+        $scope.segmentos = function(secretaria,formulario){
                
                 /* objeto contruido com as views de cada entidade do campo semantico selecionado*/
                 var objView = {};
