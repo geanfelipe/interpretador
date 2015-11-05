@@ -78,7 +78,7 @@ modelagemApp.controller("modelagemCtrl",[
 
         //sera alterado posteriormente para o dado recebido do get
         $scope.pessoal = [{id: "01", nome : "Joaquim Teixeira", sexo: "Masculino"}, 
-                            {id: "03", nome : "Aparecida", sexo: "Masculino"}, 
+                            {id: "03", nome : "Aparecida", sexo: "Feminino"}, 
                             {id: "02", nome : "Raiane Karla Miranda Silva", sexo: "Feminino"},
                             {id: "04", nome : "Marcos", sexo: "Masculino"},
                             {id: "05", nome : "Clayton", sexo: "Masculino"},
@@ -91,12 +91,17 @@ modelagemApp.controller("modelagemCtrl",[
                             {id: "12", nome : "Rosa", sexo: "Feminino"}];
 
         $scope.atributos = Object.keys($scope.pessoal[0]); //cria um array com os atributos dos objetos
-
-        for (atributo in $scope.atributos){     //coloca a primeira letra maiscula
-            $scope.atributos[atributo]= $scope.atributos[atributo].capitalizeFirstLetter();
-        }
+        $scope.cabecalhos = $scope.atributos;
       
 
+
+        for (cabecalho in $scope.cabecalhos){     //coloca a primeira letra maiscula
+            $scope.cabecalhos[cabecalho]= $scope.cabecalhos[cabecalho].capitalizeFirstLetter();
+        }
+    
+        console.log($scope.atributos);
+
+        console.log("Cabeçalhos: "+ $scope.cabecalhos);
         //esta funcao define o sortType e e diparada a partir do ng-click do cabecalho da coluna do respectivo atributo
 
         $scope.setSortType = function(atributo){
