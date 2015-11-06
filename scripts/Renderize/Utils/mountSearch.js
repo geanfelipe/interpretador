@@ -7,3 +7,11 @@ function content(array){
  }
  return response;
 }
+
+function sendtoServer(data) {
+	return {
+		classUID:"",
+		semanticFieldUID:"",
+		object: data
+	}
+}
