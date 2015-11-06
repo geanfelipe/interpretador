@@ -11,11 +11,23 @@ Renderize.prototype.renderize = function(id,fields) {
     
     var elemento = angular.element('input[name=Nome]');
     elemento.on("blur keyup change",function(){
-        if (elemento.val().length>4) {
-            console.log(elemento.val());
+        var nome = elemento.val();
+        if (nome.length>4) {
+            console.log(nome);
+            var funcionario = new Funcionario()
+            funcionario.nome = nome;
+            $.ajax({type: "POST", url: "", dataType: 'json',data:funcionario, 
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', codigoDeIdentificacaoDeUsuario); 
+            }
+            }).success(function (data) {
+                $('.ui.search')
+                  .search({
+                    source: content(data)
+                  });
+            }
         }
     });
-    
 };
 
 
