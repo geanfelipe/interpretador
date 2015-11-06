@@ -10,22 +10,24 @@ Renderize.prototype.renderize = function(id,fields) {
     segmentFormActive();
     
     var elemento = angular.element('input[name=Nome]');
+    
     elemento.on("blur keyup change",function(){
+        
         var nome = elemento.val();
         if (nome.length>4) {
             console.log(nome);
             var funcionario = new Funcionario()
             funcionario.nome = nome;
-            $.ajax({type: "POST", url: "", dataType: 'json',data:funcionario, 
-            beforeSend: function (xhr) {
-                xhr.setRequestHeader('Authorization', codigoDeIdentificacaoDeUsuario); 
-            }
-            }).success(function (data) {
-                $('.ui.search')
-                  .search({
-                    source: content(data)
-                  });
-            }
+            $.ajax({type: "POST", url: "http://10.200.2.63:8080/protocolo/REST/service/funcionario",
+             dataType: 'json',data:funcionario,})
+                .success(function (data) {
+                    $('.ui.search')
+                      .search({
+                        source: content(data)
+                      })
+                }).error(function(err) {
+                    console.log(err);
+                });
         }
     });
 };
