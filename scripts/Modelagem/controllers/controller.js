@@ -90,28 +90,31 @@ modelagemApp.controller("modelagemCtrl",[
                             {id: "09", nome : "Maria", sexo: "Feminino"},
                             {id: "10", nome : "Tereza", sexo: "Feminino"},
                             {id: "11", nome : "Almeida", sexo: "Masculino"},
-                            {id: "12", nome : "Rosa", sexo: "Feminino"}];
-
-        $scope.atributos = Object.keys($scope.pessoal[0]); //cria um array com os atributos dos objetos
-        $scope.cabecalhos = $scope.atributos;
-      
-
-
-        for (cabecalho in $scope.cabecalhos){     //coloca a primeira letra maiscula
-            $scope.cabecalhos[cabecalho]= $scope.cabecalhos[cabecalho].capitalizeFirstLetter();
-        }
-    
-        console.log($scope.atributos);
-
-        console.log("Cabeçalhos: "+ $scope.cabecalhos);
-        //esta funcao define o sortType e e diparada a partir do ng-click do cabecalho da coluna do respectivo atributo
-
-        $scope.setSortType = function(atributo){}
+                            {id: "12", nome : "Rosa", sexo: "Feminino"},
+                            {id: "11", nome : "Almeida", sexo: "Masculino"},
+                            {id: "11", nome : "Almeida", sexo: "Masculino"},
+                            {id: "11", nome : "Almeida", sexo: "Masculino"},
+                            {id: "11", nome : "Almeida", sexo: "Masculino"},
+                            {id: "11", nome : "Almeida", sexo: "Masculino"},
+                            {id: "11", nome : "Almeida", sexo: "Masculino"},
+                            {id: "11", nome : "Almeida", sexo: "Masculino"},
+                            {id: "11", nome : "Almeida", sexo: "Masculino"}];
         
+        
+        
+
+        $scope.exibirPagina = function(index){
+            
+            $scope.paginaExibida = index;
+            
+            console.log($scope.paginaExibida);
+        }
         
         $scope.renderizarTabela= function(){
 
-            $scope.dados = $scope.pessoal;
+            $scope.exibirPagina(0); // define primeira página da tabela para ser exibida
+
+            $scope.dados = $scope.pessoal; // será alterado.
 
             $scope.atributos = Object.keys($scope.dados[0]); //cria um array com os atributos dos objetos
 
@@ -123,18 +126,40 @@ modelagemApp.controller("modelagemCtrl",[
             $scope.paginas = [];
             $scope.pagina = [];
             $scope.itemsPorPagina = 7;
-            var contador = 0;
 
-            for (item in $scope.pessoal){
-                if (contador<$scope.itemsPorPagina && item<$scope.pessoal.length){
-                    contador++
-                    $scope.pagina.push($scope.pessoal[item]);
+            var contador=0;
+
+            for (var i=0; i<$scope.dados.length; i++){
+
+                $scope.pagina.push($scope.dados[i]);
+                console.log($scope.dados[i]);
+
+                if (contador==$scope.itemsPorPagina-1)
+                {
                     
-                } else{
                     contador=0;
+
+                    console.log($scope.pagina);
+
                     $scope.paginas.push($scope.pagina);
+
                     $scope.pagina = [];
+                    
+                    console.log("--");
+
+                    console.log($scope.pagina);
+                    
                 }
+                else
+                {
+                    contador++;
+                }
+
+                if (i==$scope.dados.length-1){
+                    $scope.paginas.push($scope.pagina);
+                }
+
+
             }
             
             console.log($scope.paginas);
