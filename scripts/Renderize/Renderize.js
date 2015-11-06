@@ -18,8 +18,8 @@ Renderize.prototype.renderize = function(id,fields) {
             console.log(nome);
             var funcionario = new Funcionario()
             funcionario.nome = nome;
-            $.ajax({type: "POST", url: "http://10.200.2.63:8080/protocolo/REST/service/funcionario",
-             dataType: 'json',data:funcionario,})
+            $.ajax({type: "POST", url: "http://localhost:8080/protocolo/REST/service/funcionario",
+             dataType: 'json',data:JSON.stringify(funcionario)})
                 .success(function (data) {
                     $('.ui.search')
                       .search({
