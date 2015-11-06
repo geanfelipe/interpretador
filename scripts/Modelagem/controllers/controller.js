@@ -100,7 +100,7 @@ modelagemApp.controller("modelagemCtrl",[
                             {id: "11", nome : "Almeida", sexo: "Masculino"},
                             {id: "11", nome : "Almeida", sexo: "Masculino"}];
         
-
+        
         
 
         $scope.exibirPagina = function(index){
@@ -112,9 +112,9 @@ modelagemApp.controller("modelagemCtrl",[
         
         $scope.renderizarTabela= function(){
 
-            $scope.paginaExibida = 0;
+            $scope.exibirPagina(0); // define primeira página da tabela para ser exibida
 
-            $scope.dados = $scope.pessoal;
+            $scope.dados = $scope.pessoal; // será alterado.
 
             $scope.atributos = Object.keys($scope.dados[0]); //cria um array com os atributos dos objetos
 
