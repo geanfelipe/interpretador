@@ -32,11 +32,10 @@ ElementFactory.prototype.buildSegment = function (object) {
 
     var formSegment = {};
     var segments = [];
-    
+
     angular.forEach(object,function(value,key) {
-        
         if(value.show) {
-            segments.push(new ElementFactory().createElement(value));
+            segments.push(new ElementFactory().createElement(value,key.split('.')[0]));
         }
     });
 
@@ -65,7 +64,7 @@ ElementFactory.prototype.buildSegment = function (object) {
 
 /**
  * retorna um node a partir de um objeto JSON passado
- * 
+ * @entity : nome da entidade na qual pertecente o objeto view
  * @object é um json view como o seguinte:
  * "view": {
                 "title": "CPF",
@@ -81,19 +80,18 @@ ElementFactory.prototype.buildSegment = function (object) {
   * ele pertence e o valor um node html que é de acordo com o showAs desse objeto
   * no outro índice é um objeto com tendo como chave ID e o valor o nomedocampo
 **/
-ElementFactory.prototype.createElement = function(object) {
+ElementFactory.prototype.createElement = function(object,entity) {
 
     this.nameInput = object.title;
     this.value = object.title.toUpperCase();
     this.defaultValues = object.defaultValue.split(",");
-    var html = {};
-    /* label do elemento */
-    var data = {'tag':'label','for':'${title}','html':'${title}'};
-    this.label = json2html.transform(object,data);
-    /*retorna o html e o nome do segmento a que ele é pertecente*/
     this.segmentName = object.segment;
     this.response = {};
     this.id = new ElementFactory.prototype.buildContextMenu(object.segment).contextmenu+'_'+object.title.toLowerCase();
+    this.entity = entity;
+    var html = {};
+    var data = {'tag':'label','for':'${title}','html':'${title}'};
+    this.label = json2html.transform(object,data);
 
     if(object.showAs=="select") {
 
@@ -105,7 +103,7 @@ ElementFactory.prototype.createElement = function(object) {
         var input = document.createElement("input");
         input.type = "hidden";
         input.name = object.title;
-        input.id = object.title.toLowerCase();
+        input.id = this.entity+"."+object.title.toLowerCase();
 
         var divText = document.createElement("div");
         divText.className = "text";
@@ -151,7 +149,7 @@ ElementFactory.prototype.createElement = function(object) {
         var input = document.createElement('input');
         input.type = object.showAs || "text";
         input.name = object.title;
-        input.id = object.title.toLowerCase();
+        input.id = this.entity+"."+object.title.toLowerCase();
 
         divPai.appendChild(input);
 
@@ -164,7 +162,7 @@ ElementFactory.prototype.createElement = function(object) {
         var select = document.createElement("select");
         select.className = "ui fluid dropdown";
         select.setAttribute("multiple","");
-        select.id = object.title.toLowerCase().replace(/á|é|í|ó|ú/g, 'u');
+        select.id = this.entity+"."+object.title.toLowerCase().replace(/á|é|í|ó|ú/g, 'u');
 
         var optionOne = document.createElement("option");
         optionOne.value = "maca";
@@ -193,7 +191,7 @@ ElementFactory.prototype.createElement = function(object) {
         input.className = "prompt "+"ng-valid ng-dirty ng-valid-parse ng-touched";
         input.type = "text";
         input.name = object.title;
-        input.id = object.title.toLowerCase();
+        input.id = this.entity+"."+object.title.toLowerCase();
 
         var divResults = document.createElement("div");
         divResults.className = "results";

@@ -26,8 +26,7 @@ modelagemApp.controller("modelagemCtrl",[
         var json = $scope.$parent.json;
       
 
-        $scope.trocarAba = function(secretaria,subordinada)
-        {
+        $scope.trocarAba = function(secretaria,subordinada) {
             $scope.secretariaSelecionada=secretaria+":"+subordinada;
             $scope.aba = $scope.aba==1 ? $scope.aba=2:$scope.aba=1;
             
@@ -38,39 +37,39 @@ modelagemApp.controller("modelagemCtrl",[
               $scope.AbaDeAplicativo=true;
               $("#aba-de-aplicativo").addClass("active");
             }
-
-
         };
         
-        $scope.uri = function(secretaria){
+        $scope.uri = function(secretaria) {
         	var uri = '';
-        	if(secretaria){
+        	if(secretaria) {
         		secretaria = secretaria.split(':')[0].toUpperCase()+' : '+secretaria.split(':')[1].capitalizeFirstLetter();
         		uri = secretaria.replace(':','/');
         	}
-        	
         	return function(formulario) {
-        		if(formulario!=null && formulario!=''){
+        		if(formulario!=null && formulario!='') {
         			uri += ' / '+formulario.capitalizeFirstLetter();
         		}
         		return uri;
         	};
         };
 
-        $scope.selecionarFormulario = function(formulario)
-        {
+        $scope.selecionarFormulario = function(formulario) {
             $scope.formularioSelecionado = formulario;
         };
         
-        $scope.mostrarForms = function(objView)
-        {
-            if($scope.aba==2 && $scope.formularioSelecionado)
-            {
+        $scope.mostrarForms = function(objView) {
+            if($scope.aba==2 && $scope.formularioSelecionado) {
               return true;
-            } 
+            }
             return false;
+        };
 
+        $scope.renderizar = function(key,field) {
+            new Renderize().renderize(key,field);
+        };
 
+        $scope.Models = function(data) {
+            
         };
 
 
@@ -98,9 +97,6 @@ modelagemApp.controller("modelagemCtrl",[
                             {id: "11", nome : "Almeida", sexo: "Masculino"},
                             {id: "11", nome : "Almeida", sexo: "Masculino"}];
         
-        
-        
-
         $scope.exibirPagina = function(index){
             
             $scope.paginaExibida = index;
@@ -178,11 +174,6 @@ modelagemApp.controller("modelagemCtrl",[
             $scope.sortReverse = !$scope.sortReverse;   //inverte o valor do sortReverse
                     
         }
-
-        
-
-
-
 //FIM DO BLOCO DE FUNCOES RELACIONADAS A TABELA
 
 
@@ -212,7 +203,7 @@ modelagemApp.controller("modelagemCtrl",[
                     if(key1!='asDefined'){
                         /* iteração dentro dos atributos das entidades */
                         angular.forEach(value1.attributes,function(value2,key2){
-                            if(key2!='asDefined'){
+                            if(key2!='asDefined') {
                                 objView[key1+'.'+key2+'.'+value2.view.title] = value2.view;
                             }
                         });
@@ -226,16 +217,9 @@ modelagemApp.controller("modelagemCtrl",[
                 console.log($scope.formularioSelecionado);
 
                 getDataForms($scope.formularioSelecionado);
-
+                
                 // sendDatasource.save(funcionario);
-
             }
         });
-      
-        $scope.renderizar = function(key,field)
-        {
-            new Renderize().renderize(key,field);
-        };
-
     }
 ]);
