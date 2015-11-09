@@ -8,10 +8,10 @@ function content(array){
  return response;
 }
 
-function sendtoServer(data) {
+function sendtoServer(data,classUID,semanticFieldUID) {
 	return {
-		classUID:"",
-		semanticFieldUID:"",
+		classUID:classUID,
+		semanticFieldUID:semanticFieldUID,
 		object: data
 	}
 }
