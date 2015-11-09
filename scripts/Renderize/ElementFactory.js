@@ -105,6 +105,7 @@ ElementFactory.prototype.createElement = function(object) {
         var input = document.createElement("input");
         input.type = "hidden";
         input.name = object.title;
+        input.id = object.title.toLowerCase();
 
         var divText = document.createElement("div");
         divText.className = "text";
@@ -150,6 +151,7 @@ ElementFactory.prototype.createElement = function(object) {
         var input = document.createElement('input');
         input.type = object.showAs || "text";
         input.name = object.title;
+        input.id = object.title.toLowerCase();
 
         divPai.appendChild(input);
 
@@ -162,6 +164,7 @@ ElementFactory.prototype.createElement = function(object) {
         var select = document.createElement("select");
         select.className = "ui fluid dropdown";
         select.setAttribute("multiple","");
+        select.id = object.title.toLowerCase().replace(/á|é|í|ó|ú/g, 'u');
 
         var optionOne = document.createElement("option");
         optionOne.value = "maca";
@@ -190,7 +193,7 @@ ElementFactory.prototype.createElement = function(object) {
         input.className = "prompt "+"ng-valid ng-dirty ng-valid-parse ng-touched";
         input.type = "text";
         input.name = object.title;
-        input.setAttribute('formulario','');
+        input.id = object.title.toLowerCase();
 
         var divResults = document.createElement("div");
         divResults.className = "results";

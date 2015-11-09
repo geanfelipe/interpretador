@@ -33,4 +33,4 @@ function Cidadao(){
 	this.documentos = new Array();
 }
 
-Cidadao.prototype = new Pessoa();
+Cidadao.prototype = new PessoaFisica();

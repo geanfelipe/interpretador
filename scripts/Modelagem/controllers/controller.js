@@ -25,8 +25,6 @@ modelagemApp.controller("modelagemCtrl",[
         var lista_de_secretarias= {};
         var json = $scope.$parent.json;
       
-        var teste = sendDatasource.get({user:"geanfelipe"});
-        console.log(teste);
 
         $scope.trocarAba = function(secretaria,subordinada)
         {
@@ -190,14 +188,13 @@ modelagemApp.controller("modelagemCtrl",[
 
         /*retornado o json faca as seguintes operacoes*/
         /*Vide: o promise é a ultima coisa que é carregada no controller*/
-        json.$promise.then(function(data)
-        {
+        json.$promise.then(function(data) {
             $scope.nome = {};
-
             $scope.analyst = data.analyst;
-            
             $scope.secretarias = menuSecretaria(data.groups);
             
+            console.log(data);
+
             $scope.listarFormularioDeSecretaria = function(secretaria)
             {
                 if(secretaria!==null)
@@ -206,7 +203,7 @@ modelagemApp.controller("modelagemCtrl",[
                 }
             };
            
-        $scope.segmentos = function(secretaria,formulario){
+            $scope.segmentos = function(secretaria,formulario) {
                
                 /* objeto contruido com as views de cada entidade do campo semantico selecionado*/
                 var objView = {};
@@ -223,13 +220,22 @@ modelagemApp.controller("modelagemCtrl",[
                 });
                 $scope.campoDeFormulario = new ElementFactory().buildSegment(objView);
             };
+
+            $scope.sendButton = function() {
+                console.log($scope.secretariaSelecionada);
+                console.log($scope.formularioSelecionado);
+
+                getDataForms($scope.formularioSelecionado);
+
+                // sendDatasource.save(funcionario);
+
+            }
         });
       
         $scope.renderizar = function(key,field)
         {
             new Renderize().renderize(key,field);
         };
-
 
     }
 ]);

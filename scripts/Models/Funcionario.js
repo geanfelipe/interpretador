@@ -23,5 +23,3 @@ function Funcionario() {
 	this.lotacaoDePessoals = new Array();
 	this.vinculoExternos = new Array();
 }
-
-Funcionario.prototype = new Pessoa();
