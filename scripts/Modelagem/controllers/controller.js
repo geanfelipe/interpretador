@@ -21,10 +21,9 @@ modelagemApp.controller("modelagemCtrl",[
         $scope.formulario='';
         $scope.formularioSelecionado = false;
         $scope.AbaDeAplicativo=false;
-        
+
         var lista_de_secretarias= {};
         var json = $scope.$parent.json;
-      
 
         $scope.trocarAba = function(secretaria,subordinada) {
             $scope.secretariaSelecionada=secretaria+":"+subordinada;
@@ -68,14 +67,18 @@ modelagemApp.controller("modelagemCtrl",[
             new Renderize().renderize(key,field);
         };
 
-        $scope.Models = function(data) {
-            
+        $scope.sendButton = function() {
+            console.log($scope.secretariaSelecionada);
+            console.log($scope.formularioSelecionado);
+            console.log($scope.Models);
+
+            getDataForms($scope.formularioSelecionado);
+
+            // sendDatasource.save(funcionario);
         };
 
-
-//este bloco simplesmente serve para realizar as funções de ordenar e de listar os valores da tabela.
-
-        //sera alterado posteriormente para o dado recebido do get (service)
+    //este bloco simplesmente serve para realizar as funções de ordenar e de listar os valores da tabela.
+    //sera alterado posteriormente para o dado recebido do get (service)
         $scope.pessoal = [{id: "01", nome : "Joaquim Teixeira", sexo: "Masculino"}, 
                             {id: "03", nome : "Aparecida", sexo: "Feminino"}, 
                             {id: "02", nome : "Raiane Karla Miranda Silva", sexo: "Feminino"},
@@ -176,16 +179,14 @@ modelagemApp.controller("modelagemCtrl",[
         }
 //FIM DO BLOCO DE FUNCOES RELACIONADAS A TABELA
 
-
         /*retornado o json faca as seguintes operacoes*/
         /*Vide: o promise é a ultima coisa que é carregada no controller*/
         json.$promise.then(function(data) {
+
             $scope.nome = {};
             $scope.analyst = data.analyst;
             $scope.secretarias = menuSecretaria(data.groups);
             
-            console.log(data);
-
             $scope.listarFormularioDeSecretaria = function(secretaria)
             {
                 if(secretaria!==null)
@@ -211,15 +212,7 @@ modelagemApp.controller("modelagemCtrl",[
                 });
                 $scope.campoDeFormulario = new ElementFactory().buildSegment(objView);
             };
-
-            $scope.sendButton = function() {
-                console.log($scope.secretariaSelecionada);
-                console.log($scope.formularioSelecionado);
-
-                getDataForms($scope.formularioSelecionado);
-                
-                // sendDatasource.save(funcionario);
-            }
         });
+console.log("FODA-SE");
     }
 ]);
