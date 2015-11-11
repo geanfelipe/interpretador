@@ -20,7 +20,8 @@ modelagemApp.run(function($rootScope,getDataModel){
 							}
 							if(entity.inherits) {
 								var packageInheritance = entity.inherits;
-								
+								var entity_extended = searchEntityForPackage(data,packageInheritance);
+								console.log(entity_extended);
 							}
 							angular.forEach(entity.attributes,function(attributes,attributesName) {
 								if(attributesName!="asDefined") {
@@ -30,9 +31,7 @@ modelagemApp.run(function($rootScope,getDataModel){
 						});
 					});
 				});
-				console.log(Models);
 			});
         }
     )();
-	
 });
