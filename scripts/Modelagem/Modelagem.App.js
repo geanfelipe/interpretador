@@ -7,7 +7,7 @@ modelagemApp.run(function($rootScope,getDataModel){
 
 	(function() {
 			var json = $rootScope.json;
-				
+
 			json.$promise.then(function(data) {
 				$rootScope.Models = Modelador.EntityFactory(data);
 				console.log($rootScope.Models);
