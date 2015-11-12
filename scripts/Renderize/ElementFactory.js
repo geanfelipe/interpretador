@@ -53,7 +53,6 @@ ElementFactory.prototype.buildSegment = function (object) {
             }else {
               formSegment[key]['fields'].push(valor);
             }
-            
             var contextmenu = new ElementFactory().buildContextMenu(key);
 
             formSegment[key]['contextmenu']=contextmenu.toLowerCase();

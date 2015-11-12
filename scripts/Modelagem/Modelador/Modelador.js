@@ -1,4 +1,5 @@
 var Modelador = {
+
     SearchEntityForPackage: function(data,package_name) {
     	var continuar = true;
     	var response=[];
@@ -10,7 +11,6 @@ var Modelador = {
     					angular.forEach(entityArray,function(entity,entityName) {
                             if(continuar) {
                             	if(package_name==entity.package+'.'+entityName) {
-                                	// console.log('passou');
                                 	continuar=false; 
                                 	if(entity.inherits) {
                                 		var recursive_called = Modelador.SearchEntityForPackage(data,entity.inherits);
@@ -85,6 +85,5 @@ var Modelador = {
             }
         });
         return response;
-    },
-
+    }
 }
