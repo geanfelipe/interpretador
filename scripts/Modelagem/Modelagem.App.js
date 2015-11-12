@@ -10,7 +10,7 @@ modelagemApp.run(function($rootScope,getDataModel){
 
 			json.$promise.then(function(data) {
 				$rootScope.Models = Modelador.EntityFactory(data);
-				View.Construct(data);
+				console.log($rootScope.Models);
 			});
         }
     )();
