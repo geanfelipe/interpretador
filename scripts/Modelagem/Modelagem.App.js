@@ -9,7 +9,8 @@ modelagemApp.run(function($rootScope,getDataModel){
 			var json = $rootScope.json;
 				
 			json.$promise.then(function(data) {
-				$rootScope.Models = Modelador.EntityInheritance(data);
+				$rootScope.Models = Modelador.EntityFactory(data);
+				console.log($rootScope.Models);
 			});
         }
     )();
