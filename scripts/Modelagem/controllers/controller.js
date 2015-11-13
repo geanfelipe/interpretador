@@ -72,7 +72,7 @@ modelagemApp.controller("modelagemCtrl",[
             console.log($scope.formularioSelecionado);
             console.log($scope.Models);
 
-            getDataForms($scope.formularioSelecionado);
+            // getDataForms($scope.formularioSelecionado);
 
             // sendDatasource.save(funcionario);
         };

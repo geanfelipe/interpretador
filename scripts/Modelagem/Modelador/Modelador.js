@@ -48,9 +48,8 @@ var Modelador = {
                         if(attributesName!="asDefined") {
                             Models[groupName][entityName][attributesName] = attributes.view.defaultValue;
                             var attributesArray = Object.keys(data.groups[groupName][formsName][entityName].attributes);
-                            console.log(attributesName,attributes.view.title.toLowerCase())
+                            
                             if(attributesName==attributes.view.title.toLowerCase()) {
-                                // console.log("entrou");
                                 Models[groupName][entityName][attributesName].__proto__.view = function() {
                                     this.response =  data.groups[groupName][formsName][entityName].attributes[attributesName].view;
                                     return this.response;

@@ -106,6 +106,7 @@ ElementFactory.prototype.createElement = function(object,entity) {
 
         var divText = document.createElement("div");
         divText.className = "text";
+        divText.id=object.title;
 
         var icon = document.createElement("i");
         icon.className = "dropdown icon";
