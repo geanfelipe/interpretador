@@ -1,6 +1,6 @@
 var Modelador = {
-
-    SearchEntityForPackage: function(data,package_name) {
+    Models: {},
+    searchEntityForPackage: function(data,package_name) {
     	var continuar = true;
     	var response=[];
 
@@ -13,7 +13,7 @@ var Modelador = {
                             	if(package_name==entity.package+'.'+entityName) {
                                 	continuar=false; 
                                 	if(entity.inherits) {
-                                		var recursive_called = Modelador.SearchEntityForPackage(data,entity.inherits);
+                                		var recursive_called = Modelador.searchEntityForPackage(data,entity.inherits);
                                 		response.push(recursive_called);
                                 	}
                                 	response.push(entity);
@@ -26,19 +26,20 @@ var Modelador = {
     	});
     	return response;
     },
-    EntityFactory: function(data) {
+    entityFactory: function(data) {
         var Models = {};
         angular.forEach(data.groups,function(objectGroup,groupName) {
             angular.forEach(objectGroup,function(entityArray,formsName) {
                 Models[groupName] = {};
                 angular.forEach(entityArray,function(entity,entityName) {
                     if(entityName!="asDefined") {
-                        Models[groupName][entityName] = {}
+                        Models[groupName][entityName] = {};
+                        console.log(entityName);
                     }
                     if(entity.inherits) {
                         var packageInheritance = entity.inherits;
-                        var entity_extended = Modelador.SearchEntityForPackage(data,packageInheritance);
-                        var inheritance = Modelador.EntityInheritance(entity_extended);
+                        var entity_extended = Modelador.searchEntityForPackage(data,packageInheritance);
+                        var inheritance = Modelador.entityInheritance(entity_extended);
 
                         angular.forEach(inheritance,function(attributeValue,attributeName){
                             Models[groupName][entityName][attributeName] = attributeValue;
@@ -49,12 +50,7 @@ var Modelador = {
                             Models[groupName][entityName][attributesName] = attributes.view.defaultValue;
                             var attributesArray = Object.keys(data.groups[groupName][formsName][entityName].attributes);
                             
-                            if(attributesName==attributes.view.title.toLowerCase()) {
-                                Models[groupName][entityName][attributesName].__proto__.view = function() {
-                                    this.response =  data.groups[groupName][formsName][entityName].attributes[attributesName].view;
-                                    return this.response;
-                                }
-                            }
+                            ViewFactory.setView(attributesName,attributes.view);
                         }
                     });
                     angular.forEach(entity.associations,function(association,association_key) {
@@ -70,9 +66,10 @@ var Modelador = {
                 });
             });
         });
-        return Models;
+        this.Models = Models;
+        return this.Models;
     },
-    EntityInheritance: function(entity_extended) {
+    entityInheritance: function(entity_extended) {
         var response = {};
 
         angular.forEach(entity_extended,function(value,key){
@@ -93,5 +90,5 @@ var Modelador = {
             }
         });
         return response;
-    }
+    },
 }

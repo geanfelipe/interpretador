@@ -5,7 +5,7 @@ function getArea(){
   return area;
 }
 
-modelagemApp.controller("modelagemCtrl",[
+modelagemApp.controller("ModelagemController",[
     "$scope",
     "getDataModel",
     "sendDatasource",
