@@ -64,6 +64,7 @@ modelagemApp.controller("ModelagemController",[
         };
 
         $scope.renderizar = function(key,field) {
+            console.log(key,field);
             new Renderize().renderize(key,field);
         };
 
@@ -72,9 +73,6 @@ modelagemApp.controller("ModelagemController",[
             console.log($scope.formularioSelecionado);
             console.log($scope.Models);
 
-            // getDataForms($scope.formularioSelecionado);
-
-            // sendDatasource.save(funcionario);
         };
 
     //este bloco simplesmente serve para realizar as funções de ordenar e de listar os valores da tabela.
@@ -210,6 +208,7 @@ modelagemApp.controller("ModelagemController",[
                         });
                     }
                 });
+                console.log(objView);
                 $scope.campoDeFormulario = new ElementFactory().buildSegment(objView);
             };
         });

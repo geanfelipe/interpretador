@@ -23,9 +23,9 @@
             "schema": "pessoal",
             "table": "pessoa",
             "inherits": {
-              "schema":"",
-              "table":"",
-              "pk":""
+              "schema": "",
+              "table": "",
+              "pk": ""
             }
           },
           "associations": {
@@ -60,7 +60,7 @@
             "nome": {
               "asDefined": "",
               "uid": "0.0.1",
-              "name":"",
+              "name": "",
               "type": "String",
               "data": {
                 "name": "",
@@ -99,9 +99,9 @@
             "schema": "pessoal",
             "table": "pessoa_fisica",
             "inherits": {
-              "schema":"",
-              "table":"",
-              "pk":""
+              "schema": "",
+              "table": "",
+              "pk": ""
             }
           },
           "associations": {
@@ -112,7 +112,7 @@
             "sexo": {
               "asDefined": "",
               "uid": "1.0.0",
-              "name":"",
+              "name": "",
               "type": "Boolean",
               "data": {
                 "name": "",
@@ -154,20 +154,20 @@
             "schema": "pessoal",
             "table": "cidadao",
             "inherits": {
-              "schema":"",
-              "table":"",
-              "pk":""
+              "schema": "",
+              "table": "",
+              "pk": ""
             }
           },
           "associations": {
             "asDefined": ""
-           },
+          },
           "attributes": {
             "asDefined": "",
             "cpf": {
               "asDefined": "",
               "uid": "2.0.0",
-              "name":"",
+              "name": "",
               "type": "String",
               "data": {
                 "name": "",
@@ -206,9 +206,9 @@
             "schema": "pessoal",
             "table": "tipo_de_contato",
             "inherits": {
-              "schema":"",
-              "table":"",
-              "pk":""
+              "schema": "",
+              "table": "",
+              "pk": ""
             }
           },
           "associations": {
@@ -219,7 +219,7 @@
             "id": {
               "asDefined": "",
               "uid": "3.0.0",
-              "name":"",
+              "name": "",
               "type": "Long",
               "data": {
                 "name": "",
@@ -243,7 +243,7 @@
             "tipo": {
               "asDefined": "",
               "uid": "3.0.1",
-              "name":"",
+              "name": "",
               "type": "String",
               "data": {
                 "name": "",
@@ -282,9 +282,9 @@
             "schema": "pessoal",
             "table": "contato",
             "inherits": {
-              "schema":"",
-              "table":"",
-              "pk":""
+              "schema": "",
+              "table": "",
+              "pk": ""
             }
           },
           "associations": {
@@ -296,7 +296,7 @@
               "references": "br.gov.rn.parnamirim.datasource.domain.pessoal.Cidadao[contatos]",
               "view": {},
               "data": {
-                "name":"cidadao_id",
+                "name": "cidadao_id",
                 "references": {
                   "schema": "pessoal",
                   "table": "cidadao",
@@ -316,7 +316,7 @@
               "references": "br.gov.rn.parnamirim.datasource.domain.pessoal.TipoDeContato[contatos]",
               "view": {},
               "data": {
-                "name":"tipo_de_contato_id",
+                "name": "tipo_de_contato_id",
                 "references": {
                   "schema": "pessoal",
                   "table": "tipo_de_contato",
@@ -335,7 +335,7 @@
             "id": {
               "asDefined": "",
               "uid": "4.0.0",
-              "name":"",
+              "name": "",
               "type": "Long",
               "data": {
                 "name": "",
@@ -359,7 +359,7 @@
             "contato": {
               "asDefined": "",
               "uid": "4.0.1",
-              "name":"",
+              "name": "",
               "type": "String",
               "data": {
                 "name": "",
@@ -401,20 +401,20 @@
             "schema": "pessoal",
             "table": "cidadao",
             "inherits": {
-              "schema":"",
-              "table":"",
-              "pk":""
+              "schema": "",
+              "table": "",
+              "pk": ""
             }
           },
           "associations": {
             "asDefined": ""
-           },
+          },
           "attributes": {
             "asDefined": "sesad:almoxarifado.cidadao.Cidadao",
             "cpf": {
               "asDefined": "sesad:almoxarifado.cidadao.Cidadao",
               "uid": "",
-              "name":"",
+              "name": "",
               "type": "",
               "data": {
                 "name": "",
@@ -453,9 +453,9 @@
             "schema": "",
             "table": "",
             "inherits": {
-              "schema":"",
-              "table":"",
-              "pk":""
+              "schema": "",
+              "table": "",
+              "pk": ""
             }
           },
           "associations": {
@@ -466,7 +466,7 @@
             "id": {
               "asDefined": "sesad:almoxarifado.cidadao.TipoDeContato",
               "uid": "",
-              "name":"",
+              "name": "",
               "type": "",
               "data": {
                 "name": "",
@@ -490,7 +490,7 @@
             "tipo": {
               "asDefined": "sesad:almoxarifado.cidadao.TipoDeContato",
               "uid": "",
-              "name":"",
+              "name": "",
               "type": "",
               "data": {
                 "name": "",
@@ -529,9 +529,9 @@
             "schema": "",
             "table": "",
             "inherits": {
-              "schema":"",
-              "table":"",
-              "pk":""
+              "schema": "",
+              "table": "",
+              "pk": ""
             }
           },
           "associations": {
@@ -543,7 +543,7 @@
               "references": "",
               "view": {},
               "data": {
-                "name":"cidadao_id",
+                "name": "cidadao_id",
                 "references": {
                   "schema": "",
                   "table": "",
@@ -563,7 +563,7 @@
               "references": "",
               "view": {},
               "data": {
-                "name":"",
+                "name": "",
                 "references": {
                   "schema": "",
                   "table": "",
@@ -582,7 +582,7 @@
             "id": {
               "asDefined": "sesad:almoxarifado.cidadao.Contato",
               "uid": "4.0.6",
-              "name":"",
+              "name": "",
               "type": "",
               "data": {
                 "name": "",
@@ -606,7 +606,7 @@
             "contato": {
               "asDefined": "sesad:almoxarifado.cidadao.Contato",
               "uid": "",
-              "name":"",
+              "name": "",
               "type": "",
               "data": {
                 "name": "",
@@ -630,7 +630,7 @@
             "uso": {
               "asDefined": "",
               "uid": "4.0.2",
-              "name":"",
+              "name": "",
               "type": "String",
               "data": {
                 "name": "",
@@ -669,9 +669,9 @@
             "schema": "pessoal",
             "table": "funcionario",
             "inherits": {
-              "schema":"",
-              "table":"",
-              "pk":""
+              "schema": "",
+              "table": "",
+              "pk": ""
             }
           },
           "associations": {
@@ -683,7 +683,7 @@
               "references": "br.gov.rn.parnamirim.datasource.domain.pessoal.Cidadao[funcionarios]",
               "view": {},
               "data": {
-                "name":"cidadao_id",
+                "name": "cidadao_id",
                 "references": {
                   "schema": "pessoal",
                   "table": "cidadao",
@@ -702,7 +702,7 @@
             "id": {
               "asDefined": "",
               "uid": "5.0.0",
-              "name":"",
+              "name": "",
               "type": "Long",
               "data": {
                 "name": "",
@@ -726,7 +726,7 @@
             "matricula": {
               "asDefined": "",
               "uid": "5.0.1",
-              "name":"",
+              "name": "",
               "type": "String",
               "data": {
                 "name": "",
@@ -750,7 +750,7 @@
             "nct": {
               "asDefined": "",
               "uid": "5.0.2",
-              "name":"",
+              "name": "",
               "type": "String",
               "data": {
                 "name": "",
