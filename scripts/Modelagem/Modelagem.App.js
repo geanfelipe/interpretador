@@ -9,24 +9,26 @@ modelagemApp.run(function($rootScope,getDataModel){
 			var json = $rootScope.json;
 
 			json.$promise.then(function(data) {
-			$rootScope.Models = Modelador.entityFactory(data);
-
-				$rootScope.formsFacotry = function() {
-               
-	                var objView = {};
-	                /* iteração dentro das entidades de um campo semantico */
-	                angular.forEach(data.groups[secretaria][formulario],function(value1,key1) {
-	                    if(key1!='asDefined'){
-	                        /* iteração dentro dos atributos das entidades */
-	                        angular.forEach(value1.attributes,function(value2,key2){
-	                            if(key2!='asDefined') {
-	                                objView[key1+'.'+key2+'.'+value2.view.title] = value2.view;
-	                            }
-	                        });
-	                    }
+				$rootScope.Models = Modelador.entityFactory(data);
+				var objView = {};
+                /* iteração dentro das entidades de um campo semantico */
+                angular.forEach($rootScope.Models,function(groupsValue, groupsName) {
+	                angular.forEach(groupsValue,function(entitysObject, entitysName) {
+	                	angular.forEach(entitysObject,function(attributesObject, attributesName){
+	                		if(attributesObject.constructor===Object) {
+	                			angular.forEach(attributesObject,function(value,key) {
+	                				objView[entitysName+'.'+attributesName+'.'+ViewFactory.getView(key).title] = ViewFactory.getView(key);
+	                			});
+	                		}else {
+	                			objView[entitysName+'.'+attributesName+'.'+ViewFactory.getView(attributesName).title] = ViewFactory.getView(attributesName);
+	                		}
+	                	});
 	                });
-	                $scope.campoDeFormulario = new ElementFactory().buildSegment(objView);
-            	};
+	            });
+	            $rootScope.campoDeFormulario = new ElementFactory().buildSegment(objView);
+	            console.log(objView);
+	            console.log($rootScope.campoDeFormulario);
+	            console.log($rootScope.Models);
 			});
         }
     )();

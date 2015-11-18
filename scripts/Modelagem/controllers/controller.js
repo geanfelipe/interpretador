@@ -64,7 +64,6 @@ modelagemApp.controller("ModelagemController",[
         };
 
         $scope.renderizar = function(key,field) {
-            console.log(key,field);
             new Renderize().renderize(key,field);
         };
 
@@ -208,7 +207,6 @@ modelagemApp.controller("ModelagemController",[
                         });
                     }
                 });
-                console.log(objView);
                 $scope.campoDeFormulario = new ElementFactory().buildSegment(objView);
             };
         });
