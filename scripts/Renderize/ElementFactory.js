@@ -23,35 +23,34 @@
 * 
 **/
 
-/*FUNCAO MESTRA*/
+/*FUNCAO PICA DAS GALÁXIAS*/
 function ElementFactory() {
     
 }
 
-ElementFactory.prototype.buildSegment = function (object) {
+ElementFactory.prototype.buildSegment = function (data) {
 
     var formSegment = {};
     var segments = [];
 
-    angular.forEach(object,function(value,key) {
-        if(value.show) {
-            segments.push(new ElementFactory().createElement(value,key.split('.')[0]));
-        }
+    angular.forEach(data,function(value,key) {
+        segments.push(new ElementFactory().createElement(value,key.split('.')[0]));
     });
 
     for(var i in segments) {
-
         /*procurando os segmentos do formulário selecionado*/
         angular.forEach(segments[i],function(value,key) {
             var valor = {};
             valor[value[1]] = value[0];
+            var name_object = Object.keys(valor)[0];
 
             /*adiciona o nome do segmento e um array com os DOM's que lhe pertece*/
             if(Object.keys(formSegment).indexOf(key)==-1) {
                 formSegment[key]= {};
-                formSegment[key]['fields']= [valor];
+                formSegment[key]['fields'] = {};
+                formSegment[key]['fields'][name_object] = valor[name_object];
             }else {
-              formSegment[key]['fields'].push(valor);
+              formSegment[key]['fields'][name_object] = valor[name_object];
             }
             var contextmenu = new ElementFactory().buildContextMenu(key);
 
@@ -80,13 +79,13 @@ ElementFactory.prototype.buildSegment = function (object) {
   * no outro índice é um objeto com tendo como chave ID e o valor o nomedocampo
 **/
 ElementFactory.prototype.createElement = function(object,entity) {
-
+    
     this.nameInput = object.title;
     this.value = object.title.toUpperCase();
     this.defaultValues = object.defaultValue.split(",");
     this.segmentName = object.segment;
     this.response = {};
-    this.id = new ElementFactory.prototype.buildContextMenu(object.segment).contextmenu+'_'+object.title.toLowerCase();
+    this.id = entity+'.'+(object.title=="--" ? "id" : object.title.toLowerCase());
     this.entity = entity;
     var html = {};
     var data = {'tag':'label','for':'${title}','html':'${title}'};
@@ -147,9 +146,9 @@ ElementFactory.prototype.createElement = function(object,entity) {
         var divPai = document.createElement('div');
 
         var input = document.createElement('input');
-        input.type = object.showAs || "text";
-        input.name = object.title;
-        input.id = this.entity+"."+object.title.toLowerCase();
+        input.type = object.show ? object.showAs : "hidden";
+        input.name = object.title=="--" ? "id" : object.title;
+        input.id = this.entity+"."+(object.title=="--" ? "id" : object.title.toLowerCase());
 
         divPai.appendChild(input);
 
@@ -208,7 +207,6 @@ ElementFactory.prototype.createElement = function(object,entity) {
     }
 
     this.response[this.segmentName]=[this.label + html,this.id];
-
     return this.response;
 };
 
