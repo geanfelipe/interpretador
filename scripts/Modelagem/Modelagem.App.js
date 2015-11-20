@@ -1,6 +1,6 @@
 var modelagemApp = angular.module('Modelagem',[]);
 
-modelagemApp.run(function($rootScope,getDataModel){
+modelagemApp.run(function($rootScope,getDataModel,$q){
 
 	$rootScope.json = angular.fromJson(getDataModel.get());
 	$rootScope.Models = {};
@@ -36,16 +36,16 @@ modelagemApp.run(function($rootScope,getDataModel){
 		                });
 	                });
 	            });
-				console.log($rootScope.Models);
-	            console.log(objView);
+				
 				$rootScope.campoDeFormulario = {};
 	            angular.forEach(objView,function(entitysObject, formsName){
 	            	$rootScope.campoDeFormulario[formsName] = new ElementFactory().buildSegment(entitysObject)
 	            });
 
-				
-				// console.log($rootScope.campoDeFormulario);
-				// console.log(ViewFactory.view);
+				console.log($rootScope.campoDeFormulario);
+				console.log($rootScope.Models);
+	            console.log(objView);
+
 			});
         }
     )();

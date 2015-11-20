@@ -7,11 +7,10 @@ modelagemApp
 		scope : true,
 		link:{
    		 	pre:function($scope, $elem, $attrs) {
-	   		 	$scope.$root.$watch(function(newer,old){
-	            	$scope.dado = newer.campoDeFormulario;
-	       		});
+
    		 	},
    		 	post: function($scope, $elem, $attrs) {
+   		 		console.log($scope.$parent.formularioSelecionado);
        		}
  		},
  		controller: function($scope, $element, $attrs) {
@@ -20,7 +19,7 @@ modelagemApp
             	new Renderize().renderize(key,field);
         	};
  		},
-		template:'<div id="{{value.contextmenu}}" class="sessao-de-dados" ng-repeat="(key,value) in dado | orderBy "key" ">{{formulariosDeSecretaria}}</div>',
+		template:'<button>click</button>',
 	}
 })	
 ;

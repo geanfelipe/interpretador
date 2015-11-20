@@ -25,6 +25,8 @@ modelagemApp.controller("ModelagemController",[
         var lista_de_secretarias= {};
         var json = $scope.$parent.json;
 
+        console.log("controller");
+
         $scope.trocarAba = function(secretaria,subordinada) {
             $scope.secretariaSelecionada=secretaria+":"+subordinada;
             $scope.aba = $scope.aba==1 ? $scope.aba=2:$scope.aba=1;
