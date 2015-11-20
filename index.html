@@ -141,49 +141,20 @@
                         -->
                         <div ng-show="mostrarForms()">
                             <!-- mostrada apenas quando o segmentView for igual a secretaria atual, segmentView é alterado aproximadamente na linha 105 desse código (está comentado)-->
-                         
+                            
                             <div id="area-formulario" ng-show="area==1">
-                                <div class="ui celled grid" id="area-de-cadastro">
-                                    <div class="row">
-                                        <div class="three wide column divMenuDados">
-                                            <div class="ui segiment">
-                                                <div id="grupo-de-dados" class="ui vertical pointing menu">
-                                                    
-                                                    <!-- OS SEGMENTOS COMEÇAM AQUI-->
-
-                                                    <segmentos></segmentos>
-                                                    <!-- OS SEGMENTOS TERMINAM AQUI -->
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <!-- BLOCO DE FORMULARIOS COMECAM AQUI -->
-                                        
-                                        <div class="twelve wide column">
-                                            <!-- <div id="{{value.contextmenu}}" class="sessao-de-dados" ng-repeat="(key,value) in campoDeFormulario | orderBy : 'key'">
-                                                {{renderizar(key,value)}} -->
-                                                <formulario></formulario>
-                                                
-                                            <!-- </div> -->
-                                        </div>
-                                        
-                                        <!-- BLOCO DE  E FORMULARIOS TERMINAM AQUI -->
-
-                                    </div>
-                                </div>
+                                <!-- FORMULARIOS COMECAM AQUI -->
+                                    <formulario></formulario>
+                                <!-- FORMULARIOS TERMINAM AQUI -->
 
                                 <!-- BUTOES DE CRUD -->
                                 <div id="area-de-operacoes-crud" class="row">
             						<div class="one wide column">
 
-            							<!-- <div class="large ui buttons" style="float: left;">
-            								<button class="ui button"><i class="search icon"></i>LOCALIZAR</button>
-            								<button class="ui button" ng-click="sendButton()"><i class="plus icon"></i>ADICIONAR</button>
-            							</div> -->
-
-                                        <button-send></button-send>
-
+            							<div class="large ui buttons" style="float: left;">
+                                            <button-send form=formularioSelecionado secretaria=secretariaSelecionada></button-send>                                            
+                                            <button-localize form=formularioSelecionado></button-send>                                            
+                                        </div>
                 						<button-clean></button-clean>
 
             							<div style="float:left; margin-left: 15px;margin-top:5px">

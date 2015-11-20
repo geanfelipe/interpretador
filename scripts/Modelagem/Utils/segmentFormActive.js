@@ -1,6 +1,6 @@
 
 function segmentFormActive() {
-	
+
 	$('#grupo-de-dados>a.item').removeClass('active');
 	$('.sessao-de-dados').addClass('hidden');
   

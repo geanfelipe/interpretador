@@ -4,41 +4,36 @@ modelagemApp
 	return {
 		restrict: 'E',
 		replace: true,
-		scope:{},
-		template: '<div class="large ui buttons" style="float: left;">'+
-            			'<button class="ui button"><i class="search icon"></i>LOCALIZAR</button>'+
-            			'<button class="ui button" ><i class="plus icon"></i>ADICIONAR</button>'+
-            		'</div>',
+		scope:{
+            form:"=",
+            secretaria: "=",
+        },
+		template: '<button class="ui button" ><i class="plus icon"></i>ADICIONAR</button>',
         link: function($scope,$elem,$attrs) {
         	$elem.bind("click",function() {
-        		var object = {};
-        		var inputs = angular.element('input[name]');
-        		var divs = angular.element('div.text[id]');
-        		var multiplesAnsw = angular.element('a[data-value]');
+        		var entitys = $scope.$root.Models[$scope.secretaria][$scope.form];
+                angular.forEach(entitys, function(entitysObject,entitysName) {
+                    angular.forEach(entitysObject,function(attributesValue,attributesName) {
+                        var value = "";
 
-        		if(multiplesAnsw.length){ object["uso"]=[]; }
+                        if(attributesValue.constructor===Object) {
+                            angular.forEach(attributesValue,function(subAttributesValue,subAtributesName) {
+                                value = angular.element("form#"+$scope.form).find(angular.element("input#"+entitysName+"\\."+subAtributesName)).val();
+                                console.log(entitysName,attributesName ,value);
+                            });
+                        }else {
+                            value = angular.element("form#"+$scope.form).find(angular.element("input#"+entitysName+"\\."+attributesName)).val();
+                            console.log(entitysName,attributesName ,value);
+                        }
+                        
+                    });
+                });
 
-        		for (var i = inputs.length - 1; i >= 0; i--) {
-        			if(inputs[i]!==undefined) {
-        				object[inputs[i].name] = inputs[i].value;
-        				inputs[i].value = "";
-        			}
-        			if(divs[i]!==undefined) {
-        				object[divs[i].id] = divs[i].textContent;	
-        				divs[i].textContent = "";
-        			}
-        			if(multiplesAnsw[i]!==undefined) {
-        				object["uso"].push(multiplesAnsw[i].textContent);
-        				multiplesAnsw[i].textContent = "";
-        			}
-        		};
-        		console.log(object);
-
-        		sendDatasource.save({
-        			"classUID":"br.gov.rn.parnamirim.datasource.domain.pessoal",
-					"semanticFieldUID":$scope.$parent.formularioSelecionado,
-					"object": object
-        		});
+     //    		sendDatasource.save({
+     //    			"classUID":"br.gov.rn.parnamirim.datasource.domain.pessoal",
+					// "semanticFieldUID":$scope.$parent.formularioSelecionado,
+					// "object": object
+     //    		});
         	});
         },
 	}

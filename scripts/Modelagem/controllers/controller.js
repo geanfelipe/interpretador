@@ -186,11 +186,15 @@ modelagemApp.controller("ModelagemController",[
             $scope.analyst = data.analyst;
             $scope.secretarias = menuSecretaria(data.groups);
             
-            $scope.listarFormularioDeSecretaria = function(secretaria)
-            {
-                if(secretaria!==null)
-                {
-                    return Object.keys(data.groups[secretaria]);
+            $scope.listarFormularioDeSecretaria = function(secretaria) {
+                var response = [];
+                if(secretaria!==null) {
+                    for (var i in Object.keys(data.groups[secretaria])) {
+                        if(Object.keys(data.groups[secretaria])[i]!="pessoal") {
+                            response.push(Object.keys(data.groups[secretaria])[i]);
+                        }
+                    }
+                    return response;
                 }
             };
            

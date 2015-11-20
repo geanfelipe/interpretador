@@ -80,6 +80,7 @@ ElementFactory.prototype.buildSegment = function (data) {
   * no outro índice é um objeto com tendo como chave ID e o valor o nomedocampo
 **/
 ElementFactory.prototype.createElement = function(object,entity) {
+    console.log(object,entity);
 
     this.nameInput = object.title;
     this.value = object.title.toUpperCase();
