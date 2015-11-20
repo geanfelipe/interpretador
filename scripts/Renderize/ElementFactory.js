@@ -50,8 +50,9 @@ ElementFactory.prototype.buildSegment = function (data) {
                 formSegment[key]['fields'] = {};
                 formSegment[key]['fields'][name_object] = valor[name_object];
             }else {
-              formSegment[key]['fields'][name_object] = valor[name_object];
+                formSegment[key]['fields'][name_object] = valor[name_object];
             }
+
             var contextmenu = new ElementFactory().buildContextMenu(key);
 
             formSegment[key]['contextmenu']=contextmenu.toLowerCase();
@@ -79,7 +80,7 @@ ElementFactory.prototype.buildSegment = function (data) {
   * no outro índice é um objeto com tendo como chave ID e o valor o nomedocampo
 **/
 ElementFactory.prototype.createElement = function(object,entity) {
-    
+
     this.nameInput = object.title;
     this.value = object.title.toUpperCase();
     this.defaultValues = object.defaultValue.split(",");

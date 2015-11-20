@@ -14,30 +14,38 @@ modelagemApp.run(function($rootScope,getDataModel){
 
                 /* iteração dentro das entidades de um campo semantico */
                 angular.forEach($rootScope.Models,function(groupsValue, groupsName) {
-	                angular.forEach(groupsValue,function(entitysObject, entitysName) {
-	                	angular.forEach(entitysObject,function(attributesObject, attributesName){
-	                		if(attributesObject.constructor!==Object) {
-	                			if(entitysName!=="Pessoa" && entitysName!=="PessoaFisica") {
-	                				angular.forEach(data.groups[groupsName], function(formsValue,formsName) {
-	                					if(Object.keys(formsValue).indexOf(entitysName)!=-1) {
-	                						objView[formsName] = {};
-	                						objView[formsName][entitysName+'.'+attributesName] = ViewFactory.getView(attributesName);
-	                						console.log("entidade "+entitysName+" esta no form "+formsName);
-	                					}else {
-	                						console.log("entidade "+entitysName+" NAO esta no form "+formsName);
-	                					}
-	                				});
-	                				// objView[entitysName+'.'+attributesName] = ViewFactory.getView(attributesName);
-	                			}
-	                		}
-	                	});
+	                angular.forEach(groupsValue,function(formsObject, formsName) {
+	                	objView[formsName] = {};
+		                angular.forEach(formsObject,function(entitysObject,entitysName) {
+		                	angular.forEach(entitysObject,function(attributesObject, attributesName) {
+		                		if(attributesObject.constructor!==Object) {
+		                			if(entitysName!=="Pessoa" && entitysName!=="PessoaFisica") {
+		                				/*angular.forEach(data.groups[groupsName], function(formsValue,formsName) {
+		                					if(Object.keys(formsValue).indexOf(entitysName)!=-1) {
+		                						objView[formsName] = {};
+		                						objView[formsName][entitysName+'.'+attributesName] = ViewFactory.getView(attributesName);
+		                						console.log("entidade "+entitysName+" esta no form "+formsName);
+		                					}else {
+		                						console.log("entidade "+entitysName+" NAO esta no form "+formsName);
+		                					}
+		                				});*/
+		                				objView[formsName][entitysName+'.'+attributesName] = ViewFactory.getView(entitysName+"."+attributesName);
+		                			}
+		                		}
+		                	});
+		                });
 	                });
 	            });
-				console.log(objView);
-	            $rootScope.campoDeFormulario = new ElementFactory().buildSegment(objView);
-	            console.log($rootScope.Models);
-	            console.log($rootScope.campoDeFormulario);
-	            // Formulario.objectForm(data);
+				console.log($rootScope.Models);
+	            console.log(objView);
+				$rootScope.campoDeFormulario = {};
+	            angular.forEach(objView,function(entitysObject, formsName){
+	            	$rootScope.campoDeFormulario[formsName] = new ElementFactory().buildSegment(entitysObject)
+	            });
+
+				
+				// console.log($rootScope.campoDeFormulario);
+				// console.log(ViewFactory.view);
 			});
         }
     )();

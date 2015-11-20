@@ -13,7 +13,6 @@ var Formulario = {
 								if(view.show) {
 									var attribute_view = {};
 									attribute_view[attribute_name] = view;
-
 									objectForm[groupsName][view.segment] = {};
 									objectForm[groupsName][view.segment][entity_name] = attribute_view;
 								}
