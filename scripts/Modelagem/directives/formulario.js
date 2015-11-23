@@ -22,11 +22,13 @@ modelagemApp
        	}
  		},
  		controller: function($scope, $element, $attrs) {
-      
-      $scope.selecionarSegmento = function(segment_name) {
+      $scope.segment_active = 0;
+
+      $scope.selecionarSegmento = function(segment_name,segment_$index) {
           $scope.segmentoSelecionado = segment_name;
           angular.element(".sessao-de-dados").hide();
           angular.element(".sessao-de-dados#"+$scope.segmentoSelecionado).show();
+          $scope.segment_active = segment_$index;
       };
 
  			$scope.renderizar = function(key,field) {

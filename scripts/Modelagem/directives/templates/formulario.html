@@ -4,9 +4,9 @@
 	        <div class="three wide column divMenuDados">
 	            <div class="ui segiment">
 	                <div id="grupo-de-dados" class="ui vertical pointing menu">
-	                                                    
+	                    <h3>Ola {{segment_active}}</h3>
 	                    <!-- OS SEGMENTOS COMEÇAM AQUI-->
-	             		<a ng-repeat="(name,segment_objects) in segments" contextmenu ={{segment_objects["contextmenu"]}} class="item" ng-class="{active: $index==0 }" ng-click='selecionarSegmento(segment_objects["contextmenu"]);'>{{name}}</a> 
+	             		<a ng-repeat="(name,segment_objects) in segments" contextmenu ={{segment_objects["contextmenu"]}} class="item" ng-class="{active: $index== segment_active}" ng-click='selecionarSegmento(segment_objects["contextmenu"],$index);'>{{name}}</a> 
 	                    <!-- OS SEGMENTOS TERMINAM AQUI -->
 					</div>
 	            </div>
@@ -14,7 +14,7 @@
 	                                        
 	        <!-- BLOCO DE FORMULARIOS COMECAM AQUI -->
 	        <div class="twelve wide column">
-	            <div ng-repeat="(segment_name,segment_objects) in segments" class="sessao-de-dados" id='{{segment_objects["contextmenu"]}}' ng-class="{hidden: $index!=0 }">
+	            <div ng-repeat="(segment_name,segment_objects) in segments" class="sessao-de-dados" id='{{segment_objects["contextmenu"]}}' ng-class="{hidden: $index !=segment_active }">
 					<div class="ui ribbon label" style="margin-bottom: 15px;">
 						Sessão de Dados: {{segment_name}}
 					</div>
