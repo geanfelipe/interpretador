@@ -41,7 +41,7 @@ modelagemApp.run(function($rootScope,getDataModel,$q){
 	            angular.forEach(objView,function(entitysObject, formsName){
 	            	$rootScope.campoDeFormulario[formsName] = new ElementFactory().buildSegment(entitysObject)
 	            });
-
+	            console.log(objView);
 			});
         }
     )();

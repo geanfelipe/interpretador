@@ -157,8 +157,7 @@ ElementFactory.prototype.createElement = function(object,entity) {
         html = divPai.innerHTML;
     }
     else if(object.showAs=='multiple select, data preloaded') {
-        console.log(this.id);
-        
+
         var divPai = divPai = document.createElement('div');
 
         var select = document.createElement("select");

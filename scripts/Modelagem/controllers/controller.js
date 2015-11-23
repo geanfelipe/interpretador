@@ -101,7 +101,6 @@ modelagemApp.controller("ModelagemController",[
             
             $scope.paginaExibida = index;
             
-            console.log($scope.paginaExibida);
         }
         
         $scope.renderizarTabela= function(){
@@ -126,14 +125,10 @@ modelagemApp.controller("ModelagemController",[
             for (var i=0; i<$scope.dados.length; i++){
 
                 $scope.pagina.push($scope.dados[i]);
-                console.log($scope.dados[i]);
-
                 if (contador==$scope.itemsPorPagina-1)
                 {
                     
                     contador=0;
-
-                    console.log($scope.pagina);
 
                     $scope.paginas.push($scope.pagina);
 
