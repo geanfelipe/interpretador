@@ -41,7 +41,7 @@ var Modelador = {
                                 Models[groupName][formsName][entityName][attributesName] = attributes.view.defaultValue;
                                 var attributesArray = Object.keys(data.groups[groupName][formsName][entityName].attributes);
 
-                                ViewFactory.setView(entityName+"."+attributesName,attributes.view);
+                                ViewFactory.setView(formsName,entityName+"."+attributesName,attributes.view);
                             }
                         });
                         angular.forEach(entity.associations,function(association,association_key) {
@@ -57,7 +57,7 @@ var Modelador = {
                         if(entity.inherits) {
                             var packageInheritance = entity.inherits;
                             var entity_extended = Modelador.searchEntityForPackage(data,packageInheritance);
-                            var inheritance = Modelador.entityInheritance(entityName,entity_extended);
+                            var inheritance = Modelador.entityInheritance(formsName,entityName,entity_extended);
 
                             angular.forEach(inheritance,function(attributeValue,attributeName){
                                 Models[groupName][formsName][entityName][attributeName] = attributeValue;
@@ -70,7 +70,7 @@ var Modelador = {
         this.Models = Models;
         return this.Models;
     },
-    entityInheritance: function(entityNameRoot,entity_extended) {
+    entityInheritance: function(formsName,entityNameRoot,entity_extended) {
         var response = {};
         
         angular.forEach(entity_extended,function(value,key){
@@ -79,7 +79,7 @@ var Modelador = {
                     angular.forEach(entityObj.attributes,function(attributeObject,attributesName){
                         if(attributeObject) {
                             response[attributesName] = attributeObject.view.defaultValue;
-                            ViewFactory.setView(entityNameRoot+"."+attributesName,attributeObject.view);
+                            ViewFactory.setView(formsName,entityNameRoot+"."+attributesName,attributeObject.view);
                         }
                     });
                 });
@@ -87,7 +87,7 @@ var Modelador = {
                 angular.forEach(value.attributes,function(attributeObject,attributesName){
                     if(attributeObject) {
                         response[attributesName] = attributeObject.view.defaultValue;
-                        ViewFactory.setView(entityNameRoot+"."+attributesName,attributeObject.view);
+                        ViewFactory.setView(formsName,entityNameRoot+"."+attributesName,attributeObject.view);
                     }
                 });
             }

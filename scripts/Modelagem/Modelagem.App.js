@@ -29,19 +29,18 @@ modelagemApp.run(function($rootScope,getDataModel,$q){
 		                						console.log("entidade "+entitysName+" NAO esta no form "+formsName);
 		                					}
 		                				});*/
-		                				objView[formsName][entitysName+'.'+attributesName] = ViewFactory.getView(entitysName+"."+attributesName);
+		                				objView[formsName][entitysName+'.'+attributesName] = ViewFactory.getView(formsName,entitysName+"."+attributesName);
 		                			}
 		                		}
 		                	});
 		                });
 	                });
 	            });
-				
 				$rootScope.campoDeFormulario = {};
 	            angular.forEach(objView,function(entitysObject, formsName){
 	            	$rootScope.campoDeFormulario[formsName] = new ElementFactory().buildSegment(entitysObject)
 	            });
-	            console.log(objView);
+	            
 			});
         }
     )();

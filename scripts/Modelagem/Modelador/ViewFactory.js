@@ -1,9 +1,14 @@
 var ViewFactory = {
 	view: {},
-	setView: function(name,view) {
-		this.view[name] = view;
+	setView: function(form,name,view) {
+		if(this.view[form]) {
+			this.view[form][name] = view;	
+		} else {
+			this.view[form] = {};
+			this.view[form][name] = view;	
+		}
 	},
-	getView: function(name) {
-		return this.view[name];
+	getView: function(form,name) {
+		return this.view[form][name];
 	}
 }
