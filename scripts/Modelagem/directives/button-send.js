@@ -24,17 +24,25 @@ modelagemApp
                             });
                         }else {
                             value = angular.element("form#"+$scope.form).find(angular.element("input#"+entitysName+"\\."+attributesName)).val();
+                            
+                            if(value===undefined) {
+                                var multiple_select = angular.element("a[data-value]");
+
+                                value = "";
+                                for(var i =0;i<multiple_select.length;i++) {
+                                    value += multiple_select[i].text+" ";
+                                }
+                            }
                             entitys[entitysName][attributesName] = value;
                         }
                     });
                 });
-                console.log(entitys);
 
-     //    		sendDatasource.save({
-     //    			"classUID":"br.gov.rn.parnamirim.datasource.domain.pessoal",
-					// "semanticFieldUID":$scope.$parent.formularioSelecionado,
-					// "object": object
-     //    		});
+        		sendDatasource.save({
+        			"classUID":"br.gov.rn.parnamirim.datasource.domain.pessoal",
+					"semanticFieldUID": $scope.form,
+					"object": entitys
+        		});
         	});
         },
 	}
