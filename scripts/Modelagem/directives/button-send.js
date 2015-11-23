@@ -12,22 +12,23 @@ modelagemApp
         link: function($scope,$elem,$attrs) {
         	$elem.bind("click",function() {
         		var entitys = $scope.$root.Models[$scope.secretaria][$scope.form];
+
                 angular.forEach(entitys, function(entitysObject,entitysName) {
                     angular.forEach(entitysObject,function(attributesValue,attributesName) {
                         var value = "";
 
                         if(attributesValue.constructor===Object) {
                             angular.forEach(attributesValue,function(subAttributesValue,subAtributesName) {
-                                value = angular.element("form#"+$scope.form).find(angular.element("input#"+entitysName+"\\."+subAtributesName)).val();
-                                console.log(entitysName,attributesName ,value);
+                                value = angular.element("form#"+$scope.form).find(angular.element("input#"+attributesName.capitalizeFirstLetter()+"\\."+subAtributesName)).val();
+                                entitys[entitysName][attributesName][subAtributesName] = value;
                             });
                         }else {
                             value = angular.element("form#"+$scope.form).find(angular.element("input#"+entitysName+"\\."+attributesName)).val();
-                            console.log(entitysName,attributesName ,value);
+                            entitys[entitysName][attributesName] = value;
                         }
-                        
                     });
                 });
+                console.log(entitys);
 
      //    		sendDatasource.save({
      //    			"classUID":"br.gov.rn.parnamirim.datasource.domain.pessoal",

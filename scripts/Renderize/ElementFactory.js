@@ -34,7 +34,8 @@ ElementFactory.prototype.buildSegment = function (data) {
     var segments = [];
 
     angular.forEach(data,function(value,key) {
-        segments.push(new ElementFactory().createElement(value,key.split('.')[0]));
+
+        segments.push(new ElementFactory().createElement(value,key));
     });
 
     for(var i in segments) {
@@ -80,15 +81,14 @@ ElementFactory.prototype.buildSegment = function (data) {
   * no outro índice é um objeto com tendo como chave ID e o valor o nomedocampo
 **/
 ElementFactory.prototype.createElement = function(object,entity) {
-    console.log(object,entity);
 
     this.nameInput = object.title;
     this.value = object.title.toUpperCase();
     this.defaultValues = object.defaultValue.split(",");
     this.segmentName = object.segment;
     this.response = {};
-    this.id = entity+'.'+(object.title=="--" ? "id" : object.title.toLowerCase());
-    this.entity = entity;
+    this.id = entity || "id";
+    this.entity = entity || "id";
     var html = {};
     var data = {'tag':'label','for':'${title}','html':'${title}'};
     this.label = json2html.transform(object,data);
@@ -103,7 +103,7 @@ ElementFactory.prototype.createElement = function(object,entity) {
         var input = document.createElement("input");
         input.type = "hidden";
         input.name = object.title;
-        input.id = this.entity+"."+object.title.toLowerCase();
+        input.id = this.entity;
 
         var divText = document.createElement("div");
         divText.className = "text";
@@ -150,20 +150,22 @@ ElementFactory.prototype.createElement = function(object,entity) {
         var input = document.createElement('input');
         input.type = object.show ? object.showAs : "hidden";
         input.name = object.title=="--" ? "id" : object.title;
-        input.id = this.entity+"."+(object.title=="--" ? "id" : object.title.toLowerCase());
+        input.id = this.entity;
 
         divPai.appendChild(input);
 
         html = divPai.innerHTML;
     }
     else if(object.showAs=='multiple select, data preloaded') {
-
+        console.log(this.id);
+        
         var divPai = divPai = document.createElement('div');
 
         var select = document.createElement("select");
         select.className = "ui fluid dropdown";
         select.setAttribute("multiple","");
-        select.id = this.entity+"."+object.title.toLowerCase().replace(/á|é|í|ó|ú/g, 'u');
+        select.id = this.entity;
+        // select.id = this.entity+"."+object.title.toLowerCase().replace(/á|é|í|ó|ú/g, 'u');
 
         var optionOne = document.createElement("option");
         optionOne.value = "maca";
@@ -192,7 +194,7 @@ ElementFactory.prototype.createElement = function(object,entity) {
         input.className = "prompt "+"ng-valid ng-dirty ng-valid-parse ng-touched";
         input.type = "text";
         input.name = object.title;
-        input.id = this.entity+"."+object.title.toLowerCase();
+        input.id = this.entity;
 
         var divResults = document.createElement("div");
         divResults.className = "results";
