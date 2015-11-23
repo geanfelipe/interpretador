@@ -19,6 +19,9 @@ modelagemApp
           });
    		 	},
    		 	post: function($scope, $elem, $attrs) {
+          angular.element("a.item[contextmenu]").bind(function() {
+              console.log($scope.segmentoSelecionado);
+          });
        	}
  		},
  		controller: function($scope, $element, $attrs) {
@@ -27,7 +30,7 @@ modelagemApp
       $scope.selecionarSegmento = function(segment_name,segment_$index) {
           $scope.segmentoSelecionado = segment_name;
           angular.element(".sessao-de-dados").hide();
-          angular.element(".sessao-de-dados#"+$scope.segmentoSelecionado).show();
+          angular.element(".sessao-de-dados#"+$scope.segmentoSelecionado).show();        
           $scope.segment_active = segment_$index;
       };
 

@@ -191,7 +191,6 @@ modelagemApp.controller("ModelagemController",[
             };
            
             $scope.segmentos = function(secretaria,formulario) {
-               
                 /* objeto contruido com as views de cada entidade do campo semantico selecionado*/
                 var objView = {};
                 /* iteração dentro das entidades de um campo semantico */
