@@ -8,46 +8,52 @@
 	    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 	    <link rel="import" href="imports.html">
 	</head>
-	<div class="ui segment">
-		<div class="ui vertically divided grid">
-			<div class="ten apptoppanelcolumn  row">
-				<div class="one wide column">
-					<img class="ui image" src="img/logo_pmp.png">
-				</div>
-				<div class="nine wide column">
-					<h3 class="ui dividing header">Prefeitura Municipal de
-						Parnamirim</h3>
-					<p></p>
-					<div class="ui text menu">
-						<div class="header item">
-							&nbsp;Portal Administrativo<i class="angle right icon"></i>&nbsp;&nbsp;Cadastro
-							de Recursos
+<body>
+	<div id="area-de-login">
+		<div class="ui segment">
+			<div class="ui vertically divided grid">
+				<div class="ten apptoppanelcolumn  row">
+					<div class="one wide column">
+						<img class="ui image" src="img/logo_pmp.png">
+					</div>
+					<div class="nine wide column">
+						<h3 class="ui dividing header">Prefeitura Municipal de
+							Parnamirim</h3>
+						<p></p>
+						<div class="ui text menu">
+							<div class="header item">
+								&nbsp;Portal Administrativo<i class="angle right icon"></i>&nbsp;&nbsp;Cadastro
+								de Recursos
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<br />
-	<br />
-	<form name="authentication" action="" autocomplete="off">
-		<div class="ui three column grid">
-			<div class="column"></div>
-			<div class="column">
-				<div class="ui fluid form segment">
-					<h3 class="ui header">Log-in</h3>
-					<div class="field">
-						<label>Usuário</label> <input id="loginname" value=""
-							type="text">
+		<br>
+		<br>
+	
+		<form name="authentication" action="" autocomplete="off" >
+			<div class="ui three column grid">
+				<div class="column"></div>
+				<div class="column">
+					<div class="ui fluid form segment">
+						<h3 class="ui header">Log-in</h3>
+						<div class="field">
+							<label>Usuário</label> <input id="loginname" value="" type="text">
+						</div>
+						<div class="field">
+							<label>Senha</label> <input id="loginpass" value="" type="password">
+						</div>
+						<input value="Login" type="submit" id="botao-de-submissao" class="ui blue submit button">
+						<div id="area-de-mensagem" class="ui red label" style="margin-top: 3px; display: none;">
+							<i class="warning icon"></i> Log-in não autorizado!.
+						</div>
 					</div>
-					<div class="field">
-						<label>Senha</label> <input id="loginpass" value=""
-							type="password">
-					</div>
-					<input id="botao-de-submissao" type="submit" value="Login" class="ui blue submit button">
 				</div>
+				<div class="column"></div>
 			</div>
-			<div class="column"></div>
-		</div>
-	</form>
+		</form>
+	</div>
+</body>
 </html>

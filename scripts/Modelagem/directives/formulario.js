@@ -5,6 +5,7 @@ modelagemApp
 		restrict: "E",
 		replace: true,
 		scope : true,
+    transclude: true,
     priority: 100,
 		link:{
    		 	pre:function($scope, $elem, $attrs) {

@@ -12,7 +12,11 @@ mainApp.config(['$compileProvider','$routeProvider','$locationProvider',
 		$routeProvider
 			.when("/", {
 				controller: 'ModelagemController',
-				template:'/home.html'
+				templateUrl:'/home.html'
+			})
+			.when('/login', {
+				controller: 'ModelagemController',
+				templateUrl:'/login.html'
 			})
 			.otherwise({redirectTo: '/'});
 	}

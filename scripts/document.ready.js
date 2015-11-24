@@ -9,9 +9,7 @@ $(document).ready(function(){
 	$('.ui.dropdown').dropdown();
 	$('div.row div.three.wide.column').delegate('a.item','click',clickSegmentActive);
 	$('#aba-de-aplicativo').delegate('a.menu');
-	$('div.cadastro').bind("click",function() {
-		console.log($("a.item.active[contextmenu]"));
-	})
+	
 });
 
 

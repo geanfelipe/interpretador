@@ -134,10 +134,6 @@ modelagemApp.controller("ModelagemController",[
 
                     $scope.pagina = [];
                     
-                    console.log("--");
-
-                    console.log($scope.pagina);
-                    
                 }
                 else
                 {
