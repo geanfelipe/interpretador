@@ -32,19 +32,21 @@
 		<br>
 		<br>
 		<div id="form-de-login">
-			<form name="authentication" action="" autocomplete="off" method="get" >
+			<form name="form" ng-submit="registrar()" role="form">
 				<div class="ui three column grid">
 					<div class="column"></div>
 					<div class="column">
+						<h2>{{usuario}}</h2>
 						<div class="ui fluid form segment">
 							<h3 class="ui header">Log-in</h3>
-							<div class="field">
-								<label>Usuário</label> <input id="loginname" value="" type="text">
+							<div class="field" ng-class="{ 'has-error': form.matricula.$dirty && form.matricula.$error.required }">
+								<label>Usuário</label> <input name="matricula" id="matricula" type="text" ng-model="usuario.matricula">
 							</div>
-							<div class="field">
-								<label>Senha</label> <input id="loginpass" value="" type="password">
+							<div class="field" ng-class="{ 'has-error': form.senha.$dirty && form.senha.$error.required }">
+								<label>Senha</label> <input id="senha" type="password" ng-model="usuario.senha">
 							</div>
-							<button onclick="(function(){ console.log('OI')})();" id="botao-de-submissao" class="ui blue submit button">Login</button>
+							<button id="botao-de-submissao" class="ui blue submit button">Login</button>
+							<div ng-if="enviando" class="ui active small inline loader"></div>
 							<div id="area-de-mensagem" class="ui red label" style="margin-top: 3px; display: none;">
 								<i class="warning icon"></i> Log-in não autorizado!.
 							</div>

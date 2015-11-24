@@ -1,11 +1,21 @@
 
-modelagemApp.controller("ModelagemController",
+modelagemApp.controller("LoginController",
 	["Authentication","$location","$scope","$rootScope",
 	
 	function(Authentication,$location,$scope,$rootScope) {
 		
+		$scope.usuario = {};
+
 		$scope.registrar = function() {
-			Authentication.Login(usuario.matricula, usuario.senha)
+			$scope.enviando = true;
+			Authentication.Login($scope.usuario.matricula, $scope.usuario.senha, function(response) {
+				if(response.success) {
+					$rootScope.user = response;
+					$location.path('/');
+				}else {
+					$scope.enviando = false;
+				}
+			});
 		}
 	}
 ]);

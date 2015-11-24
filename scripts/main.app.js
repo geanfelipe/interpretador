@@ -15,7 +15,7 @@ mainApp.config(['$compileProvider','$routeProvider','$locationProvider',
 				templateUrl:'/home.html'
 			})
 			.when('/login', {
-				controller: 'ModelagemController',
+				controller: 'LoginController',
 				templateUrl:'/login.html'
 			})
 			.otherwise({redirectTo: '/'});

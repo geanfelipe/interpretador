@@ -11,7 +11,7 @@ modelagemApp.run(function($rootScope,getDataModel,$q){
 			json.$promise.then(function(data) {
 				$rootScope.Models = Modelador.entityFactory(data);
 				var objView = {};
-
+				
                 /* iteração dentro das entidades de um campo semantico */
                 angular.forEach($rootScope.Models,function(groupsValue, groupsName) {
 	                angular.forEach(groupsValue,function(formsObject, formsName) {

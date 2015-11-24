@@ -1,21 +1,22 @@
 Services
-.factory("Authentication",['$http', '$cookieStore', '$rootScope', '$timeout', 'UserService',
-	function Authentication ($http, $cookieStore, $rootScope, $timeout, UserService) {
+.factory("Authentication",['$http', '$cookieStore', '$rootScope', '$timeout', 
+	function Authentication ($http, $cookieStore, $rootScope, $timeout) {
 		var service = {};
 
-		service.Login = function(matricula,password,callback) {
-			var Authorization = 'Basic '+window.btoa(matricula+':'+password);
+		service.Login = function(matricula,senha,callback) {
+			var Authorization = 'Basic '+window.btoa(matricula+':'+senha);
 			$timeout(function() {
 				var response;
-				$http.get('http://localhost:8080/datasource/rest/login',headers:{'Authorization':Authorization}).
+				$http({method:'GET',url:'//localhost:8080/datasource/rest/login',headers:{'Authorization':Authorization},params: {matricula: matricula,senha:senha}}).
 					then(function (res) {
             			if(res) {
             				response = {sucess:true};
             			}else {
             				response = {sucess:false,message:"Matrícula ou senha incorretos"};
             			}
-            			callback(response);
-        			}, handleError('Error getting user by matricula'));
+        			}, function(error) {
+        				response = {sucess:false,message:error}
+        			});
 			},1000);
 		};
 		return service;
