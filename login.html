@@ -1,24 +1,23 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>SGI</title>
+		<title>LOGIN - SGI</title>
 		<meta name="description" content="">
-	    <meta name=viewport content="width=device-width, initial-scale=1">
-	    <meta name="mobile-web-app-capable" content="yes">
-	    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-	    <link rel="import" href="imports.html">
+        <meta name=viewport content="width=device-width, initial-scale=1">
+        <meta name="mobile-web-app-capable" content="yes">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 	</head>
 <body>
 	<div id="area-de-login">
 		<div class="ui segment">
 			<div class="ui vertically divided grid">
 				<div class="ten apptoppanelcolumn  row">
-					<div class="one wide column">
+					<div class="two wide column">
 						<img class="ui image" src="img/logo_pmp.png">
 					</div>
 					<div class="nine wide column">
-						<h3 class="ui dividing header">Prefeitura Municipal de
-							Parnamirim</h3>
+						<h2 class="ui dividing header">Prefeitura Municipal de
+							Parnamirim</h2>
 						<p></p>
 						<div class="ui text menu">
 							<div class="header item">
@@ -32,28 +31,29 @@
 		</div>
 		<br>
 		<br>
-	
-		<form name="authentication" action="" autocomplete="off" >
-			<div class="ui three column grid">
-				<div class="column"></div>
-				<div class="column">
-					<div class="ui fluid form segment">
-						<h3 class="ui header">Log-in</h3>
-						<div class="field">
-							<label>Usuário</label> <input id="loginname" value="" type="text">
-						</div>
-						<div class="field">
-							<label>Senha</label> <input id="loginpass" value="" type="password">
-						</div>
-						<input value="Login" type="submit" id="botao-de-submissao" class="ui blue submit button">
-						<div id="area-de-mensagem" class="ui red label" style="margin-top: 3px; display: none;">
-							<i class="warning icon"></i> Log-in não autorizado!.
+		<div id="form-de-login">
+			<form name="authentication" action="" autocomplete="off" method="get" >
+				<div class="ui three column grid">
+					<div class="column"></div>
+					<div class="column">
+						<div class="ui fluid form segment">
+							<h3 class="ui header">Log-in</h3>
+							<div class="field">
+								<label>Usuário</label> <input id="loginname" value="" type="text">
+							</div>
+							<div class="field">
+								<label>Senha</label> <input id="loginpass" value="" type="password">
+							</div>
+							<button onclick="(function(){ console.log('OI')})();" id="botao-de-submissao" class="ui blue submit button">Login</button>
+							<div id="area-de-mensagem" class="ui red label" style="margin-top: 3px; display: none;">
+								<i class="warning icon"></i> Log-in não autorizado!.
+							</div>
 						</div>
 					</div>
+					<div class="column"></div>
 				</div>
-				<div class="column"></div>
-			</div>
-		</form>
+			</form>
+		</div>
 	</div>
 </body>
 </html>
