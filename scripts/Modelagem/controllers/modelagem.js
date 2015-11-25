@@ -25,6 +25,8 @@ modelagemApp.controller("ModelagemController",[
         var lista_de_secretarias= {};
         var json = $scope.$parent.json;
 
+        console.log($scope.$parent);
+
         $scope.trocarAba = function(secretaria,subordinada) {
             $scope.secretariaSelecionada=secretaria+":"+subordinada;
             $scope.aba = $scope.aba==1 ? $scope.aba=2:$scope.aba=1;
@@ -168,40 +170,40 @@ modelagemApp.controller("ModelagemController",[
 
         /*retornado o json faca as seguintes operacoes*/
         /*Vide: o promise é a ultima coisa que é carregada no controller*/
-        json.$promise.then(function(data) {
+        
 
-            $scope.nome = {};
-            $scope.analyst = data.analyst;
-            $scope.secretarias = menuSecretaria(data.groups);
+        $scope.nome = {};
+        $scope.analyst = json.analyst;
+        $scope.secretarias = menuSecretaria(json.groups);
             
-            $scope.listarFormularioDeSecretaria = function(secretaria) {
-                var response = [];
-                if(secretaria!==null) {
-                    for (var i in Object.keys(data.groups[secretaria])) {
-                        if(Object.keys(data.groups[secretaria])[i]!="pessoal") {
-                            response.push(Object.keys(data.groups[secretaria])[i]);
-                        }
+        $scope.listarFormularioDeSecretaria = function(secretaria) {
+            var response = [];
+            if(secretaria!==null) {
+                for (var i in Object.keys(json.groups[secretaria])) {
+                    if(Object.keys(json.groups[secretaria])[i]!="pessoal") {
+                        response.push(Object.keys(json.groups[secretaria])[i]);
                     }
-                    return response;
                 }
-            };
+            return response;
+            }
+        };
            
-            $scope.segmentos = function(secretaria,formulario) {
-                /* objeto contruido com as views de cada entidade do campo semantico selecionado*/
-                var objView = {};
-                /* iteração dentro das entidades de um campo semantico */
-                angular.forEach(data.groups[secretaria][formulario],function(value1,key1){
-                    if(key1!='asDefined'){
-                        /* iteração dentro dos atributos das entidades */
-                        angular.forEach(value1.attributes,function(value2,key2){
-                            if(key2!='asDefined') {
-                                objView[key1+'.'+key2+'.'+value2.view.title] = value2.view;
-                            }
-                        });
-                    }
-                });
-                $scope.campoDeFormulario = new ElementFactory().buildSegment(objView);
-            };
-        });
+        $scope.segmentos = function(secretaria,formulario) {
+            /* objeto contruido com as views de cada entidade do campo semantico selecionado*/
+            var objView = {};
+            /* iteração dentro das entidades de um campo semantico */
+            angular.forEach(json.groups[secretaria][formulario],function(value1,key1){
+                if(key1!='asDefined'){
+                    /* iteração dentro dos atributos das entidades */
+                    angular.forEach(value1.attributes,function(value2,key2){
+                        if(key2!='asDefined') {
+                            objView[key1+'.'+key2+'.'+value2.view.title] = value2.view;
+                        }
+                    });
+                }
+            });
+            $scope.campoDeFormulario = new ElementFactory().buildSegment(objView);
+        };
+        
     }
 ]);

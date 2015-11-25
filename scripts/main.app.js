@@ -18,6 +18,6 @@ mainApp.config(['$compileProvider','$routeProvider','$locationProvider',
 				controller: 'LoginController',
 				templateUrl:'/login.html'
 			})
-			.otherwise({redirectTo: '/'});
+			.otherwise({redirectTo: '/login'});
 	}
 ]);

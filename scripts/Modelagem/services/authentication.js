@@ -1,23 +1,28 @@
 Services
-.factory("Authentication",['$http', '$cookieStore', '$rootScope', '$timeout', 
-	function Authentication ($http, $cookieStore, $rootScope, $timeout) {
+.factory("Authentication",['$http', '$cookieStore', '$rootScope', '$timeout','$q', 
+	function Authentication ($http, $cookieStore, $rootScope, $timeout,$q) {
 		var service = {};
+		var deferred = $q.defer();
 
 		service.Login = function(matricula,senha,callback) {
 			var Authorization = 'Basic '+window.btoa(matricula+':'+senha);
 			$timeout(function() {
 				var response;
-				$http({method:'GET',url:'//localhost:8080/datasource/rest/login',headers:{'Authorization':Authorization},params: {matricula: matricula,senha:senha}}).
+				$http({method:'GET',url:'http://localhost:3000/rest/model',headers:{'Authorization':Authorization},params:{matricula:matricula,senha:senha}}).
 					then(function (res) {
             			if(res) {
-            				response = {sucess:true};
+            				deferred.resolve({success:true,message:res});
+            				return deferred.promise;
             			}else {
-            				response = {sucess:false,message:"Matrícula ou senha incorretos"};
+            				deferred.resolve({success:false,message:"Matrícula ou senha incorretos"});
+            				return deferred.promise;
             			}
         			}, function(error) {
-        				response = {sucess:false,message:error}
+        				deferred.reject({success:false,message:error}); 
+        				return deferred.promise;
         			});
 			},1000);
+			return deferred.promise;
 		};
 		return service;
 }]);

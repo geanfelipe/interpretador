@@ -31,31 +31,35 @@
 		</div>
 		<br>
 		<br>
+		
 		<div id="form-de-login">
-			<form name="form" ng-submit="registrar()" role="form">
-				<div class="ui three column grid">
+		<!-- ng-submit="registrar()" -->
+			<form name="form"  role="form" method="GET" autocomplete="off">
+				 <div class="ui three column grid">
 					<div class="column"></div>
 					<div class="column">
-						<h2>{{usuario}}</h2>
+						
 						<div class="ui fluid form segment">
 							<h3 class="ui header">Log-in</h3>
-							<div class="field" ng-class="{ 'has-error': form.matricula.$dirty && form.matricula.$error.required }">
-								<label>Usuário</label> <input name="matricula" id="matricula" type="text" ng-model="usuario.matricula">
+							<div class="field" ng-class="{ 'error': form.matricula.$dirty && form.matricula.$error.required }">
+								<label>Matrícula</label> 
+								<input name="matricula" id="matricula" type="text" ng-model="usuario.matricula" required>
+								<span ng-show="form.matricula.$dirty && form.matricula.$error.required" class="help-block">Matrícula deve ser preenchida</span>
 							</div>
-							<div class="field" ng-class="{ 'has-error': form.senha.$dirty && form.senha.$error.required }">
-								<label>Senha</label> <input id="senha" type="password" ng-model="usuario.senha">
+							<div class="field" ng-class="{ 'error': form.senha.$dirty && form.senha.$error.required }">
+								<label>Senha</label>
+								<input id="senha" name="senha" type="password" ng-model="usuario.senha" required>
+								<span ng-show="form.senha.$dirty && form.senha.$error.required" class="help-block">Senha deve ser preenchida</span>
 							</div>
-							<button id="botao-de-submissao" class="ui blue submit button">Login</button>
+							<button ng-click="registrar()" type="submit" id="botao-de-submissao" class="ui blue submit button">Login</button>
 							<div ng-if="enviando" class="ui active small inline loader"></div>
-							<div id="area-de-mensagem" class="ui red label" style="margin-top: 3px; display: none;">
-								<i class="warning icon"></i> Log-in não autorizado!.
-							</div>
+						</div>
+						<div class="ui grid four wide column">
+							<div ng-show="error" class="ui red message">{{error}}</div>
 						</div>
 					</div>
 					<div class="column"></div>
-				</div>
-			</form>
-		</div>
-	</div>
+				</div> 
+				
 </body>
 </html>
