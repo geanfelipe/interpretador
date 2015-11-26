@@ -81,19 +81,21 @@ ElementFactory.prototype.buildSegment = function (data) {
   * no outro índice é um objeto com tendo como chave ID e o valor o nomedocampo
 **/
 ElementFactory.prototype.createElement = function(object,entity) {
-
-    this.nameInput = object.title;
-    this.value = object.title.toUpperCase();
-    this.defaultValues = object.defaultValue.split(",");
-    this.segmentName = object.segment;
+    
+    var View = object.view;
+    var Data = object.data;
+    this.nameInput = View.title;
+    this.value = View.title.toUpperCase();
+    this.defaultValues = View.defaultValue.split(",");
+    this.segmentName = View.segment;
     this.response = {};
     this.id = entity || "id";
     this.entity = entity || "id";
     var html = {};
     var data = {'tag':'label','for':'${title}','html':'${title}'};
-    this.label = json2html.transform(object,data);
+    this.label = json2html.transform(View,data);
 
-    if(object.showAs=="select") {
+    if(View.showAs=="select") {
 
         var divPai = document.createElement('div');
 
@@ -102,12 +104,12 @@ ElementFactory.prototype.createElement = function(object,entity) {
 
         var input = document.createElement("input");
         input.type = "hidden";
-        input.name = object.title;
+        input.name = View.title;
         input.id = this.entity;
 
         var divText = document.createElement("div");
         divText.className = "text";
-        divText.id=object.title;
+        divText.id=View.title;
 
         var icon = document.createElement("i");
         icon.className = "dropdown icon";
@@ -143,20 +145,20 @@ ElementFactory.prototype.createElement = function(object,entity) {
 
         html = divPai.innerHTML;
     }
-    else if(object.showAs=='text') {
+    else if(View.showAs=='text') {
 
         var divPai = document.createElement('div');
 
         var input = document.createElement('input');
-        input.type = object.show ? object.showAs : "hidden";
-        input.name = object.title=="--" ? "id" : object.title;
+        input.type = View.show ? View.showAs : "hidden";
+        input.name = View.title=="--" ? "id" : View.title;
         input.id = this.entity;
 
         divPai.appendChild(input);
 
         html = divPai.innerHTML;
     }
-    else if(object.showAs=='multiple select, data preloaded') {
+    else if(View.showAs=='multiple select, data preloaded') {
 
         var divPai = divPai = document.createElement('div');
 
@@ -164,7 +166,7 @@ ElementFactory.prototype.createElement = function(object,entity) {
         select.className = "ui fluid dropdown";
         select.setAttribute("multiple","");
         select.id = this.entity;
-        // select.id = this.entity+"."+object.title.toLowerCase().replace(/á|é|í|ó|ú/g, 'u');
+        // select.id = this.entity+"."+View.title.toLowerCase().replace(/á|é|í|ó|ú/g, 'u');
 
         var optionOne = document.createElement("option");
         optionOne.value = "maca";
@@ -182,7 +184,7 @@ ElementFactory.prototype.createElement = function(object,entity) {
         html = divPai.innerHTML;
 
     }
-    else if (object.showAs == 'search') {
+    else if (View.showAs == 'search') {
 
         var divPai = document.createElement('div');
 
@@ -192,7 +194,7 @@ ElementFactory.prototype.createElement = function(object,entity) {
         var input = document.createElement('input');
         input.className = "prompt "+"ng-valid ng-dirty ng-valid-parse ng-touched";
         input.type = "text";
-        input.name = object.title;
+        input.name = View.title;
         input.id = this.entity;
 
         var divResults = document.createElement("div");

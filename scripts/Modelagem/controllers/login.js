@@ -1,8 +1,8 @@
 
 modelagemApp.controller("LoginController",
-	["Authentication","$location","$scope","$rootScope","getDataModel",
+	["Authentication","$location","$scope","$rootScope","$window",
 	
-	function(Authentication,$location,$scope,$rootScope,getDataModel) {
+	function(Authentication,$location,$scope,$rootScope,$window) {
 		
 		$scope.usuario = {};
 		$scope.error = false;
@@ -52,6 +52,7 @@ modelagemApp.controller("LoginController",
 					} else {
 						$scope.error = "Matrícula ou login incorretos";	
 						$scope.enviando = false;
+						
 					}
 				},function(error) {
 					$scope.error = "Ocorreu algum erro, contacte ao administrador do sistema";
