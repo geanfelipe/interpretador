@@ -42,7 +42,7 @@
 							<h3 class="ui header">Log-in</h3>
 							<div class="field" ng-class="{ 'error': form.matricula.$dirty && form.matricula.$error.required }">
 								<label>Matrícula</label> 
-								<input name="matricula" id="matricula" type="text" ng-model="usuario.matricula" required>
+								<input name="matricula" id="matricula" type="text" ng-model="usuario.matricula" required ui-br-cnpj-mask>
 								<span ng-show="form.matricula.$dirty && form.matricula.$error.required" class="help-block">Matrícula deve ser preenchida</span>
 							</div>
 							<div class="field" ng-class="{ 'error': form.senha.$dirty && form.senha.$error.required }">
