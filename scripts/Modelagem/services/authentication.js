@@ -5,7 +5,7 @@ Services
 		var deferred = $q.defer();
 
 		service.Login = function(matricula,senha,callback) {
-			var Authorization = 'Basic '+window.btoa(matricula+':'+senha);
+			var Authorization = 'Basic '+window.btoa(matricula + ':'+ senha);
 			$timeout(function() {
 				var response;
 				$http({method:'GET',url:'http://localhost:3000/rest/model',headers:{'Authorization':Authorization},params:{matricula:matricula,senha:senha}}).
@@ -24,5 +24,19 @@ Services
 			},1000);
 			return deferred.promise;
 		};
+
+		service.SetCredentials = function(matricula, senha) {
+            var authdata = window.btoa(matricula + ':' + senha);
+             $rootScope.globals = {
+                sessao: {
+                    matricula: matricula,
+                    authdata: authdata
+                }
+            };
+ 
+            $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata; // jshint ignore:line
+            $cookieStore.put('sessao', $rootScope.globals);
+        };
+
 		return service;
 }]);

@@ -3,9 +3,9 @@ var mainApp= angular.module('mainApp',[
   'Services',
   'ModelagemFilters',
   'ngRoute',
-  ]);
+  ])
 
-mainApp.config(['$compileProvider','$routeProvider','$locationProvider', 
+.config(['$compileProvider','$routeProvider','$locationProvider', 
 	function ($compileProvider,$routeProvider,$locationProvider) {
     	$compileProvider.debugInfoEnabled(false);
 		
@@ -20,4 +20,23 @@ mainApp.config(['$compileProvider','$routeProvider','$locationProvider',
 			})
 			.otherwise({redirectTo: '/login'});
 	}
-]);
+])
+
+.run(["$rootScope","$location","$cookieStore","$http", 
+	function($rootScope,$location,$cookieStore,$http) {
+		$rootScope.globals = $cookieStore.get("sessao") || {};
+
+		if($rootScope.globals.sessao) {
+			$http.defaults.headers.common["Authorization"] = "Basic " + $rootScope.globals.sessao.authdata;
+		}
+		
+		$rootScope.$on("$locationChangeStart", function(event,next,current) {
+			var paginaRestrita = $.inArray($location.path(),['/login']) === -1;
+			var logado = $rootScope.globals.sessao;
+
+			if(paginaRestrita && !logado) {
+				$location.path("/login");
+			}
+		});
+	}
+])

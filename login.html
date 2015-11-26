@@ -51,7 +51,7 @@
 								<input id="senha" name="senha" type="password" ng-model="usuario.senha" required>
 								<span ng-show="form.senha.$dirty && form.senha.$error.required" class="help-block">Senha deve ser preenchida</span>
 							</div>
-							<button ng-click="registrar()" type="submit" id="botao-de-submissao" class="ui blue submit button">Login</button>
+							<button ng-click="registrar()" type="submit" id="botao-de-submissao" class="ui blue submit button" ng-class="{'disabled': usuario.matricula==null || usuario.senha==null}">Login</button>
 							<div ng-if="enviando" class="ui active small inline loader"></div>
 						</div>
 						<div class="ui grid four wide column">
@@ -60,6 +60,6 @@
 					</div>
 					<div class="column"></div>
 				</div> 
-				
+			</form>		
 </body>
 </html>

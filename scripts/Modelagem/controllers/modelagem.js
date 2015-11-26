@@ -6,11 +6,8 @@ function getArea(){
 }
 
 modelagemApp.controller("ModelagemController",[
-    "$scope",
-    "getDataModel",
-    "sendDatasource",
-
-    function($scope,getDataModel,sendDatasource,$compile,$rootScope){
+    "$scope","sendDatasource","$rootScope","$location","$cookieStore",'$window',
+    function($scope,sendDatasource,$rootScope,$location,$cookieStore,$window){
         $scope.aba = 1;
         $scope.tabAplicativo=false;
         $scope.secretaria ='';
@@ -24,8 +21,6 @@ modelagemApp.controller("ModelagemController",[
 
         var lista_de_secretarias= {};
         var json = $scope.$parent.json;
-
-        console.log($scope.$parent);
 
         $scope.trocarAba = function(secretaria,subordinada) {
             $scope.secretariaSelecionada=secretaria+":"+subordinada;
@@ -74,6 +69,11 @@ modelagemApp.controller("ModelagemController",[
             console.log($scope.formularioSelecionado);
             console.log($scope.Models);
 
+        };
+
+        $scope.logout = function() {
+            $cookieStore.remove("sessao");
+            $window.location.reload();
         };
 
     //este bloco simplesmente serve para realizar as funções de ordenar e de listar os valores da tabela.
@@ -188,22 +188,7 @@ modelagemApp.controller("ModelagemController",[
             }
         };
            
-        $scope.segmentos = function(secretaria,formulario) {
-            /* objeto contruido com as views de cada entidade do campo semantico selecionado*/
-            var objView = {};
-            /* iteração dentro das entidades de um campo semantico */
-            angular.forEach(json.groups[secretaria][formulario],function(value1,key1){
-                if(key1!='asDefined'){
-                    /* iteração dentro dos atributos das entidades */
-                    angular.forEach(value1.attributes,function(value2,key2){
-                        if(key2!='asDefined') {
-                            objView[key1+'.'+key2+'.'+value2.view.title] = value2.view;
-                        }
-                    });
-                }
-            });
-            $scope.campoDeFormulario = new ElementFactory().buildSegment(objView);
-        };
+        
         
     }
 ]);
