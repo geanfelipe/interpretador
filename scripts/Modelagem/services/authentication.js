@@ -8,7 +8,7 @@ Services
 			var Authorization = 'Basic '+window.btoa(matricula + ':'+ senha);
 			$timeout(function() {
 				var response;
-				$http({method:'GET',url:'http://localhost:3000/rest/model',headers:{'Authorization':Authorization},params:{matricula:matricula,senha:senha}}).
+				$http({method:'GET',url:'http://localhost:3000/rest/model',headers:{'Authorization':Authorization}}).
 					then(function (res) {
             			if(res) {
             				deferred.resolve({success:true,message:res});
