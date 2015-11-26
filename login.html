@@ -53,12 +53,20 @@
 							<button ng-click="registrar()" type="submit" id="botao-de-submissao" class="ui blue submit button"  ng-class="{'disabled': usuario.matricula==null || usuario.senha==null || usuario.matricula.length<=4 || usuario.senha.length<=4}" >Login</button>
 							<div ng-if="enviando" class="ui active small inline loader"></div>
 						</div>
-						<div class="ui grid four wide column">
-							<div ng-show="error" class="ui red message">{{error}}</div>
-						</div>
 					</div>
 					<div class="column"></div>
-				</div> 
+				</div>
+				<div class="ui two column centered grid">
+					<div class="column" >
+						<div ng-show="error" class="ui negative message transition">
+							<i class="close icon"></i>
+							<div class="header">
+							    {{error}}
+							</div>
+							<p>That offer has expired</p>
+						</div>
+					</div>						
+				</div>
 			</form>		
 </body>
 </html>
