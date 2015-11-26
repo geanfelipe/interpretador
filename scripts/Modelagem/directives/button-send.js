@@ -37,11 +37,11 @@ modelagemApp
                         }
                     });
                 });
-
+                
         		sendDatasource.save({
         			"classUID":"br.gov.rn.parnamirim.datasource.domain.pessoal",
 					"semanticFieldUID": $scope.form,
-					"object": entitys
+					"object": entitys[$scope.form]
         		});
         	});
         },

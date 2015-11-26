@@ -38,7 +38,6 @@
 				 <div class="ui three column grid">
 					<div class="column"></div>
 					<div class="column">
-						
 						<div class="ui fluid form segment">
 							<h3 class="ui header">Log-in</h3>
 							<div class="field" ng-class="{ 'error': form.matricula.$dirty && form.matricula.$error.required }">
@@ -51,7 +50,7 @@
 								<input id="senha" name="senha" type="password" ng-model="usuario.senha" required>
 								<span ng-show="form.senha.$dirty && form.senha.$error.required" class="help-block">Senha deve ser preenchida</span>
 							</div>
-							<button ng-click="registrar()" type="submit" id="botao-de-submissao" class="ui blue submit button" ng-class="{'disabled': usuario.matricula==null || usuario.senha==null}">Login</button>
+							<button ng-click="registrar()" type="submit" id="botao-de-submissao" class="ui blue submit button"  ng-class="{'disabled': usuario.matricula==null || usuario.senha==null || usuario.matricula.length<=4 || usuario.senha.length<=4}" >Login</button>
 							<div ng-if="enviando" class="ui active small inline loader"></div>
 						</div>
 						<div class="ui grid four wide column">
@@ -63,3 +62,5 @@
 			</form>		
 </body>
 </html>
+<!-- ng-class="{'disabled': usuario.matricula==null || usuario.senha==null}" -->
+<!-- ng-class="{'disabled': usuario.matricula.length<=4 && usuario.senha.length<=4}" -->

@@ -29,8 +29,9 @@ var mainApp= angular.module('mainApp',[
 		if($rootScope.globals.sessao) {
 			$http.defaults.headers.common["Authorization"] = "Basic " + $rootScope.globals.sessao.authdata;
 		}
-		
+
 		$rootScope.$on("$locationChangeStart", function(event,next,current) {
+
 			var paginaRestrita = $.inArray($location.path(),['/login']) === -1;
 			var logado = $rootScope.globals.sessao;
 
@@ -38,5 +39,6 @@ var mainApp= angular.module('mainApp',[
 				$location.path("/login");
 			}
 		});
+
 	}
 ])
