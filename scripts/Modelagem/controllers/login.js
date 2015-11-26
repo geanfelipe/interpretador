@@ -8,7 +8,7 @@ modelagemApp.controller("LoginController",
 		$scope.error = false;
 
 		$scope.registrar = function() {
-			//gif
+
 			$scope.enviando = true;
 
 			Authentication.Login($scope.usuario.matricula, $scope.usuario.senha)
