@@ -4,9 +4,9 @@ function Renderize() {
 }
 
 Renderize.prototype.renderize = function(id,fields) {
-    
-    $("#"+fields.contextmenu).html(new Renderize().HTML(id,fields));
-    $('.ui.dropdown').dropdown();
+
+    angular.element("#"+fields.contextmenu).html(new Renderize().HTML(id,fields));
+    angular.element('.ui.dropdown').dropdown();
     segmentFormActive();
     
     var elemento = angular.element('input[name=Nome]');

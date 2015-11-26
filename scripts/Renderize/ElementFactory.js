@@ -153,6 +153,7 @@ ElementFactory.prototype.createElement = function(object,entity) {
         input.type = View.show ? View.showAs : "hidden";
         input.name = View.title=="--" ? "id" : View.title;
         input.id = this.entity;
+        input.maxLength = Data.length;
 
         divPai.appendChild(input);
 
