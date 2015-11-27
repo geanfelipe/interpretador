@@ -17,7 +17,7 @@ modelagemApp
               classe += " hidden"
             }
 
-            $elem.after('<div class='+classe+' id='+ name +'>'+field+'</div>');
+            $elem.after('<div class='+classe+' id='+ name +' required>'+field+'</div>');
             $('.ui.dropdown').dropdown();
           });
    		 	},

@@ -3,6 +3,7 @@ var mainApp= angular.module('mainApp',[
   'Services',
   'ModelagemFilters',
   'ngRoute',
+  
   ])
 
 .config(['$compileProvider','$routeProvider','$locationProvider', 
@@ -16,6 +17,10 @@ var mainApp= angular.module('mainApp',[
 			})
 			.when('/login', {
 				controller: 'LoginController',
+				templateUrl:'/login.html'
+			})
+			.when('/loginerror', {
+				controller: 'LoginErrorController',
 				templateUrl:'/login.html'
 			})
 			.otherwise({redirectTo: '/login'});
@@ -32,7 +37,7 @@ var mainApp= angular.module('mainApp',[
 
 		$rootScope.$on("$locationChangeStart", function(event,next,current) {
 
-			var paginaRestrita = $.inArray($location.path(),['/login']) === -1;
+			var paginaRestrita = $.inArray($location.path(),['/login','/loginerror']) === -1;
 			var logado = $rootScope.globals.sessao;
 
 			if(paginaRestrita && !logado) {

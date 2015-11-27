@@ -9,26 +9,6 @@ Renderize.prototype.renderize = function(id,fields) {
     angular.element('.ui.dropdown').dropdown();
     segmentFormActive();
 
-    var elemento = angular.element('input[name=Nome]');
-    elemento.on("blur keyup change",function(){
-        var nome = elemento.val();
-
-        if (nome.length>4) {
-            console.log(nome);
-            var funcionario = new Funcionario()
-            funcionario.nome = nome;
-            $.ajax({type: "POST", url: "http://localhost:8080/protocolo/REST/service/funcionario",
-             dataType: 'json',data:JSON.stringify(funcionario)})
-                .success(function (data) {
-                    $('.ui.search')
-                      .search({
-                        source: content(data)
-                      })
-                }).error(function(err) {
-                    console.log(err);
-                });
-        }
-    });
 };
 
 
@@ -52,7 +32,7 @@ Renderize.prototype.HTML = function(key , sessaoDeDados) {
         var idField = Object.keys(dataObj)[0];
         var field = dataObj[idField];
               
-        classField +='<div class="field" id='+ idField +' >'+ field + '</div>';
+        classField +='<div class="field" id='+ idField +' required>'+ field + '</div>';
     }
     
     var content = ("Sessão de Dados: "+ key).toUpperCase();

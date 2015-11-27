@@ -13,17 +13,13 @@ Services
                         console.log(res);
             			if(res) {
             				deferred.resolve({success:true,message:res});
-            				
             			}else {
             				deferred.resolve({success:false,message:"Matrícula ou senha incorretos"});
-            				
             			}
         			}, function(error) {
         				deferred.reject({success:false,message:error}); 
-        				
         			});
 			},1000);
-            console.log(deferred);
 			return deferred.promise;
 		};
 
