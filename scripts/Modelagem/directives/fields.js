@@ -42,6 +42,7 @@ modelagemApp
                       });
               }
           });
+          angular.element('input#Cidadao\\.cpf').mask('999.999.999.99');
        	}
  		},
  		controller: function($scope, $element, $attrs) {

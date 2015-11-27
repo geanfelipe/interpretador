@@ -6,13 +6,16 @@ modelagemApp.controller("LoginController",
 		
 		$scope.usuario = {};
 		$scope.error = false;
+		$scope.enviando = false;
 
 		$scope.registrar = function() {
-
+		
 			$scope.enviando = true;
+			console.log($scope.enviando);
 
 			Authentication.Login($scope.usuario.matricula, $scope.usuario.senha)
 				.then(function(response) {
+					console.log(response);
 					if(response.message.data.status==200) {
 						Authentication.SetCredentials($scope.usuario.matricula,$scope.usuario.senha);
 

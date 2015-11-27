@@ -8,12 +8,11 @@ Renderize.prototype.renderize = function(id,fields) {
     angular.element("#"+fields.contextmenu).html(new Renderize().HTML(id,fields));
     angular.element('.ui.dropdown').dropdown();
     segmentFormActive();
-    
+
     var elemento = angular.element('input[name=Nome]');
-    
     elemento.on("blur keyup change",function(){
-        
         var nome = elemento.val();
+
         if (nome.length>4) {
             console.log(nome);
             var funcionario = new Funcionario()

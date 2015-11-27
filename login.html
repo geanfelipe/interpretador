@@ -33,13 +33,12 @@
 		<br>
 		
 		<div id="form-de-login">
-		<!-- ng-submit="registrar()" -->
-			<form name="form"  role="form" method="GET" autocomplete="off">
+			<form name="form"  role="form"  autocomplete="off">
 				 <div class="ui three column grid">
 					<div class="column"></div>
 					<div class="column">
 						<div class="ui fluid form segment">
-							<h3 class="ui header">Log-in</h3>
+							<h2 class="ui header">Log-in</h2>
 							<div class="field" ng-class="{ 'error': form.matricula.$dirty && form.matricula.$error.required }">
 								<label>Matrícula</label> 
 								<input name="matricula" id="matricula" type="text" ng-model="usuario.matricula" required ui-br-cnpj-mask>

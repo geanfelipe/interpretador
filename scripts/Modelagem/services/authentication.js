@@ -6,22 +6,24 @@ Services
 
 		service.Login = function(matricula,senha,callback) {
 			var Authorization = 'Basic '+window.btoa(matricula + ':'+ senha);
+
 			$timeout(function() {
-				var response;
 				$http({method:'GET',url:'http://localhost:3000/rest/model',headers:{'Authorization':Authorization}}).
 					then(function (res) {
+                        console.log(res);
             			if(res) {
             				deferred.resolve({success:true,message:res});
-            				return deferred.promise;
+            				
             			}else {
             				deferred.resolve({success:false,message:"Matrícula ou senha incorretos"});
-            				return deferred.promise;
+            				
             			}
         			}, function(error) {
         				deferred.reject({success:false,message:error}); 
-        				return deferred.promise;
+        				
         			});
 			},1000);
+            console.log(deferred);
 			return deferred.promise;
 		};
 
