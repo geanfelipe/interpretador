@@ -11726,7 +11726,7 @@ a.ui.active.label:ActiveHover:before {
 
 .ui.red.labels .label,
 .ui.red.label {
-  background-color: #DB2828 !important;
+  background-color: #E45858 !important;
   border-color: #DB2828 !important;
   color: #FFFFFF !important;
 }
@@ -18360,7 +18360,7 @@ ol.ui.horizontal.list li:before,
 .ui.centered.grid > .column:not(.aligned):not(.row),
 .ui.centered.grid > .row > .column:not(.aligned),
 .ui.grid .centered.row > .column:not(.aligned) {
-  text-align: left;
+  text-align: center;
 }
 
 .ui.grid > .centered.column,

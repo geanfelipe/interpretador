@@ -38,12 +38,12 @@
 					<div class="column">
 						<div class="ui fluid form segment">
 							<h2 class="ui header">Log-in</h2>
-							<div class="field" ng-class="{ 'error': form.matricula.$dirty && form.matricula.$error.required }">
+							<div class="field" ng-class="{ 'error': form.matricula.$dirty && form.matricula.$error.required || error}">
 								<label>Matrícula</label> 
 								<input name="matricula" id="matricula" type="text" ng-model="usuario.matricula" required ui-br-cnpj-mask>
 								<span ng-show="form.matricula.$dirty && form.matricula.$error.required" class="help-block">Matrícula deve ser preenchida</span>
 							</div>
-							<div class="field" ng-class="{ 'error': form.senha.$dirty && form.senha.$error.required }">
+							<div class="field" ng-class="{ 'error': form.senha.$dirty && form.senha.$error.required || error }">
 								<label>Senha</label>
 								<input id="senha" name="senha" type="password" ng-model="usuario.senha" required>
 								<span ng-show="form.senha.$dirty && form.senha.$error.required" class="help-block">Senha deve ser preenchida</span>
@@ -57,11 +57,10 @@
 				<div class="ui two column centered grid">
 					<div class="column" >
 						<div ng-show="error" class="ui negative message transition">
-							<i class="close icon"></i>
 							<div class="header">
 							    {{error}}
 							</div>
-							<p>That offer has expired</p>
+							<p></p>
 						</div>
 					</div>						
 				</div>

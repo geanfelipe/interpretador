@@ -1,9 +1,9 @@
 
 modelagemApp
 .controller("LoginController",
-	["Authentication","$location","$scope","$rootScope","$window","$routeParams",
+	["Authentication","$location","$scope","$rootScope","$window","$routeParams",'$timeout',
 	
-	function(Authentication,$location,$scope,$rootScope,$window,$routeParams) {
+	function(Authentication,$location,$scope,$rootScope,$window,$routeParams,$timeout) {
 		$scope.parametro_de_erro = $routeParams.error;
 		$scope.usuario = {};
 		$scope.error = false;
@@ -73,7 +73,7 @@ modelagemApp
 		var erro = $routeParams.erro;
 		
 		if(erro=="noauth") {
-			$scope.error = "Matrícula ou login incorretos";	
+			$scope.error = "Matrícula ou login incorretos";
 		}else {
 			$scope.error = "Ocorreu algum erro, contacte ao administrador do sistema";
 		}
