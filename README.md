@@ -20,20 +20,20 @@ $rootScope.Models =
 { 
 ***
   nome_da_secretaria:nome_do_setor  {
-***
+
     nome_do_formulario { 
-***
+
       nome_da_entidade { 
-***
+
         nome_do_atributo:"valor" 
-***
+
       } 
-***
+
     } 
-***
+
   }
-*** 
 } 
+***
 
 Ao dar um submit no formulário os campos são recuperados e preechidos no objeto e enviado ao servidor.
 
