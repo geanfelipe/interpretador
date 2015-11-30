@@ -75,7 +75,7 @@ modelagemApp
 		if(erro=="noauth") {
 			$scope.error = "Matrícula ou login incorretos";
 		}else {
-			$scope.error = "Ocorreu algum erro, contacte ao administrador do sistema";
+			$scope.error = "Ocorreu algum erro, contate ao administrador do sistema";
 		}
 
 		$scope.registrar = function() {
