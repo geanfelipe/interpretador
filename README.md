@@ -17,7 +17,7 @@ This README would normally document whatever steps are necessary to get your app
 
 Ao iniciar a sessão é construído a partir do objeto response um objeto javascript singleton(JSON), com a seguinte estrutura:
 
-___
+_____
 $rootScope.Models =
 { 
   nome_da_secretaria:nome_do_setor  {
@@ -32,7 +32,7 @@ $rootScope.Models =
     } 
   }
 } 
-___
+_____
 
 Ao dar um submit no formulário os campos são recuperados e preechidos no objeto e enviado ao servidor.
 
