@@ -1,8 +1,16 @@
-Services.factory('sendDatasource',[
-    '$resource',
-    function($resource){
-    	return $resource('https://api.github.com/users/:user',{},{
-        get:{method:'GET',isArray:false,headers:{'Authorization':'Basic Z2VhbmZlbGlwZToxMjM0NQ=='} },
+Services.factory('sendDatasource',['$http',
+	function sendDatasource($http) {
+		var Http = {};
 
-      });
-    }]);
+		Http.post = function(data) {
+			$http({method:'POST',url:'http://localhost:3000/rest/model',data:data})
+			.then(function(data) {
+				console.log("deu certo",data);
+			}, function(error) {
+				console.log("deu errado",error);
+			});	
+		};
+
+		return Http;
+	
+}]);

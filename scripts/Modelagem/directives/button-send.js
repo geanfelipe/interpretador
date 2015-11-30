@@ -48,14 +48,14 @@ modelagemApp
                     angular.element('.ui.red.label').show();
                     angular.element('.ui.green.label').hide();
                 }else {
-                    angular.element('.ui.red.label').hide();
-                    angular.element('.ui.green.label').show();
-                    sendDatasource.save({
+                    sendDatasource.post({
                         "classUID":"br.gov.rn.parnamirim.datasource.domain.pessoal",
                         "semanticFieldUID": $scope.form,
                         "object": entitys[$scope.form.capitalizeFirstLetter()]
                     });
-                    
+                    angular.element('.ui.button.clean').click()
+                    angular.element('.ui.red.label').hide();
+                    angular.element('.ui.green.label').show();
                 }
         		
         	});

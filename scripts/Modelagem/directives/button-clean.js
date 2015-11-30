@@ -6,7 +6,7 @@ modelagemApp
 		replace: true,
 		scope:{},
 		template:'<div class="large ui buttons" style="float: right;">'+
-                	'<button class="ui button"><i class="remove icon"></i>LIMPAR</button>'+
+                	'<button class="ui button clean"><i class="remove icon"></i>LIMPAR</button>'+
                 	'</div>',
         link: function($scope,$elem,$attrs) {
         	$elem.bind("click",function() {
