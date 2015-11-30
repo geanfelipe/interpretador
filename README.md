@@ -19,6 +19,10 @@ ___
 * Não precisará mais construir dezenas de formulários que fazem a mesma coisa para setores diferentes.
 * A partir do Interpretador, haverá apenas um módulo que atenderá toda a demanda de cadastros e afins.
 
+__
+### Libs usada
+* Angular 1.3.15
+* Semantic UI
 ___
 ### Guideline
 
