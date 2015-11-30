@@ -15,9 +15,9 @@ This README would normally document whatever steps are necessary to get your app
 
 ### Guideline ###
 
-Ao iniciar a sessão é construído a partir *do objeto* response um objeto javascript singleton(JSON), com a seguinte estrutura:
+Ao iniciar a sessão é construído a partir do objeto response um objeto javascript singleton(JSON), com a seguinte estrutura:
 $rootScope.Models =
-{ 
+{ ---
   *nome_da_secretaria:nome_do_setor*
   { 
     nome_do_formulario 
