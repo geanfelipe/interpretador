@@ -2,7 +2,7 @@
 
 This README would normally document whatever steps are necessary to get your application up and running.
 
-### O que é este formulário ? 
+### O que é este projeto ? 
 
 * Interpretador de metadados
 * Versão 0.0.0.1
