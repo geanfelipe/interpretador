@@ -19,17 +19,11 @@ Ao iniciar a sessão é construído a partir do objeto response um objeto javasc
 $rootScope.Models =
 { 
 ***
-  nome_da_secretaria:nome_do_setor
-___
-  {
-___
-    nome_do_formulario 
+  nome_da_secretaria:nome_do_setor  {
 ***
-    { 
+    nome_do_formulario { 
 ***
-      nome_da_entidade 
-***
-      { 
+      nome_da_entidade { 
 ***
         nome_do_atributo:"valor" 
 ***
