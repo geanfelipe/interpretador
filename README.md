@@ -15,7 +15,7 @@ This README would normally document whatever steps are necessary to get your app
 ### Benefícios
 
 * Não precisará mais construir dezenas de formulários que fazem a mesma coisa para setores diferentes.
-* A partir do interpretador, terá apenas um módulo que atenderá toda a demanda de cadastros e afins.
+* A partir do interpretador, haverá apenas um módulo que atenderá toda a demanda de cadastros e afins.
 
 ### Guideline
 
